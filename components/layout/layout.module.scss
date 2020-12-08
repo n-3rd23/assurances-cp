@@ -1,0 +1,23 @@
+.side_bar {
+    background-color: #313541;
+    width: 5vw;
+    height: 100vh;
+    position: relative;
+}
+.nav_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home {
+    background-color: #E95656;
+}
+.nav_icon {
+    width: 30px;
+}
+.logout {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
