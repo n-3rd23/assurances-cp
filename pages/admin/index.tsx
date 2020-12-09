@@ -1,11 +1,9 @@
-import Layout from  "../../components/layout/layout"
+import Admin from "../../components/layout/admin";
 
 export default function Dashboard() {
-    return (
-        <Layout title={'dashboard'} description={'dashboard page of admin'}>
-            <div className="col-md-12">
-                dashboard
-            </div>
-        </Layout>
-    );
+  return (
+    <Admin title="dashboard" description="dashboard page of admin">
+      <div className="col-md-12">hola</div>
+    </Admin>
+  );
 }

@@ -1,3 +1,10 @@
+import HomeMain from "../components/homeMain/homeMain";
+import Layout from "../components/layout/layout";
+
 export default function Home() {
-  return <h1>Home Page</h1>;
+  return (
+    <Layout title="Assurances" description="Best Life Insurance ever">
+      <HomeMain />
+    </Layout>
+  );
 }
