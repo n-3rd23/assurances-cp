@@ -1,10 +1,10 @@
-import Layout from "../../components/layout/layout"
+import Admin from "../../components/layout/admin"
 import { Fragment } from "react"
 import PlanCard from "../../components/plancard/plancard"
 
 export default function Plans() {
     return (
-        <Layout title="plans" description="add or remove plans">
+        <Admin title="plans" description="add or remove plans">
             <Fragment>
                 <div className="container mt-5 ml-5">
                     <div className="row">
@@ -23,6 +23,6 @@ export default function Plans() {
                     </div>
                 </div>
             </Fragment>
-        </Layout>
+        </Admin>
     );
 }
