@@ -2,9 +2,6 @@
     background-color: #313541;
     width: 5vw;
     height: 100vh;
-    position: relative;
-}
-.nav_item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,10 +11,8 @@
     background-color: #E95656;
 }
 .nav_icon {
-    width: 30px;
+    width: 1.5rem;
 }
-.logout {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.wrapper {
+    width:95vw;
 }
