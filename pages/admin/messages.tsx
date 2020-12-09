@@ -1,11 +1,11 @@
-import Layout from "../../components/layout/layout"
+import Admin from "../../components/layout/admin"
 import { Fragment } from "react"
 import CounterCard from "../../components/counter_card/counter_card"
 import MessageCard from "../../components/message_card/message_card"
 
 export default function Messages() {
     return(
-        <Layout title="messages" description="admin messages">
+        <Admin title="messages" description="admin messages">
             <Fragment>
                 <div className="container mt-5 ml-5">
                     <div className="row">
@@ -33,12 +33,12 @@ export default function Messages() {
                         </div>
                         <div className="col-md-12 mt-4">
                             <MessageCard>
-                                
+
                             </MessageCard>
                         </div>
                     </div>
                 </div>
             </Fragment>
-        </Layout>
+        </Admin>
     );
 }

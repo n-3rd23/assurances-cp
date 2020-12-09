@@ -22,6 +22,16 @@ a {
   text-decoration: none !important;
 }
 
+.justify-center {
+  justify-content: center;
+}
+.justify-space-evenly {
+  justify-content: space-evenly;
+}
+.align-center {
+  align-items: center;
+}
+
 .fw-200 {
   font-weight: 200;
 }
