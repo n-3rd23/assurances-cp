@@ -17,6 +17,7 @@ interface Props {
 
 export default function Admin({ title, description, children }: Props) {
   const router: NextRouter = useRouter();
+  const url = "https://assurances.co.in" + router.asPath;
   return (
     <Fragment>
       <NextSeo
@@ -24,10 +25,10 @@ export default function Admin({ title, description, children }: Props) {
         noindex
         title={title}
         description={description}
-        canonical={"https://assurances.co.in" + router.asPath}
+        canonical={url}
         openGraph={{
           type: "website",
-          url: "https://assurances.co.in" + router.asPath,
+          url,
           title: title,
           description: description,
         }}
