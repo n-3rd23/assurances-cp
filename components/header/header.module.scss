@@ -1,10 +1,12 @@
 .navMini {
   background-color: var(--primary-accent);
 }
-.sndContainer {
-  height: 15vh;
+
+.title {
+  width: max-content;
+  line-height: 0.8;
 }
-.headSizing {
-  margin-left: 0.3vw;
-  margin-top: -1.3vh;
+
+.subtitle:hover {
+  color: var(--primary-main) !important;
 }
