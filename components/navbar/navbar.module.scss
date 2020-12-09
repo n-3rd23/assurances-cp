@@ -1,0 +1,14 @@
+.containerStyle {
+  height: 75px;
+  background-color: #003478;
+  color: white !important;
+}
+.innerContainer {
+  border: 1px solid white;
+}
+
+.nav {
+  &:hover {
+    border-bottom: 1px solid white;
+  }
+}
