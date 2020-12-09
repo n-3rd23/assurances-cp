@@ -1,14 +1,42 @@
-import styles from "./header.module.scss";
-import { Col, Row, Container, Button } from "react-bootstrap";
+import Link from "next/link";
 import { Fragment } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import InfoHeading from "../infoHeading/infoHeading";
 import Navbar from "../navbar/navbar";
+import styles from "./header.module.scss";
 
 export default function Header() {
   return (
     <Fragment>
-      <Container fluid className={` ${styles.firstContainer}`}>
-        <Container className="d-flex justify-content-between">
+      <div className="d-flex flex-row bd-highlight">
+        <div className="p-2 bd-highlight flex-grow-1">
+          <Link href="/">
+            <a>
+              <small>Kooi</small>
+            </a>
+          </Link>
+        </div>
+        <div className="p-2 bd-highlight">
+          <Link href="/">
+            <a>
+              <small>
+                <strong>MAKE A CLAIM</strong>
+              </small>
+            </a>
+          </Link>
+        </div>
+        <div className="p-2 bd-highlight">
+          <Link href="/">
+            <a>
+              <small>
+                <strong>SERVICES</strong>
+              </small>
+            </a>
+          </Link>
+        </div>
+      </div>
+      <Container fluid className={styles.firstContainer}>
+        {/* <Container className="d-flex justify-content-between">
           <div className="p-2">kooi</div>
           <div className="p-2">
             <div className="d-inline p-2 text-medium fw-700 midnightBlue">
@@ -19,9 +47,14 @@ export default function Header() {
               SERVICES
             </div>
           </div>
-        </Container>
+        </Container> */}
+        <Row>
+          <Col md={6} xs={10}></Col>
+          <Col md={2} xs={1}></Col>
+          <Col md={2} xs={1}></Col>
+        </Row>
       </Container>
-      <Container fluid className={`${styles.sndContainer}`}>
+      <Container fluid className={styles.sndContainer}>
         <Container className="mt-4">
           <Row>
             <Col md={6}>
