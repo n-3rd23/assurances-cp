@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Fragment } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import InfoHeading from "../infoHeading/infoHeading";
 import Navbar from "../navbar/navbar";
 import styles from "./header.module.scss";
 
 export default function Header() {
   return (
     <Fragment>
-      <div className="d-flex flex-row bd-highlight">
+      <div
+        className={`d-flex flex-row d-flex justify-content-around bd-highlight px-md-5 px-4 ${styles.navMini}`}
+      >
         <div className="p-2 bd-highlight flex-grow-1">
           <Link href="/">
             <a>
@@ -18,7 +18,7 @@ export default function Header() {
         </div>
         <div className="p-2 bd-highlight">
           <Link href="/">
-            <a>
+            <a className="text-medium midnightBlue">
               <small>
                 <strong>MAKE A CLAIM</strong>
               </small>
@@ -27,7 +27,7 @@ export default function Header() {
         </div>
         <div className="p-2 bd-highlight">
           <Link href="/">
-            <a>
+            <a className="text-medium midnightBlue">
               <small>
                 <strong>SERVICES</strong>
               </small>
@@ -35,29 +35,11 @@ export default function Header() {
           </Link>
         </div>
       </div>
-      <Container fluid className={styles.firstContainer}>
-        {/* <Container className="d-flex justify-content-between">
-          <div className="p-2">kooi</div>
-          <div className="p-2">
-            <div className="d-inline p-2 text-medium fw-700 midnightBlue">
-              MAKE A CLAIM
-            </div>
-            <div className="d-inline p-2 fw-200">|</div>
-            <div className="d-inline p-2 text-medium fw-700 midnightBlue">
-              SERVICES
-            </div>
-          </div>
-        </Container> */}
-        <Row>
-          <Col md={6} xs={10}></Col>
-          <Col md={2} xs={1}></Col>
-          <Col md={2} xs={1}></Col>
-        </Row>
-      </Container>
-      <Container fluid className={styles.sndContainer}>
-        <Container className="mt-4">
-          <Row>
-            <Col md={6}>
+      <div className="container"></div>
+      {/* <div className={`container-fluid ${styles.sndContainer}`}>
+        <div className="container mt-4">
+          <div className="row">
+            <div className="col-md-6">
               <div className="d-block">
                 <div className="d-inline text-largest fw-700">Life</div>
                 <div className="d-inline text-largest fw-700 midnightBlue">
@@ -69,20 +51,20 @@ export default function Header() {
               >
                 INSURANCE COMPANY
               </div>
-            </Col>
+            </div>
 
-            <Col md={3} className="mt-4">
+            <div className="col-md-3 mt-4">
               <InfoHeading
-                mainHead="info@lifeassure.com"
-                subHead="Send us a message"
+                title="info@lifeassure.com"
+                subtitle="Send us a message"
               />
-            </Col>
-            <Col md={3} className="mt-4">
-              <InfoHeading mainHead="+91 9872369874" subHead="Give us a call" />
-            </Col>
-          </Row>
-        </Container>
-      </Container>
+            </div>
+            <div className="col-md-3 mt-4">
+              <InfoHeading title="+91 9872369874" subtitle="Give us a call" />
+            </div>
+          </div>
+        </div>
+      </div> */}
       <Navbar />
     </Fragment>
   );

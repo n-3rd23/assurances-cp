@@ -1,19 +1,22 @@
-import styles from "./infoHeading.module.scss";
-import { Col, Row, Container } from "react-bootstrap";
+interface Props {
+  icon?: any;
+  title?: string;
+  subtitle?: string;
+}
 
-export default function InfoHeading({ icon, mainHead, subHead }) {
+export default function InfoHeading({ icon, title, subtitle }: Props) {
   return (
-    <Container fluid>
-      <Row>
-        <Col md={4}>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-4">
           <img src="" alt="" />
-        </Col>
-        <Col md={8} className={`fw-700 text-interSize midnightBlue `}>
-          {mainHead}
+        </div>
+        <div className="fw-700 text-interSize midnightBlue col-md-8">
+          {title}
           <br />
-          <div className={`fw-600 text-medium lightSlateGrey `}>{subHead}</div>
-        </Col>
-      </Row>
-    </Container>
+          <div className="fw-600 text-medium lightSlateGrey">{subtitle}</div>
+        </div>
+      </div>
+    </div>
   );
 }
