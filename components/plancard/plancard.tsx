@@ -20,11 +20,11 @@ export default function PlanCard({children} : Props) {
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque nihil explicabo assumenda necessitatibus aut, pariatur nemo non numquam eum ut consequatur est ullam et expedita sed velit, cupiditate omnis iste.
                                 </small>
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-md-3 text-center">
                                 <span>Clients</span>
                                 <small className="text-muted d-block">12</small>
                             </div>
-                            <div className="col-md-3">
+                            <div className="col-md-3 text-center">
                                 <img style={{width:"25px"}} src="/icons/trash_red.svg" alt="delete"/>
                             </div>
                         </div>
