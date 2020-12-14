@@ -8,7 +8,7 @@ interface Props {
 export default function CounterCard({children}:Props) {
     return (
         <Fragment>
-            <div className={`bg-white d-flex p-4 shadow-sm justify-space-evenly align-center`}>
+            <div className={`bg-white d-flex p-4 shadow-sm justify-content-evenly align-items-center`}>
                 {children}
             </div>
         </Fragment>

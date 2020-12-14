@@ -1,7 +1,3 @@
-// sidebar bg -> background -> : #313541;
-// sidebar active_home background -> : #E95656;
-// sidebar icon_not active  -> background -> : #5A6371;
-
 import { NextSeo } from "next-seo";
 import { NextRouter, useRouter } from "next/router";
 import  Link  from "next/link";
