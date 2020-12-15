@@ -24,20 +24,12 @@ export default function CustomInput({
   if (variant == "bordered") {
     input_variant = styles.bordered;
   }
-  const [classes, setClasses] = useState(`px-3 py-2 ${input_variant}`);
 
-  useEffect(() => {
-    if (className) setClasses(classes + " " + className);
-  }, [className]);
-
-  useEffect(() => {
-    if (value) setClasses(classes + " " + styles.active);
-  }, [value]);
-
-  useEffect(() => {
-    if (warning && warning.length > 0)
-      setClasses(classes + " " + styles.danger);
-  }, [warning]);
+  let classes = className
+    ? `px-3 py-2 ${className} ${input_variant}`
+    : `px-3 py-2 ${input_variant}`;
+  if (value && value.length > 0) classes += " " + styles.active;
+  if (warning && warning.length > 0) classes += " " + styles.danger;
 
   return (
     <Fragment>
