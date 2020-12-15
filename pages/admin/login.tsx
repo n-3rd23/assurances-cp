@@ -1,9 +1,33 @@
 import { Fragment } from "react";
 import CustomInput from "../../components/custom_input/custom_input";
 import Button from "../../components/button/button";
-import Link from "next/link"
+import Link from "next/link";
+import { auth } from "../../firebase/firebase.util";
+import { useState } from "react";
 
-export default function Login() {
+export default function Login(props) {
+  
+   const [email, setEmail] = useState('')
+   const [password, setPassword] = useState('')
+
+   const getEmail = (event) => {
+      setEmail(event.target.value)
+   }
+
+   const getPassword = (event) => {
+      setPassword(event.target.value)
+   }
+
+   const login = () => {
+      auth.signInWithEmailAndPassword(email,password)
+      .then((user) => {
+         console.log(user)
+      })
+      .catch((error) => {
+         console.log("error while logging in", error)
+      })
+   }
+
    return (
       <Fragment>
          <div className="container-fluid">
@@ -14,9 +38,9 @@ export default function Login() {
                      <small className="text-muted text-medium fw-600">please enter your e-mail and password</small>
                   </div>
                   <div className="w-50 mx-auto">
-                     <CustomInput type="text" placeholder="e-mail" className="w-100 my-2 rounded shadow-sm"/>
-                     <CustomInput type="password" placeholder="password" className="w-100 my-2 rounded shadow-sm"/>
-                     <Button className="w-100 my-2 rounded">LOGIN</Button>
+                     <CustomInput onChange={getEmail} type="text" placeholder="e-mail" className="w-100 my-2 rounded shadow-sm"/>
+                     <CustomInput onChange={getPassword} type="password" placeholder="password" className="w-100 my-2 rounded shadow-sm"/>
+                     <Button onClick={login} className="w-100 my-2 rounded">LOGIN</Button>
                   </div>
                   <div className="text-center mt-5">
                      <Link href="#">

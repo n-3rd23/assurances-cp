@@ -6,9 +6,10 @@ interface Props {
    type : string
    placeholder ?: string;
    variant ?: "primary" | "bordered"
+   onChange : () => void
 }
 
-export default function CustomInput({className,type,placeholder,variant = "primary"} : Props) {
+export default function CustomInput({className,type,placeholder,variant = "primary",onChange} : Props) {
 
    let input_variant = styles.primary
    if(variant == "bordered") {
@@ -23,6 +24,7 @@ export default function CustomInput({className,type,placeholder,variant = "prima
       } 
       type={type}
       placeholder={placeholder}
+      onChange={onChange}
       />
    )
 }

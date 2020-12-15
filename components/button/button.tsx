@@ -6,6 +6,7 @@ interface Props {
   className?: string;
   variant?: "primary" | "outline";
   type?: "submit" | "button" | "reset";
+  onClick : () => void
 }
 
 export default function Button({
@@ -13,6 +14,7 @@ export default function Button({
   className,
   variant = "primary",
   type = "button",
+  onClick
 }: Props) {
   let buttonStyles = styles.primary;
   if (variant == "outline") {
@@ -20,6 +22,7 @@ export default function Button({
   }
   return (
     <button
+      onClick={onClick}
       type={type}
       className={
         className

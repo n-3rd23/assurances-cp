@@ -3,7 +3,8 @@ import { NextRouter, useRouter } from "next/router";
 import  Link  from "next/link";
 import { Fragment } from "react";
 import styles from "./admin.module.scss";
-import { route } from "next/dist/next-server/server/router";
+import { useState,useEffect } from "react";
+import { auth } from "../../firebase/firebase.util";
 
 interface Props {
   title?: string;
@@ -11,7 +12,33 @@ interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
-export default function Admin({ title, description, children }: Props) {
+export default function Admin({ title, description, children }: Props,props) {
+  let currentUser;
+  console.log(props);
+  // let unSubscribeFromAuth;
+  // const [currentUser, setCurrentUser] = useState(null);
+
+  // useEffect(() => {
+  //   unSubscribeFromAuth = auth.onAuthStateChanged(user => {
+  //     setCurrentUser(user)
+  //   })
+    
+  //   // component will unmount
+  //   return () => {
+  //     unSubscribeFromAuth()
+  //   }
+  // },[])
+
+  const logout = () => {
+    auth.signOut()
+    .then(() => {
+      console.log('signed out');
+    })
+    .catch((error) => {
+      console.log("error while logging out",error)
+    })
+  }
+
   const router: NextRouter = useRouter();
   const url = "https://assurances.co.in" + router.asPath;
   return (
@@ -57,11 +84,14 @@ export default function Admin({ title, description, children }: Props) {
                 }
               </a>
             </Link>
-            <Link href="/admin">
-              <a className={`py-3 w-100 text-center mt-auto ${styles.logout}`}>
-                <img className={styles.nav_icon} src="/icons/power.svg" alt="home"/>
-              </a>
-            </Link>
+            {
+              currentUser 
+              ? 
+                <div onClick={logout} style={{cursor:"pointer"}} className={`py-3 w-100 text-center mt-auto ${styles.logout}`}>
+                  <img className={styles.nav_icon} src="/icons/power.svg" alt="home"/>
+                </div>
+              : null
+            }
           </div>
           <div className="col">{children}</div>
         </div>
