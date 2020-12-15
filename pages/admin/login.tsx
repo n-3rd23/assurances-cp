@@ -5,6 +5,7 @@ import Link from "next/link";
 import { auth } from "../../firebase/firebase.util";
 import { useState } from "react";
 import { NextRouter, useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,9 @@ export default function Login() {
 
   return (
     <Fragment>
+      <Head>
+        <title>Login</title>
+      </Head>
       <div className="container-fluid">
         <div
           style={{ height: "100vh", backgroundColor: "#f1f1f1" }}
@@ -49,22 +53,24 @@ export default function Login() {
             <div className="w-50 mx-auto">
               <CustomInput
                 onChange={getEmail}
-                type="text"
+                type="email"
                 placeholder="e-mail"
                 className="w-100 my-2 rounded shadow-sm"
+                value={email}
               />
               <CustomInput
                 onChange={getPassword}
                 type="password"
                 placeholder="password"
                 className="w-100 my-2 rounded shadow-sm"
+                value={password}
               />
               <Button onClick={login} className="w-100 my-2 rounded">
                 LOGIN
               </Button>
             </div>
             <div className="text-center mt-5">
-              <Link href="#">
+              <Link href="/">
                 <a>forgot password ?</a>
               </Link>
             </div>

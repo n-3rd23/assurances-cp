@@ -1,7 +1,7 @@
 import { NextSeo } from "next-seo";
 import { NextRouter, useRouter } from "next/router";
 import Link from "next/link";
-import { Fragment, useContext, useState, useEffect } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import styles from "./admin.module.scss";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import { AuthContext } from "../../context/AuthContext";
