@@ -48,21 +48,30 @@ export default function Plans() {
     plansRef.onSnapshot((querySnapshot) => {
       let tmp = [];
       querySnapshot.docChanges().forEach((change) => {
-        tmp.push({ id: change.doc.id, ...change.doc.data() });
+        if(change.type === "added") {
+          tmp.push({ id: change.doc.id, ...change.doc.data() });
+        }
+        if(change.type === "modified") {
+          tmp.push({ id: change.doc.id, ...change.doc.data() });
+        }
+        if(change.type === "removed") {
+          tmp.push({ id: change.doc.id, ...change.doc.data() });
+        }
       });
       setFetchedPlans(tmp);
     });
   };
 
   const fetchCategories = async () => {
-    const categoriesRef = firestore
-      .collection("category")
-      .doc("PG3GNZvCAPhrtNmuO9oB");
-    const categoriesDoc = await categoriesRef.get();
-    if (categoriesDoc.exists) {
-      setCategories(categoriesDoc.data());
-    } else {
-      console.log("no category doc exists!!");
+    try {
+      const categoriesRef = firestore
+        .collection("category")
+        .doc("PG3GNZvCAPhrtNmuO9oB");
+      await categoriesRef.onSnapshot((doc) => {
+        setCategories(doc.data())
+      }); 
+    } catch(error) {
+      console.log("error while fetching category : ", error)
     }
   };
 
