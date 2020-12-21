@@ -69,11 +69,6 @@ export default function Login() {
                 LOGIN
               </Button>
             </div>
-            <div className="text-center mt-5">
-              <Link href="/">
-                <a>forgot password ?</a>
-              </Link>
-            </div>
           </div>
           <div className="col-md-6 text-center my-auto">
             <img

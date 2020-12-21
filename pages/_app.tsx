@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import SEO from "../next-seo.config";
 import "../styles/globals.scss";
 import { AuthProvider } from "../context/AuthContext";
+import 'react-quill/dist/quill.snow.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
