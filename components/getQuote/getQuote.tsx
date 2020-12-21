@@ -26,13 +26,17 @@ export default function GetQuote() {
   };
   const uploadDB = async () => {
     const data = {
-      name: name,
-      phone: phone,
-      email: email,
-      message: message,
+      Name: name,
+      Phone: phone,
+      Email: email,
+      Message: message,
     };
     try {
-      firestore.collection("quotes").add(data);
+      firestore.collection("qoutes").add(data);
+      setName("");
+      setPhone("");
+      setEmail("");
+      setMessage("");
       // message.success("Message has been sent");
     } catch (error) {
       console.log(error);
@@ -84,7 +88,11 @@ export default function GetQuote() {
               className={`mb-4 p-3 ${styles.inputBoxStyle}`}
               rows={4}
             />
-            <button type="button" className="btn btn-primary w-100 mb-4">
+            <button
+              type="button"
+              className="btn btn-primary w-100 mb-4"
+              onClick={uploadDB}
+            >
               SEND MESSAGE
             </button>
           </div>

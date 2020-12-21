@@ -1,0 +1,19 @@
+.label {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+.image {
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+}
+.del_btn {
+    right: 0;
+    z-index: 1000;
+    cursor: pointer;
+}

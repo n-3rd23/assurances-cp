@@ -13,20 +13,18 @@ const config = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
-export const createUserDocumentProfile = async (userAuth, additionalData) => {
-  if (!userAuth) return; // exits out if the user is not logged in
+export const createUserProfileDocument = async (userAuth, additionalData?) => {
+  if (!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`); //retrives data from users collection
-  const snapShot = await userRef.get(); //gets the user
-  // console.log(snapShot)
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-  // if user dosent exists create a new user
+  const snapShot = await userRef.get();
+
   if (!snapShot.exists) {
-    const { displayName, email } = userAuth; // destructuring diaplay name and email
-    const createdAt = new Date(); //
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
 
     try {
-      // set is userd to insert data into the db
       await userRef.set({
         displayName,
         email,
@@ -34,13 +32,13 @@ export const createUserDocumentProfile = async (userAuth, additionalData) => {
         ...additionalData,
       });
     } catch (error) {
-      console.log("error creating user", error);
+      console.log("Error creating user", error.message);
     }
+  } else {
+    console.log(snapShot.data())
   }
-
   return userRef;
 };
-
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config);

@@ -5,6 +5,8 @@ import Head from "next/head";
 import { Fragment } from "react";
 import SEO from "../next-seo.config";
 import "../styles/globals.scss";
+import { AuthProvider } from "../context/AuthContext";
+import 'react-quill/dist/quill.snow.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +15,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <DefaultSeo {...SEO} />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </Fragment>
   );
 }

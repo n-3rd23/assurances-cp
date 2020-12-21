@@ -22,6 +22,7 @@ export default function Button({
   }
   return (
     <button
+      onClick={onClick}
       type={type}
       className={
         className
