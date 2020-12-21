@@ -23,7 +23,7 @@ export default function Feature_Card({ icon, head, content }) {
         </div>
       </div>
       <div className="mt-3 text-large text-primary fw-800">{head}</div>
-      <p className="mt-3 text-small px-5 py-2">{content}</p>
+      <p className="mt-3 text-small py-md-2">{content}</p>
     </div>
   );
 }

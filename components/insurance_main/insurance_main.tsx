@@ -20,7 +20,7 @@ export default function Insurance_Main() {
     {
       name: "LIFE INSURANCE",
       subText:
-        "Lafw afawad aw wdaffawrrwararaum blandit odio, id iaculis felis tincidunt a.",
+        "Lafw afawad aw wdaffawrrwararaum blandit odio, id iaculis felis tincidunt a.Lafw afawad aw wdaffawrrwararaum blandit odio, id iaculis felis tincidunt a.",
     },
   ];
   const [selectedItem, setSelectedItem] = useState(insurance[0].name);
@@ -36,15 +36,22 @@ export default function Insurance_Main() {
             {" "}
             <div className=" text-large fw-600">
               {selectedItem}
-              <div className="text-medium fw-400">{selectedItemText}</div>
+              <div className="text-interSize fw-100 mt-2">
+                {selectedItemText}
+              </div>
             </div>
             <div>
-              <button type="button" className="btn btn-lg btn-outline-light">
+              <button
+                type="button"
+                className="btn btn-lg btn-outline-light mt-4 rounded-0"
+              >
                 GET A QUOTE
               </button>
             </div>
           </div>
-          <div className="p-2 bd-highlight ">PIC</div>
+          <div className="p-2 bd-highlight ">
+            <div className={`${styles.imgDiv}`}></div>
+          </div>
           <div className="p-2 bd-highlight ">
             <div
               className={`text-interSize fw-600 p-3 d-flex flex-column bd-highlight mb-3`}
@@ -53,19 +60,25 @@ export default function Insurance_Main() {
               {insurance.map((item) => {
                 return (
                   <button
+                    key={item.name}
                     className={`border-0 ${styles.buttonStyle}`}
                     onClick={() => {
                       setSelectedItem(item.name),
                         setSelectedItemText(item.subText);
                     }}
                   >
-                    <div className={`p-2 ${styles.divStyle}`}>{item.name}</div>
+                    <div key={item.name} className={`p-2 ${styles.divStyle}`}>
+                      {item.name}
+                    </div>
                   </button>
                 );
               })}
             </div>
           </div>
         </div>
+      </div>
+      <div className="container text-center mt-4">
+        <button className={`border-0 ${styles.buttonStyle}`}>LOAD MORE</button>
       </div>
     </div>
   );

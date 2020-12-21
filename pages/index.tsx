@@ -8,7 +8,10 @@ import User_Reviews from "../components/user_reviews/user_reviews";
 export default function Home() {
   return (
     <Layout title="Assurances" description="Best Life Insurance ever">
-      <Hero />
+      <Hero
+        subHead="LIVE SECURE,LIVE HAPPY"
+        mainHead="RELIABLE INSURANCE FOR ANY PURPOSE"
+      />
       <Bar />
       <Home_Features />
       <Insurance_Main />

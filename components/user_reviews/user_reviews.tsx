@@ -21,7 +21,7 @@ export default function User_Reviews() {
       <Carousel autoplay>
         {reviews.map((item) => {
           return (
-            <div>
+            <div key={item}>
               <p className="p-5" key={item} style={contentStyle}>
                 {item}
               </p>

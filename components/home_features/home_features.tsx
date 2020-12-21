@@ -8,12 +8,16 @@ export default function Home_Features() {
       <div className="container text-center mt-3 text-largest fw-900 text-primary">
         NO MORE WORRIES
       </div>
-      <div className="d-flex justify-content-center mt-2">
+      <div className="d-flex flex-md-row flex-sm-column justify-content-center mt-2">
         <div className="p-3">
           <Feature_Card
             icon="Safe"
             head="SECURE LIFE"
             content="Lorem ipsum dolor sit amet, 
+            consectetur adipiscing elit. 
+            Etiam fermentum blandit odio,
+            id iaculis felis tincidunt a
+            Lorem ipsum dolor sit amet, 
             consectetur adipiscing elit. 
             Etiam fermentum blandit odio,
             id iaculis felis tincidunt a"
@@ -26,6 +30,10 @@ export default function Home_Features() {
             content="Lorem ipsum dolor sit amet, 
             consectetur adipiscing elit. 
             Etiam fermentum blandit odio,
+            id iaculis felis tincidunt a
+            Lorem ipsum dolor sit amet, 
+            consectetur adipiscing elit. 
+            Etiam fermentum blandit odio,
             id iaculis felis tincidunt a"
           />
         </div>
@@ -34,6 +42,10 @@ export default function Home_Features() {
             icon="Bank"
             head="FLEXIBLE COST"
             content="Lorem ipsum dolor sit amet, 
+            consectetur adipiscing elit. 
+            Etiam fermentum blandit odio,
+            id iaculis felis tincidunt a
+            Lorem ipsum dolor sit amet, 
             consectetur adipiscing elit. 
             Etiam fermentum blandit odio,
             id iaculis felis tincidunt a"
