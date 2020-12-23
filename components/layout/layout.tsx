@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import { NextRouter, useRouter } from "next/router";
 import { Fragment } from "react";
 import Header from "../header/header";
+import Footer from "../footer/footer";
 
 interface Props {
   title?: string;
@@ -30,6 +31,7 @@ export default function Admin({ title, description, children }: Props) {
       />
       <Header />
       {children}
+      <Footer />
     </Fragment>
   );
 }

@@ -3,7 +3,7 @@ import { Carousel } from "antd";
 
 export default function User_Reviews() {
   const contentStyle = {
-    height: "290px",
+    minHeight: "290px",
     color: "#7F99BB",
     textAlign: "center",
     background: "#f5f5f5",
@@ -17,7 +17,7 @@ export default function User_Reviews() {
   ];
 
   return (
-    <div className="container w-75 mt-5 pb-5">
+    <div className="container w-100 w-md-75 mt-5 pb-5">
       <Carousel autoplay>
         {reviews.map((item) => {
           return (

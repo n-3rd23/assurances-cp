@@ -31,8 +31,15 @@ export default function Insurance_Main() {
   return (
     <div className={`container-fluid mt-5 pt-5 ${styles.mainStyle}`}>
       <div className="container mt-5 w-100">
-        <div className="d-flex justify-content-between ">
-          <div className={`p-2 bd-highlight ${styles.sectionStyle}`}>
+        <div
+          className={`d-flex flex-nowrap justify-content-between ${styles.containerStyle}`}
+        >
+          <div className="p-2 bd-highlight ">
+            <div className={`${styles.imgDiv}`}></div>
+          </div>
+          <div
+            className={`order-md-first p-2 bd-highlight  ${styles.sectionStyle}`}
+          >
             {" "}
             <div className=" text-large fw-600">
               {selectedItem}
@@ -49,9 +56,7 @@ export default function Insurance_Main() {
               </button>
             </div>
           </div>
-          <div className="p-2 bd-highlight ">
-            <div className={`${styles.imgDiv}`}></div>
-          </div>
+
           <div className="p-2 bd-highlight ">
             <div
               className={`text-interSize fw-600 p-3 d-flex flex-column bd-highlight mb-3`}
@@ -77,7 +82,7 @@ export default function Insurance_Main() {
           </div>
         </div>
       </div>
-      <div className="container text-center mt-4">
+      <div className="container text-center mt-4 pb-4">
         <button className={`border-0 ${styles.buttonStyle}`}>LOAD MORE</button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import Bank from "../../public/icons/piggy-bank.svg";
 
 export default function Feature_Card({ icon, head, content }) {
   return (
-    <div className={`container ${styles.containerStyle} text-center `}>
+    <div className={`container ${styles.containerStyle} text-center p-4`}>
       <div className="mt-4">
         <div className={`${styles.roundedStyle} mx-auto`}>
           {icon === "Safe" ? (
