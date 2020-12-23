@@ -49,68 +49,66 @@ export default function GetQuote() {
     }
   };
   return (
-    <div className={`container-fluid ${styles.mainStyle}`}>
+    <div className="container-fluid">
       <div className="row">
-        <div className="col-md-6 col-sm-12">
-          <p className="text-white fw-600 text-largest mt-1">Get a quote</p>
-          <div>
-            <p className={`${styles.pStyle}`}>
+        <div className="col-md-6 col-sm-12 text-md-start text-center d-flex flex-column justify-content-between">
+          <div className="bd-highlight">
+            <p className="text-white fw-600 text-largest mt-1">Get a quote</p>
+            <p className={styles.pStyle}>
               Fill up the details and we'll get back to you
             </p>
-            <div className={`container text-white ${styles.infoStyle}`}>
-              <div className="d-flex">
-                <Phone
-                  className="m-4"
-                  style={{ color: "#0c75ff" }}
-                  width={25}
-                  height={25}
-                />
-                <p className="py-4 px-2">+91 9956845228 </p>
-              </div>
-              <div className="d-flex">
-                <Phone
-                  className="m-4"
-                  style={{ color: "#0c75ff" }}
-                  width={25}
-                  height={25}
-                />
-                <p className="py-4 px-2">info@lifeassure.com</p>
-              </div>
-              <div className="d-flex">
-                <Phone
-                  className="m-4"
-                  style={{ color: "#0c75ff" }}
-                  width={25}
-                  height={25}
-                />
-                <p className="py-4 px-2">Angamaly</p>
-              </div>
-              <div className="d-flex flex-row d-flex justify-content-start bd-highlight text-white mt-md-5">
-                <div className="p-2 bd-highlight">
-                  <a href="https://facebook.com">
-                    <Facebook className="m-3" width={16} height={16} />
-                  </a>
+          </div>
+          <div className="bd-highlight text-white">
+            <div className="d-flex justify-content-md-start justify-content-center">
+              <Phone
+                className="m-4"
+                style={{ color: "#0c75ff" }}
+                width={25}
+                height={25}
+              />
+              <p className="py-4 px-2">+91 9956845228 </p>
+            </div>
+            <div className="d-flex justify-content-md-start justify-content-center">
+              <Phone
+                className="m-4"
+                style={{ color: "#0c75ff" }}
+                width={25}
+                height={25}
+              />
+              <p className="py-4 px-2">info@lifeassure.com</p>
+            </div>
+            <div className="d-flex justify-content-md-start justify-content-center">
+              <Phone
+                className="m-4"
+                style={{ color: "#0c75ff" }}
+                width={25}
+                height={25}
+              />
+              <p className="py-4 px-2">Angamaly</p>
+            </div>
+          </div>
+          <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight text-white mt-md-5">
+            <div className="p-2 bd-highlight">
+              <a href="https://facebook.com">
+                <Facebook className="m-3" width={16} height={16} />
+              </a>
 
-                  <a href="https://facebook.com">
-                    <Twitter className="m-3" width={16} height={16} />
-                  </a>
+              <a href="https://facebook.com">
+                <Twitter className="m-3" width={16} height={16} />
+              </a>
 
-                  <a href="https://facebook.com">
-                    <Linkedin className="m-3" width={16} height={16} />
-                  </a>
+              <a href="https://facebook.com">
+                <Linkedin className="m-3" width={16} height={16} />
+              </a>
 
-                  <a href="https://facebook.com">
-                    <Instagram className="m-3" width={16} height={16} />
-                  </a>
-                </div>
-              </div>
+              <a href="https://facebook.com">
+                <Instagram className="m-3" width={16} height={16} />
+              </a>
             </div>
           </div>
         </div>
         <div className="col-md-6 col-sm-12">
-          <div
-            className={`container-fluid border border-primary rounded-1 ${styles.containerStyle}`}
-          >
+          <div className="container-fluid border border-primary rounded-1 bg-white">
             <p className="fw-700 mt-4">Your Name</p>
             <Input
               value={name}

@@ -1,7 +1,7 @@
 import Quote from "../../public/icons/quote.svg";
 import Button from "../button/button";
 import styles from "./hero.module.scss";
-import { AutoComplete, Modal } from "antd";
+import { Modal } from "antd";
 import React, { useState } from "react";
 import GetQuote from "../getQuote/getQuote";
 
@@ -39,6 +39,7 @@ export default function Hero({ subHead, mainHead }) {
           bodyStyle={{
             backgroundColor: "#003478",
           }}
+          className={styles.modalStyle}
           closable={false}
           footer={null}
           visible={isModalVisible}
