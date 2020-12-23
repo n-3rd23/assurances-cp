@@ -49,7 +49,7 @@ export default function GetQuote() {
     }
   };
   return (
-    <div className="container-fluid w-100">
+    <div className={`container-fluid ${styles.mainStyle}`}>
       <div className="row">
         <div className="col-md-6 col-sm-12">
           <p className="text-white fw-600 text-largest mt-1">Get a quote</p>
@@ -109,7 +109,7 @@ export default function GetQuote() {
         </div>
         <div className="col-md-6 col-sm-12">
           <div
-            className={`container border border-primary rounded-1 ${styles.containerStyle}`}
+            className={`container-fluid border border-primary rounded-1 ${styles.containerStyle}`}
           >
             <p className="fw-700 mt-4">Your Name</p>
             <Input

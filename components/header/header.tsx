@@ -51,7 +51,7 @@ export default function Header() {
         </div>
       </div>
       <div className="container d-flex flex-md-row flex-column d-flex flex-wrap justify-content-between align-items-center bd-highlight py-md-4 py-3">
-        <div className="p-2 bd-highlight">
+        <div className="p-2 bd-highlight smTextCenter">
           <Link href="/">
             <a className={styles.title}>
               <h2 className="fw-800 mb-0">Assurances</h2>
@@ -62,7 +62,7 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        <div className="d-flex p-2 bd-highlight">
+        <div className="d-flex flex-column flex-md-row p-2 bd-highlight justify-content-center align-items-center smTextCenter">
           <Info
             title="info@lifeassure.com"
             subtitle="Send us a message"

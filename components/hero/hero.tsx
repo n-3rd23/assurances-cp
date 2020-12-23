@@ -1,7 +1,7 @@
 import Quote from "../../public/icons/quote.svg";
 import Button from "../button/button";
 import styles from "./hero.module.scss";
-import { Modal } from "antd";
+import { AutoComplete, Modal } from "antd";
 import React, { useState } from "react";
 import GetQuote from "../getQuote/getQuote";
 
@@ -19,15 +19,14 @@ export default function Hero({ subHead, mainHead }) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
   return (
     <div className={`${styles.hero} position-relative`}>
       <div
         className={`${styles.heroText} position-absolute text-white col-md-4 col-sm-8 col-12 text-md-start text-center`}
       >
         <p className="mb-0">{subHead}</p>
-        <h1 className="mb-0 fw-800 text-white">
-          {mainHead}
-        </h1>
+        <h1 className="mb-0 fw-800 text-white">{mainHead}</h1>
         <Button
           onClick={showModal}
           className="mt-3 fw-700 d-flex shadow-light mx-md-0 mx-auto"
@@ -39,9 +38,6 @@ export default function Hero({ subHead, mainHead }) {
         <Modal
           bodyStyle={{
             backgroundColor: "#003478",
-            width: "900px",
-            height: "600px",
-            marginLeft: "-5%",
           }}
           closable={false}
           footer={null}
