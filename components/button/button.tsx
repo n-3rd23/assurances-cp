@@ -6,7 +6,7 @@ interface Props {
   className?: string;
   variant?: "primary" | "outline";
   type?: "submit" | "button" | "reset";
-  onClick : () => void
+  onClick: () => void;
 }
 
 export default function Button({
@@ -14,7 +14,7 @@ export default function Button({
   className,
   variant = "primary",
   type = "button",
-  onClick
+  onClick,
 }: Props) {
   let buttonStyles = styles.primary;
   if (variant == "outline") {
@@ -29,6 +29,7 @@ export default function Button({
           ? `px-4 py-2 ${buttonStyles} ${className}`
           : `px-4 py-2 ${buttonStyles}`
       }
+      onClick={onClick}
     >
       {children}
     </button>

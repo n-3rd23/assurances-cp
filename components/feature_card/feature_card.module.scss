@@ -1,0 +1,14 @@
+.containerStyle {
+  border: 0.4px solid#dfe5ee;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 45vh;
+}
+
+.roundedStyle {
+  width: 70px;
+  height: 70px;
+  border: 1px dashed #dfe5ee;
+  border-radius: 100%;
+  box-sizing: border-box;
+}

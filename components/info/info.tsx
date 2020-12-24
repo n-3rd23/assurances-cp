@@ -16,8 +16,10 @@ export default function Info({ icon, title, subtitle, className }: Props) {
     >
       {icon ? <div className="p-2 bd-highlight">{icon}</div> : ""}
       <div className="p-2 bd-highlight">
-        <h6 className="mb-0 fw-700 text-primary">{title}</h6>
-        <small className="text-light fw-600 d-block">{subtitle}</small>
+        <h6 className="mb-0 fw-700 text-primary text-interSize">{title}</h6>
+        <small className="text-light fw-600 d-block text-small">
+          {subtitle}
+        </small>
       </div>
     </div>
   );

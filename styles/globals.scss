@@ -26,7 +26,9 @@ a {
   color: inherit;
   text-decoration: none !important;
 }
-
+.fw-100 {
+  font-weight: 100;
+}
 .fw-200 {
   font-weight: 200;
 }
@@ -64,6 +66,9 @@ a {
 .text-interSize {
   font-size: 0.9rem;
 }
+.text-middle {
+  font-size: 1rem;
+}
 .text-large {
   font-size: 1.2rem;
 }
@@ -71,7 +76,10 @@ a {
   font-size: 1.5rem;
 }
 .text-largest {
-  font-size: 2.8rem;
+  font-size: 1.8rem;
+}
+.text-extraLarge {
+  font-size: 2.4rem;
 }
 
 .bg-primary-main {
@@ -87,4 +95,9 @@ a {
 
 .shadow-light {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.smTextCenter {
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
 }
