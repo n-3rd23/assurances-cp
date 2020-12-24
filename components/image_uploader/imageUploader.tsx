@@ -10,21 +10,30 @@ export default function ImageUploader({ onChange }) {
 
   useEffect(() => {
     onChange(imageArray)
-  },[imageArray])
+  }, [imageArray])
 
   const imageHandler = (event) => {
     try {
       const file = event.target.files[0];
-      setImageArray([...imageArray, file])
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImgUrls([...imgUrls,{ url : reader.result, fileobj: file}]);
+      if (file) {
+        const fileUploadPath = event.target.value
+        var extentions = fileUploadPath.substring(fileUploadPath.lastIndexOf(".") + 1).toLowerCase()
+        if (extentions == "png" || extentions == "jpeg" || extentions == "jpg" || extentions == "svg") {
+          setImageArray([...imageArray, file])
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (reader.readyState === 2) {
+              setImgUrls([...imgUrls, { url: reader.result, fileobj: file }]);
+            }
+          };
+          reader.readAsDataURL(event.target.files[0]);
         }
-      };
-      reader.readAsDataURL(event.target.files[0]);
+        else {
+          console.log("image not valid!")
+        }
+      }
     }
-    catch(err) {
+    catch (err) {
       console.log(err)
     }
   };
@@ -36,12 +45,12 @@ export default function ImageUploader({ onChange }) {
     })
     setImgUrls(filteredUrls)
     let tmp = []
-    for(let i=0;i<filteredUrls.length;i++) {
+    for (let i = 0; i < filteredUrls.length; i++) {
       tmp.push(filteredUrls[i].fileobj)
     }
     setImageArray(tmp)
   }
-  
+
   return (
     <Fragment>
       <input
@@ -70,26 +79,26 @@ export default function ImageUploader({ onChange }) {
             : null}
         </div> */}
         <Image.PreviewGroup>
-        {
-          imgUrls
-          ? imgUrls.length > 0
-            ? imgUrls.map((url) => {
-                return (
-                  <div key={`${url.url}`} className="position-relative overflow-hidden">
-                    <Image
-                      src={`${url.url}`}
-                      key={`${url.url}`}
-                      className={`${styles.image} img-fluid mx-1`}
-                      alt="image"
-                    />
-                    <small data-imgurl={`${url.url}`} onClick={delImg} className={`${styles.del_btn} position-absolute p-1`}>
-                      <img data-imgurl={`${url.url}`} width="20" src="/icons/trash_red.svg" alt="trash"/>
-                    </small>
-                  </div>
-                );
-              })
-            : null
-          : null
+          {
+            imgUrls
+              ? imgUrls.length > 0
+                ? imgUrls.map((url) => {
+                  return (
+                    <div key={`${url.url}`} className="position-relative overflow-hidden">
+                      <Image
+                        src={`${url.url}`}
+                        key={`${url.url}`}
+                        className={`${styles.image} img-fluid mx-1`}
+                        alt="image"
+                      />
+                      <small data-imgurl={`${url.url}`} onClick={delImg} className={`${styles.del_btn} position-absolute p-1`}>
+                        <img data-imgurl={`${url.url}`} width="20" src="/icons/trash_red.svg" alt="trash" />
+                      </small>
+                    </div>
+                  );
+                })
+                : null
+              : null
           }
         </Image.PreviewGroup>
         <label
