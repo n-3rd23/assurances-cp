@@ -1,34 +1,23 @@
 import styles from "./user_reviews.module.scss";
-import { Carousel } from "antd";
+import { Component } from "react";
+import Quote from "../../public/icons/quote.svg";
 
-export default function User_Reviews() {
-  const contentStyle = {
-    minHeight: "290px",
-    color: "#7F99BB",
-    textAlign: "center",
-    background: "#f5f5f5",
+export default class User_Reviews extends Component {
+  state = {
+    currentReview: [],
   };
-
-  const reviews = [
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  ];
-
-  return (
-    <div className="container w-100 w-md-75 mt-5 pb-5">
-      <Carousel autoplay>
-        {reviews.map((item) => {
-          return (
-            <div key={item}>
-              <p className="p-5" key={item} style={contentStyle}>
-                {item}
-              </p>
-            </div>
-          );
-        })}
-      </Carousel>
-    </div>
-  );
+  render() {
+    return (
+      <div className={`container mt-5 mb-5 p-1 ${styles.containerStyle}`}>
+        <a
+          className={`px-4 py-2 fw-700 text-white text-large ${styles.smallBoxStyle}`}
+        >
+          OUR CLIENT SAYS
+        </a>
+        <div className="container">
+          <Quote className="float-end mx-4" width={69} height={59} />{" "}
+        </div>
+      </div>
+    );
+  }
 }
