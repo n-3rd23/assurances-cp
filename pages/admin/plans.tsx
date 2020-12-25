@@ -3,7 +3,6 @@ import { Fragment, useState, useEffect } from "react";
 import PlanCard from "../../components/plancard/plancard";
 import Button from "../../components/button/button";
 import { Modal, Input, Checkbox, Row, Col, Select } from "antd";
-import QuillText from "../../components/quill_text/quillText";
 import firebase, { firestore, storage } from "../../firebase/firebase.util";
 import ImageUploader from "../../components/image_uploader/imageUploader";
 
@@ -26,15 +25,18 @@ export default function Plans() {
   const [minSumAssured, setMinSumAssured] = useState("");
   const [fetchedPlans, setFetchedPlans] = useState([]);
   const [images, setImages] = useState(null);
-  const [plansImages, setPlansImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState(null);
   const [categoryModal, setCategoryModal] = useState(false);
   const [newCategory, setNewCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("")
   const [benefitModal, setBenefitModal] = useState(false);
   const [benefitTitle, setBenefitTitle] = useState("");
   const [benefitDescription, setBenefitDescription] = useState("");
   const [newBenefit, setNewBenefit] = useState([]);
+  const [isEditPlan, setIsEditPlan] = useState(false)
+  const [planEditId, setPlanEditId] = useState(null)
+  const [imagesUrls, setImagesUrls] = useState(null) // to store images while editing
   const { TextArea } = Input;
   const { Option } = Select;
 
@@ -44,22 +46,13 @@ export default function Plans() {
   }, []);
 
   const fetchPlans = async () => {
+    let tmp = []
     const plansRef = await firestore.collection("plans");
-    plansRef.onSnapshot((querySnapshot) => {
-      let tmp = [];
-      querySnapshot.docChanges().forEach((change) => {
-        if(change.type === "added") {
-          tmp.push({ id: change.doc.id, ...change.doc.data() });
-        }
-        if(change.type === "modified") {
-          tmp.push({ id: change.doc.id, ...change.doc.data() });
-        }
-        if(change.type === "removed") {
-          tmp.push({ id: change.doc.id, ...change.doc.data() });
-        }
-      });
-      setFetchedPlans(tmp);
-    });
+    const plansDoc = await plansRef.get()
+    plansDoc.forEach(doc => {
+      tmp.push({ id: doc.id, ...doc.data() })
+    })
+    setFetchedPlans(tmp)
   };
 
   const fetchCategories = async () => {
@@ -69,18 +62,60 @@ export default function Plans() {
         .doc("PG3GNZvCAPhrtNmuO9oB");
       await categoriesRef.onSnapshot((doc) => {
         setCategories(doc.data())
-      }); 
-    } catch(error) {
+      });
+    } catch (error) {
       console.log("error while fetching category : ", error)
     }
   };
+
+  const deletePlan = async (event) => {
+    const result = await firestore.collection("plans").doc(event).delete()
+    console.log("item deleted")
+    fetchPlans()
+  }
+
+  // to delete an added benefit
+  const deleteBenefit = ((event) => {
+    const dBenTitle = event.target.dataset.bentitle
+    var filterdBenefits = newBenefit.filter((item) => {
+      return item.title != dBenTitle
+    })
+    setNewBenefit(filterdBenefits)
+  })
+
+  // edit a plan
+  const editPlan = (id) => {
+    console.log(fetchedPlans)
+    setPlanEditId(id)
+    setIsEditPlan(true)
+    setModalVisibility(true)
+    fetchedPlans.map((plan) => {
+      if (plan.id == id) {
+        setNewBenefit(plan.benefits)
+        setMaxEntryAge(plan.entryAge.max)
+        setMinEntryAge(plan.entryAge.min)
+        setMaturityAge(plan.maxMaturityAge)
+        setCheckedList(plan.paymentMode)
+        setPlan(plan.planName)
+        setSummary(plan.planSummary)
+        setTermFrom(plan.planTerm.from)
+        setTermTo(plan.planTerm.to)
+        setMaxSumAssured(plan.sumAssured.max)
+        setMinSumAssured(plan.sumAssured.min)
+        setSelectedCategory(plan.category)
+        setImagesUrls(plan.images)
+      }
+    })
+  }
 
   const showModal = () => {
     setModalVisibility(true);
   };
 
   const handleCancel = () => {
+    clearFields()
     setModalVisibility(false);
+    setIsEditPlan(false)
   };
 
   const getPlan = (event) => {
@@ -96,11 +131,13 @@ export default function Plans() {
   };
 
   const getTermFrom = (event) => {
-    setTermFrom(event.target.value);
+    var val = event.target.value
+    setTermFrom(val);
   };
 
   const getTermTo = (event) => {
-    setTermTo(event.target.value);
+    var val = event.target.value
+    setTermTo(val);
   };
 
   const getMaxEntryAge = (event) => {
@@ -131,6 +168,12 @@ export default function Plans() {
     setNewCategory(event.target.value);
   };
 
+  // when a category is selected for a plan
+  const selectCategory = (event) => {
+    // console.log(event)
+    setSelectedCategory(event)
+  }
+
   const getBenefitTitle = (event) => {
     setBenefitTitle(event.target.value);
   };
@@ -138,6 +181,23 @@ export default function Plans() {
   const getBenefitDescription = (event) => {
     setBenefitDescription(event.target.value);
   };
+
+  // to clear fields
+  const clearFields = () => {
+    setPlan("");
+    setSummary("");
+    setTermFrom("");
+    setTermTo("");
+    setMinEntryAge("");
+    setMaxEntryAge("");
+    setMaturityAge("");
+    setMaxSumAssured("");
+    setMinSumAssured("");
+    setNewBenefit([]);
+    setImages([]);
+    setLoading(false);
+    setModalVisibility(false);
+  }
 
   const addNewCategory = async () => {
     try {
@@ -169,8 +229,15 @@ export default function Plans() {
   };
 
   const upload = async () => {
+    if (images) {
+      if (images.length <= 0) {
+        console.log("add images");
+        return;
+      }
+    }
     setLoading(true);
     let imagesTmp = [];
+    // uploading images
     const plansStorageRef = storage.ref();
     for (let i = 0; i < images.length; i++) {
       var uploadTask = plansStorageRef
@@ -190,48 +257,118 @@ export default function Plans() {
             .ref("plans")
             .child(images[i].name)
             .getDownloadURL()
-            .then((url) => {
+            .then(async (url) => {
               imagesTmp.push(url);
+              // uploading to firestore
+              if (i == images.length - 1) {
+                try {
+                  const plansRef = await firestore.collection("plans");
+                  plansRef
+                    .add({
+                      planName: plan,
+                      planSummary: summary,
+                      paymentMode: checkedList,
+                      planTerm: { from: termFrom, to: termTo },
+                      entryAge: { min: minEntryAge, max: maxEntryAge },
+                      maxMaturityAge: maturityAge,
+                      sumAssured: { min: minSumAssured, max: maxSumAssured },
+                      benefits: newBenefit,
+                      images: imagesTmp,
+                      category: selectedCategory
+                    })
+                    .then(() => {
+                      console.log("New Plan Added Succesfully!!!");
+                      clearFields()
+                      fetchPlans()
+                    });
+                } catch (error) {
+                  console.log("error while adding data : ", error);
+                }
+              }
             });
         }
       );
     }
-    setPlansImages(imagesTmp);
-    try {
-      console.log("pimgs : ", plansImages);
-      const plansRef = await firestore.collection("plans");
-      plansRef
-        .add({
-          planName: plan,
-          planSummary: summary,
-          paymentMode: checkedList,
-          planTerm: { from: termFrom, to: termTo },
-          entryAge: { min: minEntryAge, max: maxEntryAge },
-          maxMaturityAge: maturityAge,
-          sumAssured: { min: minSumAssured, max: maxSumAssured },
-          benefits: newBenefit,
-          images: plansImages,
-        })
-        .then(() => {
-          console.log("New Plan Added Succesfully!!!");
-          setPlan("");
-          setSummary("");
-          setTermFrom("");
-          setTermTo("");
-          setMinEntryAge("");
-          setMaxEntryAge("");
-          setMaturityAge("");
-          setMaxSumAssured("");
-          setMinSumAssured("");
-          setNewBenefit([]);
-          setImages([]);
-          setLoading(false);
-          setModalVisibility(false);
-        });
-    } catch (error) {
-      console.log("error while adding data : ", error);
-    }
   };
+
+  // to upload the edited plan
+  const uploadUpdate = async () => {
+    setLoading(true)
+    const plansRef = await firestore.collection("plans").doc(planEditId);
+    let imagesTmp = [...imagesUrls] // adding fetched image data to the array
+    // if new images are added while editing
+    if (images.length > 0) {
+      const plansStorageRef = storage.ref();
+      for (let i = 0; i < images.length; i++) {
+        var uploadTask = plansStorageRef
+          .child(`plans/${images[i].name}`)
+          .put(images[i]);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            var prog = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log("Upload is " + prog + "% done");
+          },
+          (error) => {
+            console.log("Error in uploading image : ", error);
+          },
+          () => {
+            storage
+              .ref("plans")
+              .child(images[i].name)
+              .getDownloadURL()
+              .then(async (url) => {
+                imagesTmp.push(url);
+                // uploading to firestore
+                if (i == images.length - 1) {
+                  try {
+                    plansRef
+                      .update({
+                        planName: plan,
+                        planSummary: summary,
+                        paymentMode: checkedList,
+                        planTerm: { from: termFrom, to: termTo },
+                        entryAge: { min: minEntryAge, max: maxEntryAge },
+                        maxMaturityAge: maturityAge,
+                        sumAssured: { min: minSumAssured, max: maxSumAssured },
+                        benefits: newBenefit,
+                        category: selectedCategory,
+                        images: imagesTmp,
+                      })
+                      .then(() => {
+                        console.log("New Image added !!");
+                        setLoading(false)
+                        clearFields()
+                        fetchPlans()
+                      });
+                  } catch (error) {
+                    console.log("error while adding data : ", error);
+                  }
+                }
+              });
+          }
+        );
+      }
+    }
+    // if no images are added while editing
+    else {
+      await plansRef.update({
+        planName: plan,
+        planSummary: summary,
+        paymentMode: checkedList,
+        planTerm: { from: termFrom, to: termTo },
+        entryAge: { min: minEntryAge, max: maxEntryAge },
+        maxMaturityAge: maturityAge,
+        sumAssured: { min: minSumAssured, max: maxSumAssured },
+        benefits: newBenefit,
+        category: selectedCategory
+      })
+      console.log("Plan Updated")
+      setLoading(false)
+      clearFields()
+      fetchPlans()
+    }
+  }
 
   return (
     <Admin title="plans" description="add or remove plans">
@@ -255,7 +392,7 @@ export default function Plans() {
                 onCancel={handleCancel}
                 width={600}
                 okText="Add"
-                onOk={upload}
+                onOk={isEditPlan ? uploadUpdate : upload}
                 confirmLoading={loading}
                 destroyOnClose={true}
               >
@@ -301,18 +438,18 @@ export default function Plans() {
                         Category
                       </label>
                       <div>
-                        <Select defaultValue="select" className="w-50">
+                        <Select onChange={selectCategory} value={selectedCategory} defaultValue="select" className="w-50">
                           <Fragment>
                             <Option value="select">--select--</Option>
                             {categories
                               ? categories.categories.length > 0
                                 ? categories.categories.map((item) => {
-                                    return (
-                                      <Option key={item} value={item}>
-                                        {item}
-                                      </Option>
-                                    );
-                                  })
+                                  return (
+                                    <Option key={item} value={item}>
+                                      {item}
+                                    </Option>
+                                  );
+                                })
                                 : null
                               : null}
                           </Fragment>
@@ -480,38 +617,67 @@ export default function Plans() {
                       {newBenefit
                         ? newBenefit.length > 0
                           ? newBenefit.map((benefit) => {
-                              return (
-                                <div
-                                  key={benefit.title}
-                                  className="row mb-2 shadow-sm p-2"
-                                >
-                                  <div className="col-md-11">
-                                    <span className="text-black fw-800 d-block">
-                                      {benefit.title}
-                                    </span>
-                                    {benefit.description}
-                                  </div>
-                                  <div className="col-md-1 d-flex align-item-center">
-                                    <img
-                                      style={{
-                                        width: "20px",
-                                        display: "inline",
-                                      }}
-                                      src="/icons/trash_red.svg"
-                                      alt="trash"
-                                    />
-                                  </div>
+                            return (
+                              <div
+                                key={benefit.title}
+                                className="row mb-2 shadow-sm p-2"
+                              >
+                                <div className="col-md-11">
+                                  <span className="text-black fw-800 d-block">
+                                    {benefit.title}
+                                  </span>
+                                  {benefit.description}
                                 </div>
-                              );
-                            })
+                                <div className="col-md-1 d-flex align-item-center">
+                                  <img
+                                    style={{
+                                      width: "20px",
+                                      display: "inline",
+                                      cursor: "pointer"
+                                    }}
+                                    src="/icons/trash_red.svg"
+                                    alt="trash"
+                                    data-bentitle={benefit.title}
+                                    onClick={deleteBenefit}
+                                  />
+                                </div>
+                              </div>
+                            );
+                          })
                           : null
                         : null}
                       {/* benefits veiw card ends */}
                     </div>
                   </div>
-                  <div className="my-3">
-                    <ImageUploader onChange={getImages} />
-                  </div>
+                  {
+                    isEditPlan
+                      ?
+                      imagesUrls
+                        ?
+                        imagesUrls.length > 0
+                          ?
+                          <>
+                            <div className="my-3">
+                              {
+                                imagesUrls.map((image) => {
+                                  return (
+                                    <img src={image} style={{ width: "100px", height: "100px" }} alt="image" />
+                                  )
+                                })
+                              }
+                            </div>
+                            <div className="my-3">
+                              <ImageUploader onChange={getImages} />
+                            </div>
+                          </>
+                          : null
+                        : null
+                      :
+                      <div className="my-3">
+                        <ImageUploader onChange={getImages} />
+                      </div>
+                  }
+
                 </div>
               </Modal>
             </div>
@@ -519,14 +685,17 @@ export default function Plans() {
               {fetchedPlans
                 ? fetchedPlans.length > 0
                   ? fetchedPlans.map((fetchedPlan) => {
-                      return (
-                        <PlanCard
-                          key={fetchedPlan.id}
-                          cardTitle={fetchedPlan.planName}
-                          description={fetchedPlan.planSummary}
-                        />
-                      );
-                    })
+                    return (
+                      <PlanCard
+                        key={fetchedPlan.id}
+                        cardTitle={fetchedPlan.planName}
+                        description={fetchedPlan.planSummary}
+                        onDelClick={deletePlan}
+                        onEditClick={editPlan}
+                        id={fetchedPlan.id}
+                      />
+                    );
+                  })
                   : null
                 : null}
             </div>
