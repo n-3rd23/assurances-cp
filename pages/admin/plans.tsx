@@ -10,12 +10,7 @@ export default function Plans() {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [plan, setPlan] = useState("");
   const [summary, setSummary] = useState("");
-  const [checkedList, setCheckedList] = useState([
-    "yearly",
-    "hafly",
-    "quarterly",
-    "monthely(ecs)",
-  ]); //payment mode
+  const [checkedList, setCheckedList] = useState([]); //payment mode
   const [termFrom, setTermFrom] = useState("");
   const [termTo, setTermTo] = useState("");
   const [minEntryAge, setMinEntryAge] = useState("");
@@ -74,6 +69,29 @@ export default function Plans() {
     fetchPlans()
   }
 
+  const deleteImageFromDB = async (event) => {
+    let deleteImgName = event.target.dataset.imgname
+    const plansStorageRef = storage.ref();
+    const deleteRef = plansStorageRef.child(`plans/${deleteImgName}`)
+    deleteRef.delete()
+    .then(async () => {
+      console.log("Image deleted !!")
+      var filterdArr = imagesUrls.filter((item) => {
+        return item.name != deleteImgName
+      })
+      const plansRef = await firestore.collection("plans").doc(planEditId)
+      plansRef.update({
+        images: filterdArr
+      }).then(() => {
+        fetchPlans()
+        clearFields()
+      })
+    })
+    .catch(error => {
+      console.log("error while deleting image : ", error)
+    })
+  }
+
   // to delete an added benefit
   const deleteBenefit = ((event) => {
     const dBenTitle = event.target.dataset.bentitle
@@ -85,7 +103,6 @@ export default function Plans() {
 
   // edit a plan
   const editPlan = (id) => {
-    console.log(fetchedPlans)
     setPlanEditId(id)
     setIsEditPlan(true)
     setModalVisibility(true)
@@ -258,7 +275,7 @@ export default function Plans() {
             .child(images[i].name)
             .getDownloadURL()
             .then(async (url) => {
-              imagesTmp.push(url);
+              imagesTmp.push({name:images[i].name,link:url});
               // uploading to firestore
               if (i == images.length - 1) {
                 try {
@@ -318,7 +335,7 @@ export default function Plans() {
               .child(images[i].name)
               .getDownloadURL()
               .then(async (url) => {
-                imagesTmp.push(url);
+                imagesTmp.push({name: images[i].name, link: url});
                 // uploading to firestore
                 if (i == images.length - 1) {
                   try {
@@ -361,7 +378,8 @@ export default function Plans() {
         maxMaturityAge: maturityAge,
         sumAssured: { min: minSumAssured, max: maxSumAssured },
         benefits: newBenefit,
-        category: selectedCategory
+        category: selectedCategory,
+        images: imagesUrls
       })
       console.log("Plan Updated")
       setLoading(false)
@@ -661,23 +679,27 @@ export default function Plans() {
                               {
                                 imagesUrls.map((image) => {
                                   return (
-                                    <img src={image} style={{ width: "100px", height: "100px" }} alt="image" />
+                                    <div key={image.link} className="position-relative d-inline mx-1">
+                                      <span style={{left:"0px"}} className="position-absolute p-1">
+                                        <img src="/icons/trash_red.svg" onClick={deleteImageFromDB} data-imgname={image.name}  style={{width:"20px", height:"20px", cursor:"pointer"}} alt="trash"/>
+                                      </span>
+                                      <img src={image.link} style={{ width: "100px", height: "100px" }} alt="image" />
+                                    </div>
                                   )
                                 })
                               }
                             </div>
-                            <div className="my-3">
+                            {/* <div className="my-3">
                               <ImageUploader onChange={getImages} />
-                            </div>
+                            </div> */}
                           </>
                           : null
                         : null
-                      :
-                      <div className="my-3">
-                        <ImageUploader onChange={getImages} />
-                      </div>
+                      : null
                   }
-
+                  <div className="my-3">
+                    <ImageUploader onChange={getImages} />
+                  </div>
                 </div>
               </Modal>
             </div>
