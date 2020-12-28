@@ -34,11 +34,11 @@ export default function Contact() {
   };
 
   const clearField = () => {
-    setName("")
-    setPhone("")
-    setEmail("")
-    setMessage("")
-  }
+    setName("");
+    setPhone("");
+    setEmail("");
+    setMessage("");
+  };
 
   const uploadCallMe = async () => {
     const callmeRef = await firestore.collection("callme");
@@ -47,7 +47,7 @@ export default function Contact() {
       number: phone,
     });
     console.log("we will call you shortly");
-    clearField()
+    clearField();
   };
 
   const uploadMessage = async () => {
@@ -58,8 +58,8 @@ export default function Contact() {
       Phone: phone,
       Message: message,
     });
-    console.log("message uploaded")
-    clearField()
+    console.log("message uploaded");
+    clearField();
   };
 
   return (
