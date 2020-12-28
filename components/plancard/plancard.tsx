@@ -1,4 +1,4 @@
-import { Fragment, FormEvent } from "react";
+import { Fragment } from "react";
 import styles from "./plancard.module.scss";
 
 interface Props {
@@ -11,15 +11,20 @@ interface Props {
   id?: string;
 }
 
-export default function PlanCard({ cardTitle, description, onDelClick, onEditClick,id }: Props) {
-
+export default function PlanCard({
+  cardTitle,
+  description,
+  onDelClick,
+  onEditClick,
+  id,
+}: Props) {
   const handleEditClick = () => {
-    onEditClick(id)
-  }
+    onEditClick(id);
+  };
 
   const handleDelClick = () => {
-    onDelClick(id)
-  }
+    onDelClick(id);
+  };
 
   return (
     <Fragment>
@@ -32,9 +37,7 @@ export default function PlanCard({ cardTitle, description, onDelClick, onEditCli
               <div className="col-md-6">
                 <span>{cardTitle}</span>
                 <small className="text-muted d-block">
-                  {
-                    description.substring(0, 150)
-                  }...
+                  {description.substring(0, 150)}...
                 </small>
               </div>
               <div className="col-md-3 text-center">

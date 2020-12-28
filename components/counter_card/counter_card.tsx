@@ -1,17 +1,17 @@
-import { Fragment } from "react"
-import styles from "./counter_card.module.scss"
+import { Fragment } from "react";
 
 interface Props {
-    children : JSX.Element;
+  children: JSX.Element;
 }
 
-export default function CounterCard({children}:Props) {
-    return (
-        <Fragment>
-            <div className={`bg-white d-flex p-4 shadow-sm justify-content-evenly align-items-center`}>
-                {children}
-            </div>
-        </Fragment>
-
-    )
+export default function CounterCard({ children }: Props) {
+  return (
+    <Fragment>
+      <div
+        className={`bg-white d-flex p-4 shadow-sm justify-content-evenly align-items-center`}
+      >
+        {children}
+      </div>
+    </Fragment>
+  );
 }

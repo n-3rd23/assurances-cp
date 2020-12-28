@@ -2,7 +2,7 @@ import styles from "./userPlanCard.module.scss";
 import { useRouter } from "next/router";
 import Plus from "../../public/icons/plus.svg";
 import Arrow from "../../public/icons/arrow.svg";
-const kebabCase = require("lodash/kebabCase");
+import kebabCase from "lodash/kebabCase";
 
 export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
   console.log(mainHead);

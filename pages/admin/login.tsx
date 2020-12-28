@@ -1,8 +1,7 @@
 import { Fragment } from "react";
 import CustomInput from "../../components/custom_input/custom_input";
 import Button from "../../components/button/button";
-import Link from "next/link";
-import { auth } from "../../firebase/firebase.util";
+import { auth, event } from "../../firebase/firebase.util";
 import { useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import Head from "next/head";
@@ -24,6 +23,12 @@ export default function Login() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
+        // Adding to firebase analytics
+        event({
+          action: "login",
+          category: "Auth",
+          label: `${email} has logged in`,
+        });
         router.replace("/admin");
       })
       .catch((error) => {

@@ -67,7 +67,9 @@ export default class Insurance_Main extends Component {
                   {this.state.selectedPlan.planSummary}
                 </div>
               </div>
-              <div><GetQuoteButt/></div>
+              <div>
+                <GetQuoteButt />
+              </div>
             </div>
 
             <div className="p-2 bd-highlight ">

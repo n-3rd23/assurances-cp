@@ -1,4 +1,5 @@
 import styles from "./planHero.module.scss";
+
 export default function PlanHero({ img, subHead, head }) {
   return (
     <div
