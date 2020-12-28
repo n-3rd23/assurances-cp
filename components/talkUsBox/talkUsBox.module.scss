@@ -2,6 +2,15 @@
   margin-top: -15px;
   width: 400px;
 }
-.buttStyle{
-    width: 400px;
+.buttStyle {
+  width: 400px;
+}
+
+@media only screen and (max-width: 768px) {
+  .inputBoxStyle {
+    width: 100%;
+  }
+  .buttStyle {
+    width: 100%;
+  }
 }

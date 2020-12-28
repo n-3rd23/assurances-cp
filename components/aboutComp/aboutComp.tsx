@@ -90,15 +90,21 @@ export default class AboutComp extends Component {
           <a className="py-3 fw-800 text-largest" style={{ color: "#003478" }}>
             TOUCH
           </a>
-          <div className={`${styles.container2Style} text-start`}>
-            <TalkUsBox />
-          </div>
-          <div className={`${styles.containerStyle} d-flex align-items-center`}>
-            <p
-              className={`${styles.aStyle} float-start text-extraLarge fw-800`}
+
+          <div className="d-flex justify-content-center mt-5">
+            <div
+              className={`${styles.containerStyle} d-flex flex-column justify-content-md-center align-items-sm-start`}
             >
-              TALK TO US
-            </p>
+              <p className={`${styles.aStyle} text-extraLarge fw-800`}>
+                TALK TO US
+              </p>
+              <div className={`${styles.container3Style}`}>
+                <TalkUsBox />
+              </div>
+            </div>
+            <div className={`${styles.container2Style} text-start`}>
+              <TalkUsBox />
+            </div>
           </div>
         </div>
       </Fragment>

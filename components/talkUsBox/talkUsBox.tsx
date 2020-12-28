@@ -45,40 +45,40 @@ export default function TalkUsBox() {
     }
   };
   return (
-    <div className="container-fluid rounded-1 bg-white p-3">
-      <p className="fw-700 mx-4 mt-4">Your Name</p>
+    <div className="container-fluid rounded-1 bg-white p-3 text-start">
+      <p className="fw-700 mx-md-4 mt-4">Your Name</p>
       <Input
         value={name}
         onChange={handleChangeName}
         size="large"
-        className={`mb-2 p-3 mx-4 ${styles.inputBoxStyle}`}
+        className={`mb-2 p-3 mx-md-4 ${styles.inputBoxStyle}`}
       />
-      <p className="fw-700 mx-4 mt-2">Your Phone number</p>
+      <p className="fw-700 mx-md-4 mt-2">Your Phone number</p>
       <Input
         value={phone}
         onChange={handleChangePhone}
         prefix={<Phone width={20} height={20} />}
         size="large"
-        className={`mb-2 p-3 mx-4 ${styles.inputBoxStyle}`}
+        className={`mb-2 p-3 mx-md-4 ${styles.inputBoxStyle}`}
       />
-      <p className="fw-700 mx-4 mt-2">Your Email address</p>
+      <p className="fw-700 mx-md-4 mt-2">Your Email address</p>
       <Input
         value={email}
         onChange={handleChangeEmail}
         prefix={<Mail width={20} height={20} />}
         size="large"
-        className={`mb-2 p-3 mx-4 ${styles.inputBoxStyle}`}
+        className={`mb-2 p-3 mx-md-4 ${styles.inputBoxStyle}`}
       />
-      <p className="fw-700 mx-4 mt-2">Your Message</p>
+      <p className="fw-700 mx-md-4 mt-2">Your Message</p>
       <TextArea
         value={message}
         onChange={handleChangeMessage}
-        className={`mb-4 p-3 mx-4 ${styles.inputBoxStyle}`}
+        className={`mb-4 p-3 mx-md-4 ${styles.inputBoxStyle}`}
         rows={4}
       />
       <button
         type="button"
-        className={`btn btn-primary mb-4 mx-4 ${styles.buttStyle}`}
+        className={`btn btn-primary mb-4 mx-md-4 ${styles.buttStyle}`}
         onClick={uploadDB}
       >
         SEND MESSAGE
