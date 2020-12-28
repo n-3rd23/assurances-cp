@@ -1,7 +1,7 @@
 import "antd/dist/antd.css";
 import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
-import { pageview } from "../firebase/firebase.utils";
+import { pageview } from "../firebase/firebase.util";
 import Head from "next/head";
 import { Fragment, useEffect } from "react";
 import SEO from "../next-seo.config";
