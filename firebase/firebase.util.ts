@@ -13,6 +13,20 @@ const config = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
+export const pageview = (url) => {
+  window.gtag("config", process.env.NEXT_PUBLIC_MEASUREMENT_ID, {
+    page_path: url,
+  });
+};
+
+export const event = ({ action, category, label, value }) => {
+  window.gtag("event", action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
+};
+
 export const createUserProfileDocument = async (userAuth, additionalData?) => {
   if (!userAuth) return;
 
@@ -35,7 +49,7 @@ export const createUserProfileDocument = async (userAuth, additionalData?) => {
       console.log("Error creating user", error.message);
     }
   } else {
-    console.log(snapShot.data())
+    console.log(snapShot.data());
   }
   return userRef;
 };
