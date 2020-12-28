@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import styles from "./feature_card.module.scss";
 import Safe from "../../public/icons/safe.svg";
 import Dove from "../../public/icons/dove.svg";

@@ -1,4 +1,4 @@
-import { FormEvent, Fragment, useEffect, useState } from "react";
+import { FormEvent, Fragment } from "react";
 import styles from "./custom_input.module.scss";
 
 interface Props {

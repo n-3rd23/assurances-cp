@@ -1,6 +1,5 @@
-import { Fragment } from "react";
 import styles from "./insurance_main.module.scss";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function Insurance_Main() {
   const insurance = [
