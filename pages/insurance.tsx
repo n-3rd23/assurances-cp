@@ -34,10 +34,10 @@ export default class Insurance extends Component {
     return (
       <Layout title="Assurances" description="Best Life Insurance ever">
         <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
-        <div className="d-flex justify-content-around flex-wrap">
+        <div className="d-flex justify-content-around flex-wrap my-5">
           {Object.entries(this.state.plans).map((item) => {
             return (
-              <div className="p-5">
+              <div className="p-2">
                 {" "}
                 <UserPlanCard
                   subHead1="POLICY"

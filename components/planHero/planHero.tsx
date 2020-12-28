@@ -12,7 +12,7 @@ export default function PlanHero({ img, subHead, head }) {
         style={{ height: "450px" }}
       >
         <a className="px-3">{subHead}</a>
-        <a className="px-3 text-extraLarge fw-600">{head.toUpperCase()}</a>
+        <a className="px-3 text-extraLarge fw-600">{head}</a>
       </div>
     </div>
   );

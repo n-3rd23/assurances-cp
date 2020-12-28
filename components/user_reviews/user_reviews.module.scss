@@ -8,14 +8,14 @@
   border-radius: 0px 0px 10px 0px;
 }
 .dotStyle {
-  width: 13px;
-  height: 13px;
+  width: 10px;
+  height: 10px;
   border-radius: 100px;
   background: #8d99ae;
   transition: 200ms;
   &:hover {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     transition: 200ms;
     background: var(--primary-main) !important;
   }

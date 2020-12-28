@@ -8,7 +8,7 @@ export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
   console.log(mainHead);
   const router = useRouter();
   return (
-    <div className={`container ${styles.containerStyle} p-4`}>
+    <div className={`container ${styles.containerStyle} p-2`}>
       <div className="p-2 ">
         <Plus height={24} width={24} />
       </div>
