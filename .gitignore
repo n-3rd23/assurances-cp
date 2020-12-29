@@ -29,6 +29,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+assurances-4c4dae397b40.json
 
 # vercel
 .vercel
