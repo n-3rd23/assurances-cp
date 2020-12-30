@@ -29,7 +29,6 @@ export default function Button({
           ? `px-4 py-2 ${buttonStyles} ${className}`
           : `px-4 py-2 ${buttonStyles}`
       }
-      onClick={onClick}
     >
       {children}
     </button>
