@@ -10,11 +10,14 @@ export default function Insurance({ plans }: Props) {
   return (
     <Layout title="Assurances" description="Best Life Insurance ever">
       <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
-      <div className="d-flex justify-content-around flex-wrap my-5">
+      <div className="row mx-auto">
         {plans && plans.plans
           ? plans.plans.map((item: any) => {
               return (
-                <div key={item.id} className="p-2">
+                <div
+                  key={item.id}
+                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-2"
+                >
                   {" "}
                   <UserPlanCard
                     subHead1="POLICY"

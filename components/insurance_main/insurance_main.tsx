@@ -1,44 +1,21 @@
 import styles from "./insurance_main.module.scss";
-import { Component } from "react";
-import { message } from "antd";
-import { firestore } from "../../firebase/firebase.util";
 import Link from "next/link";
 import kebabCase from "lodash/kebabCase";
 import truncate from "lodash/truncate";
+import { useEffect, useState } from "react";
 
-export default class Insurance_Main extends Component {
-  state = {
-    plans: {},
-    selectedPlan: {},
-  };
-
-  componentDidMount() {
-    this.getPlans();
-  }
-
-  getPlans = async () => {
-    let plansDb = {};
-    await firestore
-      .collection("plans")
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          plansDb[doc.id] = doc.data();
-        });
-      })
-      .then(() =>
-        this.setState({
-          plans: plansDb,
-          selectedPlan: Object.entries(plansDb)[0][1],
-          selectedImage: Object.entries(plansDb)[0][1].images[0],
-        })
-      )
-      .catch(function (error) {
-        message.error("Network issue encountered. Unable to fetch data.");
+export default function Insurance_Main() {
+  const [plans, setPlan] = useState(null);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`)
+      .then((res) => res.json())
+      .then((plans) => {
+        setPlan(plans.plans);
+        setSelectedPlan(plans.plans[0]);
       });
-  };
-
-  render() {
+  }, []);
+  if (selectedPlan && plans) {
     return (
       <div className={`container-fluid mt-5 pt-5 ${styles.mainStyle}`}>
         <div className="container mt-5 w-100">
@@ -47,11 +24,11 @@ export default class Insurance_Main extends Component {
           >
             <div className="p-2 bd-highlight ">
               <div className={`${styles.imgDiv}`}>
-                {this.state.selectedPlan.images ? (
+                {selectedPlan.images[0] ? (
                   <img
                     width="100%"
                     height="100%"
-                    src={this.state.selectedPlan.images[0].link}
+                    src={selectedPlan.images[0].link}
                     alt=""
                   />
                 ) : (
@@ -64,9 +41,9 @@ export default class Insurance_Main extends Component {
             >
               {" "}
               <div className=" text-large fw-600">
-                {this.state.selectedPlan.planName}
+                {selectedPlan.planName}
                 <div className="text-interSize fw-100 mt-2">
-                  {truncate(this.state.selectedPlan.planSummary, {
+                  {truncate(selectedPlan.planSummary, {
                     length: 150,
                   })}
                 </div>
@@ -75,11 +52,9 @@ export default class Insurance_Main extends Component {
                 <Link
                   href={{
                     pathname: "/insurance/[slug]",
-                    query: { title: this.state.selectedPlan.planName },
+                    query: { title: selectedPlan.planName },
                   }}
-                  as={`/insurance/${kebabCase(
-                    this.state.selectedPlan.planName
-                  )}`}
+                  as={`/insurance/${kebabCase(selectedPlan.planName)}`}
                 >
                   <a className="btn btn btn-outline-light mt-3">LEARN MORE</a>
                 </Link>
@@ -91,22 +66,18 @@ export default class Insurance_Main extends Component {
                 className={`text-interSize fw-600 p-3 d-flex flex-column bd-highlight mb-3`}
               >
                 {" "}
-                {Object.entries(this.state.plans).map((item) => {
+                {plans.map((item) => {
                   return (
                     <button
-                      key={item[1].planName}
+                      key={item.planName}
                       className={`border-0 ${styles.buttonStyle}`}
-                      onClick={() => {
-                        this.setState({
-                          selectedPlan: item[1],
-                        });
-                      }}
+                      onClick={() => setSelectedPlan(item)}
                     >
                       <div
-                        key={item[1].planName}
+                        key={item.planName}
                         className={`p-2 ${styles.divStyle}`}
                       >
-                        {item[1].planName}
+                        {item.planName}
                       </div>
                     </button>
                   );
@@ -119,6 +90,14 @@ export default class Insurance_Main extends Component {
           <Link href="/insurance">
             <a className={`border-0 ${styles.buttonStyle}`}>LOAD MORE</a>
           </Link>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="d-flex justify-content-center align-items-center my-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
       </div>
     );

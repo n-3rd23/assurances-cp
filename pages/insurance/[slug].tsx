@@ -11,7 +11,6 @@ interface Props {
 
 export default function Insurance({ plan }: Props) {
   const [currentPlan, setCurrentPlan] = useState(null);
-
   useEffect(() => {
     setCurrentPlan(plan.plan);
   }, [plan]);
@@ -21,12 +20,14 @@ export default function Insurance({ plan }: Props) {
         <PlanHero
           subHead="Life is secure"
           head={currentPlan.planName}
-          img={currentPlan.images.link}
+          img={currentPlan.images[0].link}
         />
         <div className="d-flex flex-wrap justify-content-center">
           <DetailsCard
             subHead1="TERM"
-            mainHead={currentPlan.term.from + " - " + currentPlan.term.to}
+            mainHead={
+              currentPlan.planTerm.from + " - " + currentPlan.planTerm.to
+            }
             subHead2="YEARS"
           />
           <DetailsCard
@@ -36,7 +37,7 @@ export default function Insurance({ plan }: Props) {
           />
           <DetailsCard
             subHead1="MIN SUM"
-            mainHead={currentPlan.sum.min}
+            mainHead={currentPlan.sumAssured.min}
             subHead2="ASSURED"
           />
         </div>
@@ -56,7 +57,7 @@ export default function Insurance({ plan }: Props) {
               PREMIUM
             </a>
             <br />
-            {currentPlan.premium.map((item) => {
+            {currentPlan.paymentMode.map((item) => {
               return (
                 <a key={item} className="fw-700 text-middle">
                   {" "}
@@ -71,12 +72,12 @@ export default function Insurance({ plan }: Props) {
           <p className="mt-5 fw-700" style={{ color: "#5a6371" }}>
             BENEFITS
           </p>
-          {Object.entries(currentPlan.benefits).map((item) => {
+          {currentPlan.benefits.map((item) => {
             return (
               <BenefitCard
-                key={item[1].title}
-                head={item[1].title.toUpperCase()}
-                desc={item[1].description}
+                key={item.title}
+                head={item.title.toUpperCase()}
+                desc={item.description}
               />
             );
           })}
@@ -85,8 +86,10 @@ export default function Insurance({ plan }: Props) {
     );
   } else {
     return (
-      <div className="spinner-border" role="status">
-        <span className="visually-hidden">Loading...</span>
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
       </div>
     );
   }

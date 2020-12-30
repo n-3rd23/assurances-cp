@@ -2,36 +2,19 @@ import { Fragment } from "react";
 import styles from "./aboutComp.module.scss";
 import User_Reviews from "./../user_reviews/user_reviews";
 import TalkUsBox from "./../talkUsBox/talkUsBox";
-import { Component } from "react";
-import { firestore, storage } from "../../firebase/firebase.util";
-import { message } from "antd";
 import AboutUsPlanCard from "./../aboutUSPlanCard/aboutUsPlanCard";
+import { useEffect, useState } from "react";
 
-export default class AboutComp extends Component {
-  state = {
-    plans: {},
-  };
-
-  componentDidMount() {
-    this.getPlans();
-  }
-
-  getPlans = async () => {
-    let plansDb = {};
-    firestore
-      .collection("plans")
-      .get()
-      .then(function (querySnapshot) {
-        querySnapshot.forEach(function (doc) {
-          plansDb[doc.id] = doc.data();
-        });
-      })
-      .then(() => this.setState({ plans: plansDb }))
-      .catch(function (error) {
-        message.error("Network issue encountered. Unable to fetch data.");
+export default function AboutComp() {
+  const [plans, setPlan] = useState(null);
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`)
+      .then((res) => res.json())
+      .then((plans) => {
+        setPlan(plans.plans);
       });
-  };
-  render() {
+  }, []);
+  if (plans) {
     return (
       <Fragment>
         <div className="container-fluid text-center my-5">
@@ -69,13 +52,10 @@ export default class AboutComp extends Component {
             PLANS
           </a>
           <div className="d-flex flex-wrap justify-content-center">
-            {Object.entries(this.state.plans).map((item) => {
+            {plans.map((item) => {
               return (
-                <div className="p-3">
-                  <AboutUsPlanCard
-                    subHead="POLICY"
-                    mainHead={item[1].planName}
-                  />
+                <div className="p-3" key={item.id}>
+                  <AboutUsPlanCard subHead="POLICY" mainHead={item.planName} />
                 </div>
               );
             })}
@@ -108,6 +88,14 @@ export default class AboutComp extends Component {
           </div>
         </div>
       </Fragment>
+    );
+  } else {
+    return (
+      <div className="d-flex justify-content-center align-items-center my-5">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
     );
   }
 }
