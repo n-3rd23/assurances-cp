@@ -13,8 +13,14 @@ const config = {
   measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 };
 
+declare global {
+  interface Window {
+    gtag: any;
+  }
+}
+
 export const pageview = (url) => {
-  window.gtag("config", process.env.NEXT_PUBLIC_MEASUREMENT_ID, {
+  window.gtag("config", process.env.NEXT_PUBLIC_MEASUREMENT_ID as string, {
     page_path: url,
   });
 };
