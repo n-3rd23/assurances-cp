@@ -34,7 +34,7 @@ export default function GetQuote() {
             <div className="d-flex justify-content-md-start justify-content-center">
               <Mail
                 className="m-4"
-                fill={"#0b72f8"}
+                style={{ fill: "#0c75ff" }}
                 width={25}
                 height={25}
               />

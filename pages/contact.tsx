@@ -67,12 +67,16 @@ export default function Contact() {
       <div className="container my-5">
         {/* banner begins */}
         <div className="row">
-          <div className="col-md-6 d-flex flex-column justify-content-center">
-            <span className="d-block fw-900 text-extraLarge">We love to </span>
-            <span className="d-block fw-900 text-extraLarge">hear from</span>
-            <span className="d-block fw-900 text-extraLarge">you</span>
+          <div className="col-md-6 d-flex align-items-center justify-content-center">
+            <div>
+              <span className="d-block fw-900 text-extraLarge">
+                We love to{" "}
+              </span>
+              <span className="d-block fw-900 text-extraLarge">hear from</span>
+              <span className="d-block fw-900 text-extraLarge">you</span>
+            </div>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 d-flex align-items-center justify-content-center">
             <img
               src="/images/about_page_side.jpg"
               className="img-fluid"
@@ -83,9 +87,10 @@ export default function Contact() {
         {/* banner ends */}
 
         {/* contact begins */}
-        <div className="row my-5 d-flex w-100 justify-content-center align-item-center">
+        <div className="row my-5 d-flex w-100 justify-content-center align-items-center">
           <div className="container-fluid rounded-1 col-md-6 col-sm-9 col-xs-12 bg-light mb-5 p-2 position-relative">
             <div className="col-md-6 col-xs-12 col-sm-6">
+              <span className="fw-900 text-largest">Contact Us</span>
               <p className="fw-700 mt-4">Your Name</p>
               <Input
                 size="large"
@@ -200,7 +205,7 @@ export default function Contact() {
                 <span className="d-block text-larger fw-700">you back?</span>
               </div>
               <div>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <label htmlFor="name">Your name</label>
                   <Input
                     className="col-md-6 d-block col-sm-12 col-xs-12"

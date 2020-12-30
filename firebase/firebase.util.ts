@@ -48,8 +48,6 @@ export const createUserProfileDocument = async (userAuth, additionalData?) => {
     } catch (error) {
       console.log("Error creating user", error.message);
     }
-  } else {
-    console.log(snapShot.data());
   }
   return userRef;
 };
