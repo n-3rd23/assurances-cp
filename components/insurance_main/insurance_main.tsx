@@ -2,7 +2,9 @@ import styles from "./insurance_main.module.scss";
 import { Component } from "react";
 import { message } from "antd";
 import { firestore } from "../../firebase/firebase.util";
-import GetQuoteButt from "./../getQuoteButt/getQuoteButt";
+import Link from "next/link";
+import kebabCase from "lodash/kebabCase";
+import truncate from "lodash/truncate";
 
 export default class Insurance_Main extends Component {
   state = {
@@ -64,11 +66,23 @@ export default class Insurance_Main extends Component {
               <div className=" text-large fw-600">
                 {this.state.selectedPlan.planName}
                 <div className="text-interSize fw-100 mt-2">
-                  {this.state.selectedPlan.planSummary}
+                  {truncate(this.state.selectedPlan.planSummary, {
+                    length: 150,
+                  })}
                 </div>
               </div>
               <div>
-                <GetQuoteButt />
+                <Link
+                  href={{
+                    pathname: "/insurance/[slug]",
+                    query: { title: this.state.selectedPlan.planName },
+                  }}
+                  as={`/insurance/${kebabCase(
+                    this.state.selectedPlan.planName
+                  )}`}
+                >
+                  <a className="btn btn btn-outline-light mt-3">LEARN MORE</a>
+                </Link>
               </div>
             </div>
 
@@ -102,9 +116,9 @@ export default class Insurance_Main extends Component {
           </div>
         </div>
         <div className="container text-center mt-4 pb-4">
-          <button className={`border-0 ${styles.buttonStyle}`}>
-            LOAD MORE
-          </button>
+          <Link href="/insurance">
+            <a className={`border-0 ${styles.buttonStyle}`}>LOAD MORE</a>
+          </Link>
         </div>
       </div>
     );

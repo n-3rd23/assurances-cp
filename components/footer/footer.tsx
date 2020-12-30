@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <Fragment>
       <div
-        className={`container-fluid text-center text-white p-5 ${styles.containerStyle}`}
+        className={`container-fluid text-center text-white p-5 mt-4 ${styles.containerStyle}`}
       >
         <p className="text-extraLarge fw-700 ">Assurances</p>
         <p className={`fw-600 text-medium ${styles.subHead}`}>

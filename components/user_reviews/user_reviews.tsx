@@ -14,7 +14,7 @@ export default class User_Reviews extends Component {
       {
         name: "Chumma",
         quote:
-          "          Lorem aafa afaf Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "Lorem aafa afaf Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
       },
     ],
   };
@@ -32,8 +32,12 @@ export default class User_Reviews extends Component {
           >
             OUR CLIENT SAYS
           </a>
-          <div className={`container my-4 `}>
-            <Quote className="float-end me-5" width={59} height={49} />{" "}
+          <div className={`container my-4`}>
+            <Quote
+              className={`float-end me-5 ${styles.quoteStyle}`}
+              width={59}
+              height={49}
+            />{" "}
           </div>
           <div className="container p-5 mt-5">
             <a className="w-75" style={{ color: "#a3b6ce" }}>
@@ -48,6 +52,7 @@ export default class User_Reviews extends Component {
           {this.state.quotes.map((item) => {
             return (
               <div
+                key={item.name}
                 className={`${styles.dotStyle} m-1`}
                 onClick={() => {
                   this.setState({ currentReview: item });

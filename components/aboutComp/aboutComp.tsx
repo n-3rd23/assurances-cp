@@ -102,7 +102,7 @@ export default class AboutComp extends Component {
                 <TalkUsBox />
               </div>
             </div>
-            <div className={`${styles.container2Style} text-start`}>
+            <div className={`${styles.container2Style} p-2 text-start`}>
               <TalkUsBox />
             </div>
           </div>

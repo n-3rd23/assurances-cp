@@ -12,7 +12,6 @@ export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
       <div className="p-2 ">
         <Plus height={24} width={24} />
       </div>
-
       <p
         className="px-4 pt-5 text-interSize fw-500"
         style={{ color: "#69848c" }}
@@ -25,7 +24,7 @@ export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
       <p className="px-4 text-medium" style={{ color: " #8D99AE" }}>
         {subHead2}
       </p>
-      <div className="d-flex w-100 justify-content-end mt-5">
+      <div className="d-flex w-100 justify-content-end mt-5 p-3">
         <button
           className="border-0"
           onClick={() =>

@@ -12,10 +12,6 @@
 }
 .sectionStyle {
   width: 25vw;
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-    text-align: center;
-  }
 }
 .imgDiv {
   width: 25vw;
@@ -23,8 +19,17 @@
   border: 2px solid white;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
-.containerStyle {
-  @media only screen and (max-width: 768px) {
+
+@media only screen and (max-width: 768px) {
+  .sectionStyle {
+    width: 100%;
+    text-align: center;
+  }
+  .containerStyle {
     flex-direction: column;
+  }
+  .imgDiv {
+    width: 100%;
+    height: 100%;
   }
 }

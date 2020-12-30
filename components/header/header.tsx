@@ -7,6 +7,8 @@ import Linkedin from "../../public/icons/linkedin.svg";
 import Twitter from "../../public/icons/twitter.svg";
 import Info from "../info/info";
 import styles from "./header.module.scss";
+import Phone from "../../public/icons/phone.svg";
+import Mail from "../../public/icons/mail_closed.svg";
 
 export default function Header() {
   return (
@@ -64,11 +66,13 @@ export default function Header() {
         </div>
         <div className="d-flex flex-column flex-md-row p-2 bd-highlight justify-content-center align-items-center smTextCenter">
           <Info
+            icon={<Mail width={20} height={20} />}
             title="info@lifeassure.com"
             subtitle="Send us a message"
             className="mx-4"
           />
           <Info
+            icon={<Phone width={20} height={20} />}
             title="+91 9872369874"
             subtitle="Give us a call"
             className="mx-4"

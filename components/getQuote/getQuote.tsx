@@ -2,6 +2,7 @@ import styles from "./getQuote.module.scss";
 import { Input } from "antd";
 import Phone from "../../public/icons/phone.svg";
 import Mail from "../../public/icons/mail_closed.svg";
+import Location from "../../public/icons/location.svg";
 import Facebook from "../../public/icons/facebook.svg";
 import Instagram from "../../public/icons/instagram.svg";
 import Linkedin from "../../public/icons/linkedin.svg";
@@ -31,16 +32,16 @@ export default function GetQuote() {
               <p className="py-4 px-2">+91 9956845228 </p>
             </div>
             <div className="d-flex justify-content-md-start justify-content-center">
-              <Phone
+              <Mail
                 className="m-4"
-                style={{ color: "#0c75ff" }}
+                fill={"#0b72f8"}
                 width={25}
                 height={25}
               />
               <p className="py-4 px-2">info@lifeassure.com</p>
             </div>
             <div className="d-flex justify-content-md-start justify-content-center">
-              <Phone
+              <Location
                 className="m-4"
                 style={{ color: "#0c75ff" }}
                 width={25}

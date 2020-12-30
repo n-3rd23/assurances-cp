@@ -4,6 +4,7 @@ import UserPlanCard from "../components/userPlanCard/userPlanCard";
 import { firestore, storage } from "../firebase/firebase.util";
 import { message } from "antd";
 import { Component } from "react";
+import truncate from "lodash/truncate";
 
 export default class Insurance extends Component {
   state = {
@@ -34,15 +35,15 @@ export default class Insurance extends Component {
     return (
       <Layout title="Assurances" description="Best Life Insurance ever">
         <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
-        <div className="d-flex justify-content-around flex-wrap my-5">
+        <div className="row mx-auto">
           {Object.entries(this.state.plans).map((item) => {
             return (
-              <div className="p-2">
+              <div key={item[1].planName} className="col-md-5 col-sm-6 col-12">
                 {" "}
                 <UserPlanCard
                   subHead1="POLICY"
                   mainHead={item[1].planName}
-                  subHead2={item[1].planSummary}
+                  subHead2={truncate(item[1].planSummary, { length: "150" })}
                 />
               </div>
             );
