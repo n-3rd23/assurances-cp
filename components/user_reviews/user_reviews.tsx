@@ -2,9 +2,19 @@ import styles from "./user_reviews.module.scss";
 import { Component, Fragment } from "react";
 import Quote from "../../public/icons/quote.svg";
 
+interface CurrentReview {
+  name?: string;
+  quote?: string;
+}
+
+interface State {
+  currentReview: CurrentReview;
+  quotes: CurrentReview[];
+}
+
 export default class User_Reviews extends Component {
-  state = {
-    currentReview: [],
+  state: State = {
+    currentReview: {},
     quotes: [
       {
         name: "Athul",
