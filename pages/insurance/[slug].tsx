@@ -1,29 +1,32 @@
 import Layout from "../../components/layout/layout";
 import DetailsCard from "./../../components/detailsCard/detailsCard";
-import { useState } from "react";
-import { firestore } from "../../firebase/firebase.util";
-import { message } from "antd";
-import Router from "next/router";
+import { useEffect, useState } from "react";
 import Clock from "../../public/icons/clock.svg";
 import BenefitCard from "./../../components/benefitCard/benefitCard";
 import PlanHero from "./../../components/planHero/planHero";
-import { useRouter } from "next/router";
 
-export default function Insurance({ plan }) {
+interface Props {
+  plan?: any;
+}
+
+export default function Insurance({ plan }: Props) {
   const [currentPlan, setCurrentPlan] = useState(null);
-  console.log(plan);
+
+  useEffect(() => {
+    setCurrentPlan(plan.plan);
+  }, [plan]);
   if (currentPlan) {
     return (
       <Layout title="Assurances" description="Best Life Insurance ever">
         <PlanHero
           subHead="Life is secure"
           head={currentPlan.planName}
-          img={this.state.images.link}
+          img={currentPlan.images.link}
         />
         <div className="d-flex flex-wrap justify-content-center">
           <DetailsCard
             subHead1="TERM"
-            mainHead={this.state.term.from + " - " + this.state.term.to}
+            mainHead={currentPlan.term.from + " - " + currentPlan.term.to}
             subHead2="YEARS"
           />
           <DetailsCard
@@ -33,7 +36,7 @@ export default function Insurance({ plan }) {
           />
           <DetailsCard
             subHead1="MIN SUM"
-            mainHead={this.state.sum.min}
+            mainHead={currentPlan.sum.min}
             subHead2="ASSURED"
           />
         </div>
@@ -53,7 +56,7 @@ export default function Insurance({ plan }) {
               PREMIUM
             </a>
             <br />
-            {this.state.premium.map((item) => {
+            {currentPlan.premium.map((item) => {
               return (
                 <a key={item} className="fw-700 text-middle">
                   {" "}
@@ -68,7 +71,7 @@ export default function Insurance({ plan }) {
           <p className="mt-5 fw-700" style={{ color: "#5a6371" }}>
             BENEFITS
           </p>
-          {Object.entries(this.state.benefits).map((item) => {
+          {Object.entries(currentPlan.benefits).map((item) => {
             return (
               <BenefitCard
                 key={item[1].title}
@@ -89,12 +92,10 @@ export default function Insurance({ plan }) {
   }
 }
 
-Insurance.getInitialProps = async ({ req }) => {
-  // const data = await fetch(
-  //   `http://localhost:3000/api/plan?slug=${.query.slug}`
-  // );
-  // const plan = await data.json();
-  const plan = "afaf";
-  console.log(req);
+Insurance.getInitialProps = async (ctx) => {
+  const data = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/plan?slug=${ctx.query.slug}`
+  );
+  const plan = await data.json();
   return { plan };
 };

@@ -31,7 +31,7 @@ export default function Insurance({ plans }: Props) {
 }
 
 Insurance.getInitialProps = async ({ req }) => {
-  const data = await fetch("http://localhost:3000/api/plans");
+  const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`);
   const plans = await data.json();
   return { plans };
 };
