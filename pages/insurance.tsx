@@ -16,7 +16,7 @@ export default function Insurance({ plans }: Props) {
               return (
                 <div
                   key={item.id}
-                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-2"
+                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-5"
                 >
                   {" "}
                   <UserPlanCard
