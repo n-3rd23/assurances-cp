@@ -47,6 +47,7 @@ export default function Contact() {
       number: phone,
     });
     console.log("we will call you shortly");
+    await fetch('/api/subscribe', {method: 'POST', body: JSON.stringify({name: name, phone: phone})})
     clearField();
   };
 
@@ -94,7 +95,7 @@ export default function Contact() {
               <p className="fw-700 mt-4">Your Name</p>
               <Input
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={name}
                 onChange={handleNameChange}
               />
@@ -102,7 +103,7 @@ export default function Contact() {
               <Input
                 prefix={<Phone width={20} height={20} />}
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={phone}
                 onChange={handlePhoneChange}
               />
@@ -110,13 +111,13 @@ export default function Contact() {
               <Input
                 prefix={<Mail width={20} height={20} />}
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={email}
                 onChange={handleEmailChange}
               />
               <p className="fw-700 mt-2">Your Message</p>
               <Input.TextArea
-                className="mb-1"
+                className="mb-1 p-2"
                 rows={4}
                 value={message}
                 onChange={handleMessageChange}
@@ -206,7 +207,7 @@ export default function Contact() {
               </div>
               <div>
                 <div className="form-group mb-2">
-                  <label htmlFor="name">Your name</label>
+                  <small>Your name</small>
                   <Input
                     className="col-md-6 d-block col-sm-12 col-xs-12"
                     id="name"
@@ -215,7 +216,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">Your number</label>
+                  <small>Your number</small>
                   <Input
                     className="d-block col-md-6 col-sm-12 col-xs-12"
                     id="phone"
