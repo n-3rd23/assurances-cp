@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req, res) => {
   // 1. Destructure the email address from the request body.
   const { name, phone } = req.body;
 
@@ -30,41 +30,42 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // const DATACENTER = API_KEY.split("-")[1];
 
     // 5. The status of 'subscribed' is equivalent to a double opt-in.
-    const data = {
-      // email_address: email,
-      name: name,
-      status: "subscribed",
-    };
+    // const data = {
+    //   // email_address: email,
+    //   name: name,
+    //   status: "subscribed",
+    // };
 
     const transporter = nodemailer.createTransport({
-      service: "Gmail",
+      service: "gmail",
       port: 587,
       auth: {
-        user: "alansajidd16@gmail.com",
+        user: "alansaji1996anak@gmail.com",
         pass: process.env.GOOGLE_APP_PASSWORD,
       },
     });
 
     const mailOptions = {
-      from: "alansajidd16@gmail.com",
-      to: "alansaji1996anak@gmail.com",
-      subject: `New Enquiry from ${name}`,
-      html: `<div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;"><strong>Contact Info</strong></div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;">Email: email </div>
-      <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Phone: ${phone}</div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;"><strong>Other Details</strong></div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;"><strong>Message</strong></div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;">message</div>
-      </div>`,
+      from: "alansaji1996anak@gmail.com",
+      to: "alansajidd16@gmail.com",
+      subject: `New Enquiry from`,
+      // html: `<div style="margin-bottom: 5px; display: flex;">
+      // <div style="padding-right: 10px; padding-left: 10px;"><strong>Contact Info</strong></div>
+      // </div>
+      // <div style="margin-bottom: 5px; display: flex;">
+      // <div style="padding-right: 10px; padding-left: 10px;">Email: email </div>
+      // <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Phone: ${phone}</div>
+      // </div>
+      // <div style="margin-bottom: 5px; display: flex;">
+      // <div style="padding-right: 10px; padding-left: 10px;"><strong>Other Details</strong></div>
+      // </div>
+      // <div style="margin-bottom: 5px; display: flex;">
+      // <div style="padding-right: 10px; padding-left: 10px;"><strong>Message</strong></div>
+      // </div>
+      // <div style="margin-bottom: 5px; display: flex;">
+      // <div style="padding-right: 10px; padding-left: 10px;">message</div>
+      // </div>`,
+      html: "hello mail arrived"
     };
 
     await transporter.sendMail(mailOptions);
@@ -91,7 +92,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // }
 
     // 8. If we made it this far, it was a success! 🎉
-    return res.status(201).json({ error: "" });
+    // return res.status(201).json({ error: "" });
   } catch (error) {
     return res.status(500).json({ error: error.message || error.toString() });
   }
