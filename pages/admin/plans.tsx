@@ -6,6 +6,7 @@ import { Modal, Input, Checkbox, Row, Col, Select } from "antd";
 import firebase, { firestore, storage } from "../../firebase/firebase.util";
 import ImageUploader from "../../components/image_uploader/imageUploader";
 import kebabCase from 'lodash/kebabCase';
+import QuillText from "../../components/quill_text/quillText";
 
 export default function Plans() {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -197,7 +198,7 @@ export default function Plans() {
   };
 
   const getBenefitDescription = (event) => {
-    setBenefitDescription(event.target.value);
+    setBenefitDescription(event);
   };
 
   // to clear fields
@@ -624,11 +625,12 @@ export default function Plans() {
                       </div>
                       <div className="form-group mb-2">
                         <label htmlFor="benefit_description">Description</label>
-                        <TextArea
+                        {/* <TextArea
                           onChange={getBenefitDescription}
                           value={benefitDescription}
                           id="benefit_description"
-                        />
+                        /> */}
+                        <QuillText onChange={getBenefitDescription} />
                       </div>
                     </Modal>
                     {/* benefit modal ends */}
