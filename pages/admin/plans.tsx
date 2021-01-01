@@ -5,6 +5,7 @@ import Button from "../../components/button/button";
 import { Modal, Input, Checkbox, Row, Col, Select } from "antd";
 import firebase, { firestore, storage } from "../../firebase/firebase.util";
 import ImageUploader from "../../components/image_uploader/imageUploader";
+import kebabCase from 'lodash/kebabCase';
 
 export default function Plans() {
   const [modalVisibility, setModalVisibility] = useState(false);
@@ -291,7 +292,8 @@ export default function Plans() {
                       sumAssured: { min: minSumAssured, max: maxSumAssured },
                       benefits: newBenefit,
                       images: imagesTmp,
-                      category: selectedCategory
+                      category: selectedCategory,
+                      slug: kebabCase(plan)
                     })
                     .then(() => {
                       console.log("New Plan Added Succesfully!!!");
