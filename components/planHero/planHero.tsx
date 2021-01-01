@@ -12,8 +12,8 @@ export default function PlanHero({ img, subHead, head }) {
         className="container p-5 text-white d-flex flex-column justify-content-center"
         style={{ height: "450px" }}
       >
-        <a className="px-3">{subHead}</a>
-        <a className="px-3 text-extraLarge fw-600">{head}</a>
+        <p className="px-3 mb-0">{subHead}</p>
+        <p className="px-3 text-extraLarge fw-600">{head}</p>
       </div>
     </div>
   );
