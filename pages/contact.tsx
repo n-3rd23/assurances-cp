@@ -40,27 +40,47 @@ export default function Contact() {
     setMessage("");
   };
 
-  const uploadCallMe = async () => {
-    const callmeRef = await firestore.collection("callme");
-    await callmeRef.add({
-      name: name,
-      number: phone,
-    });
-    console.log("we will call you shortly");
-    await fetch('/api/subscribe', {method: 'POST', body: JSON.stringify({name: name, phone: phone})})
-    clearField();
+  const uploadCallMe = () => {
+    firestore
+      .collection("callme")
+      .add({
+        name: name,
+        number: phone,
+      })
+      .then(() =>
+        fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: name, phone: phone }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err);
+          })
+      )
+      .then(() => clearField())
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
-  const uploadMessage = async () => {
-    const qoutesRef = await firestore.collection("qoutes");
-    await qoutesRef.add({
-      Name: name,
-      Email: email,
-      Phone: phone,
-      Message: message,
-    });
-    console.log("message uploaded");
-    clearField();
+  const uploadMessage = () => {
+    firestore
+      .collection("qoutes")
+      .add({
+        Name: name,
+        Email: email,
+        Phone: phone,
+        Message: message,
+      })
+      .then(() => {
+        console.log("message uploaded");
+        clearField();
+      })
+      .catch((err) => console.error(err));
   };
 
   return (

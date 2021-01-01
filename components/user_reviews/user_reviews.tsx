@@ -55,10 +55,10 @@ export default class User_Reviews extends Component {
             />{" "}
           </div>
           <div className="container p-5 mt-5">
-            <a className="w-75" style={{ color: "#a3b6ce" }}>
+            <small style={{ color: "#a3b6ce" }}>
               {this.state.currentReview.quote}
-            </a>
-            <p className="text-middle fw-700 py-3" style={{ color: "#003478" }}>
+            </small>
+            <p className="fw-700 py-3" style={{ color: "#003478" }}>
               {this.state.currentReview.name}
             </p>
           </div>
@@ -68,6 +68,7 @@ export default class User_Reviews extends Component {
             return (
               <div
                 key={item.name}
+                style={{ cursor: "pointer" }}
                 className={`${styles.dotStyle} m-1`}
                 onClick={() => {
                   this.setState({ currentReview: item });

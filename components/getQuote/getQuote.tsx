@@ -1,5 +1,4 @@
 import styles from "./getQuote.module.scss";
-import { Input } from "antd";
 import Phone from "../../public/icons/phone.svg";
 import Mail from "../../public/icons/mail_closed.svg";
 import Location from "../../public/icons/location.svg";
@@ -7,7 +6,6 @@ import Facebook from "../../public/icons/facebook.svg";
 import Instagram from "../../public/icons/instagram.svg";
 import Linkedin from "../../public/icons/linkedin.svg";
 import Twitter from "../../public/icons/twitter.svg";
-import React, { useState } from "react";
 import TalkUsBox from "./../talkUsBox/talkUsBox";
 
 export default function GetQuote() {

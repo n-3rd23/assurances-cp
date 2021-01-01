@@ -1,9 +1,7 @@
 import styles from "./talkUsBox.module.scss";
-import { Component } from "react";
 import { Input } from "antd";
-import React, { useState } from "react";
-import { message } from "antd";
-import { firestore, storage } from "../../firebase/firebase.util";
+import { useState } from "react";
+import { firestore } from "../../firebase/firebase.util";
 import Phone from "../../public/icons/phone.svg";
 import Mail from "../../public/icons/mail_closed.svg";
 import Location from "../../public/icons/location.svg";
@@ -33,17 +31,21 @@ export default function TalkUsBox() {
       Email: email,
       Message: message,
     };
-    try {
-      firestore.collection("qoutes").add(data);
-      setName("");
-      setPhone("");
-      setEmail("");
-      setMessage("");
-      // message.success("Message has been sent");
-    } catch (error) {
-      console.log(error);
-      // message.error("Upload error. Check your internet connection!");
-    }
+
+    firestore
+      .collection("qoutes")
+      .add(data)
+      .then(() => {
+        setName("");
+        setPhone("");
+        setEmail("");
+        setMessage("");
+        // message.success("Message has been sent");
+      })
+      .catch((error) => {
+        console.error(error);
+        // message.error("Upload error. Check your internet connection!");
+      });
   };
   return (
     <div className="container-fluid rounded-1 bg-white p-3 text-start">
