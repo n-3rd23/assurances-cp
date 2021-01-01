@@ -1,12 +1,9 @@
-const nodemailer = require("nodemailer");
-// import type { NextApiRequest, NextApiResponse } from "next";
+import nodemailer from "nodemailer";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // 1. Destructure the email address from the request body.
-  const {
-    name,
-    phone,
-  } = req.body;
+  const { name, phone } = req.body;
 
   // if (!email) {
   //   // 2. Throw an error if an email wasn't provided.
@@ -71,7 +68,7 @@ export default async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-    console.log('mail send')
+    console.log("mail send");
 
     // 6. Send a POST request to Mailchimp.
     // const response = await fetch(
