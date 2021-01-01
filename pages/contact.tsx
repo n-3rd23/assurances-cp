@@ -6,7 +6,7 @@ import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import Twitter from "../public/icons/twitter.svg";
 import CallBack from "../public/icons/call-back.svg";
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import Button from "../components/button/button";
 import { useState } from "react";
 import { firestore } from "../firebase/firebase.util";
@@ -32,6 +32,13 @@ export default function Contact() {
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
   };
+
+  const openNotificationSuccess = (type) => {
+    notification[type]({
+      message: "Success !",
+      description: "Your request has been recieved we will call you as soon as possible 🙂"
+    })
+  }
 
   const clearField = () => {
     setName("");
@@ -61,7 +68,10 @@ export default function Contact() {
             console.error(err);
           })
       )
-      .then(() => clearField())
+      .then(() => {
+        clearField()
+        openNotificationSuccess('success')
+      })
       .catch((err) => {
         console.error(err);
       });
@@ -79,6 +89,10 @@ export default function Contact() {
       .then(() => {
         console.log("message uploaded");
         clearField();
+        notification["success"]({
+          message: "Success !",
+          description: "Thank you for your enquiry we will contact you as soon as possible 🙂"
+        })
       })
       .catch((err) => console.error(err));
   };

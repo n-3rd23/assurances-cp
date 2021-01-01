@@ -54,17 +54,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       <div style="padding-right: 10px; padding-left: 10px;"><strong>Contact Info</strong></div>
       </div>
       <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;">Email: email </div>
+      <div style="padding-right: 10px; padding-left: 10px;">${name} is requesting a callback</div>
       <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Phone: ${phone}</div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;"><strong>Other Details</strong></div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;"><strong>Message</strong></div>
-      </div>
-      <div style="margin-bottom: 5px; display: flex;">
-      <div style="padding-right: 10px; padding-left: 10px;">message</div>
       </div>`,
       };
 
