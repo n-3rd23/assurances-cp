@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import styles from "./plancard.module.scss";
+import { notification, Button } from "antd"
 
 interface Props {
   children?: JSX.Element;
@@ -23,7 +24,21 @@ export default function PlanCard({
   };
 
   const handleDelClick = () => {
-    onDelClick(id);
+    const key = `open${Date.now()}`;
+
+    // confirem button
+    const btn = (
+      <Button type="primary" danger size="small" onClick={() => onDelClick(id)}>
+        Confirm
+      </Button>
+    );
+
+    notification["warning"]({
+      message: "Are you sure you want to delete?",
+      description:"",
+      btn,
+      key,
+    })
   };
 
   return (

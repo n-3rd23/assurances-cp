@@ -6,7 +6,7 @@ import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import Twitter from "../public/icons/twitter.svg";
 import CallBack from "../public/icons/call-back.svg";
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import Button from "../components/button/button";
 import { useState } from "react";
 import { firestore } from "../firebase/firebase.util";
@@ -33,6 +33,13 @@ export default function Contact() {
     setMessage(event.target.value);
   };
 
+  const openNotificationSuccess = (type) => {
+    notification[type]({
+      message: "Success !",
+      description: "Your request has been recieved we will call you as soon as possible 🙂"
+    })
+  }
+
   const clearField = () => {
     setName("");
     setPhone("");
@@ -40,27 +47,54 @@ export default function Contact() {
     setMessage("");
   };
 
-  const uploadCallMe = async () => {
-    const callmeRef = await firestore.collection("callme");
-    await callmeRef.add({
-      name: name,
-      number: phone,
-    });
-    console.log("we will call you shortly");
-    await fetch('/api/subscribe', {method: 'POST', body: JSON.stringify({name: name, phone: phone})})
-    clearField();
+  const uploadCallMe = () => {
+    firestore
+      .collection("callme")
+      .add({
+        name: name,
+        number: phone,
+      })
+      .then(() =>
+        fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: name, phone: phone }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err);
+          })
+      )
+      .then(() => {
+        clearField()
+        openNotificationSuccess('success')
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
-  const uploadMessage = async () => {
-    const qoutesRef = await firestore.collection("qoutes");
-    await qoutesRef.add({
-      Name: name,
-      Email: email,
-      Phone: phone,
-      Message: message,
-    });
-    console.log("message uploaded");
-    clearField();
+  const uploadMessage = () => {
+    firestore
+      .collection("qoutes")
+      .add({
+        Name: name,
+        Email: email,
+        Phone: phone,
+        Message: message,
+      })
+      .then(() => {
+        console.log("message uploaded");
+        clearField();
+        notification["success"]({
+          message: "Success !",
+          description: "Thank you for your enquiry we will contact you as soon as possible 🙂"
+        })
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
