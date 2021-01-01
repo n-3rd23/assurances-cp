@@ -34,15 +34,6 @@ export default function Header() {
           </a>
         </div>
         <div className="p-2 bd-highlight">
-          <Link href="/">
-            <a className="text-medium text-primary">
-              <small>
-                <strong>MAKE A CLAIM</strong>
-              </small>
-            </a>
-          </Link>
-        </div>
-        <div className="p-2 bd-highlight">
           <Link href="/insurance">
             <a className="text-medium text-primary">
               <small>
