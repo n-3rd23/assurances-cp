@@ -1,7 +1,6 @@
 import styles from "./talkUsBox.module.scss";
-import { Component } from "react";
 import { Input } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { message } from "antd";
 import { firestore, storage } from "../../firebase/firebase.util";
 import Phone from "../../public/icons/phone.svg";
@@ -12,7 +11,7 @@ export default function TalkUsBox() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [userMessage, setMessage] = useState("");
   const { TextArea } = Input;
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -31,7 +30,8 @@ export default function TalkUsBox() {
       Name: name,
       Phone: phone,
       Email: email,
-      Message: message,
+      Message: userMessage,
+      View: false,
     };
     try {
       firestore.collection("qoutes").add(data);
@@ -39,7 +39,7 @@ export default function TalkUsBox() {
       setPhone("");
       setEmail("");
       setMessage("");
-      // message.success("Message has been sent");
+      message.success("Message has been sent");
     } catch (error) {
       console.log(error);
       // message.error("Upload error. Check your internet connection!");
@@ -73,7 +73,7 @@ export default function TalkUsBox() {
       />
       <p className="fw-700  mt-2">Your Message</p>
       <TextArea
-        value={message}
+        value={userMessage}
         onChange={handleChangeMessage}
         className={`mb-4 p-3  ${styles.inputBoxStyle}`}
         rows={4}

@@ -10,13 +10,13 @@ export default function Insurance({ plans }: Props) {
   return (
     <Layout title="Assurances" description="Best Life Insurance ever">
       <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
-      <div className="row mx-auto">
+      <div className="row justify-content-center">
         {plans && plans.plans
           ? plans.plans.map((item: any) => {
               return (
                 <div
                   key={item.id}
-                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-5"
+                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-4"
                 >
                   {" "}
                   <UserPlanCard
