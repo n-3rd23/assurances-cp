@@ -1,13 +1,12 @@
 import styles from "./userPlanCard.module.scss";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import Plus from "../../public/icons/plus.svg";
 import Arrow from "../../public/icons/arrow.svg";
 import kebabCase from "lodash/kebabCase";
 import truncate from "lodash/truncate";
 
 export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
-  console.log(mainHead);
-  const router = useRouter();
+  const router: NextRouter = useRouter();
   return (
     <div className={`container ${styles.containerStyle} p-1`}>
       <div className="p-2 ">

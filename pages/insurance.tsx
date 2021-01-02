@@ -8,7 +8,7 @@ interface Props {
 
 export default function Insurance({ plans }: Props) {
   return (
-    <Layout title="Assurances" description="Best Life Insurance ever">
+    <Layout title="Insurances" description="assurances insurance plans">
       <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
       <div className="row justify-content-center">
         {plans && plans.plans

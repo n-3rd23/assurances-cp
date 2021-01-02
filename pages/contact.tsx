@@ -6,7 +6,7 @@ import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import Twitter from "../public/icons/twitter.svg";
 import CallBack from "../public/icons/call-back.svg";
-import { Input } from "antd";
+import { Input, notification } from "antd";
 import Button from "../components/button/button";
 import { useState } from "react";
 import { firestore } from "../firebase/firebase.util";
@@ -33,6 +33,13 @@ export default function Contact() {
     setMessage(event.target.value);
   };
 
+  const openNotificationSuccess = (type) => {
+    notification[type]({
+      message: "Success !",
+      description: "Your request has been recieved we will call you as soon as possible 🙂"
+    })
+  }
+
   const clearField = () => {
     setName("");
     setPhone("");
@@ -40,30 +47,60 @@ export default function Contact() {
     setMessage("");
   };
 
-  const uploadCallMe = async () => {
-    const callmeRef = await firestore.collection("callme");
-    await callmeRef.add({
-      name: name,
-      number: phone,
-    });
-    console.log("we will call you shortly");
-    clearField();
+  const uploadCallMe = () => {
+    firestore
+      .collection("callme")
+      .add({
+        name: name,
+        number: phone,
+        view: false
+      })
+      .then(() =>
+        fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ name: name, phone: phone }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err);
+          })
+      )
+      .then(() => {
+        clearField()
+        openNotificationSuccess('success')
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
-  const uploadMessage = async () => {
-    const qoutesRef = await firestore.collection("qoutes");
-    await qoutesRef.add({
-      Name: name,
-      Email: email,
-      Phone: phone,
-      Message: message,
-    });
-    console.log("message uploaded");
-    clearField();
+  const uploadMessage = () => {
+    firestore
+      .collection("qoutes")
+      .add({
+        Name: name,
+        Email: email,
+        Phone: phone,
+        Message: message,
+        View: false
+      })
+      .then(() => {
+        console.log("message uploaded");
+        clearField();
+        notification["success"]({
+          message: "Success !",
+          description: "Thank you for your enquiry we will contact you as soon as possible 🙂"
+        })
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
-    <Layout title="About" description="About us">
+    <Layout title="Contact" description="Contact us">
       <div className="container my-5">
         {/* banner begins */}
         <div className="row">
@@ -94,7 +131,7 @@ export default function Contact() {
               <p className="fw-700 mt-4">Your Name</p>
               <Input
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={name}
                 onChange={handleNameChange}
               />
@@ -102,7 +139,7 @@ export default function Contact() {
               <Input
                 prefix={<Phone width={20} height={20} />}
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={phone}
                 onChange={handlePhoneChange}
               />
@@ -110,13 +147,13 @@ export default function Contact() {
               <Input
                 prefix={<Mail width={20} height={20} />}
                 size="large"
-                className="mb-1"
+                className="mb-1 p-2"
                 value={email}
                 onChange={handleEmailChange}
               />
               <p className="fw-700 mt-2">Your Message</p>
               <Input.TextArea
-                className="mb-1"
+                className="mb-1 p-2"
                 rows={4}
                 value={message}
                 onChange={handleMessageChange}
@@ -206,7 +243,7 @@ export default function Contact() {
               </div>
               <div>
                 <div className="form-group mb-2">
-                  <label htmlFor="name">Your name</label>
+                  <small>Your name</small>
                   <Input
                     className="col-md-6 d-block col-sm-12 col-xs-12"
                     id="name"
@@ -215,7 +252,7 @@ export default function Contact() {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="phone">Your number</label>
+                  <small>Your number</small>
                   <Input
                     className="d-block col-md-6 col-sm-12 col-xs-12"
                     id="phone"

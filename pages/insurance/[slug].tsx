@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Clock from "../../public/icons/clock.svg";
 import BenefitCard from "./../../components/benefitCard/benefitCard";
 import PlanHero from "./../../components/planHero/planHero";
+import DOMPurify from "dompurify";
 
 interface Props {
   plan?: any;
@@ -45,7 +46,12 @@ export default function Insurance({ plan }: Props) {
           <a className="mt-5 fw-700" style={{ color: "#5a6371" }}>
             SUMMARY
           </a>
-          <p className="text-interSize">{currentPlan.planSummary}</p>
+          <div
+            className="text-interSize"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(currentPlan.planSummary),
+            }}
+          ></div>
         </div>
 
         <div className="d-flex container mt-5 px-4 px-md-5 justify-contents-start">

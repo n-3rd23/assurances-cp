@@ -8,35 +8,62 @@ import { firestore } from "../../firebase/firebase.util";
 export default function Messages() {
   useEffect(() => {
     fetchMessages();
+    fetchCallbacks()
   }, []);
 
   const [messages, setMessages] = useState([]);
   const [totalMessageCount, setTotalMessageCount] = useState(0);
+  const [callBacks, setCallbacks] = useState([])
+  const [callBackCount, setCallBackCount] = useState(0)
+  const [displayContent, setDisplayContent] = useState(null)
   const { Panel } = Collapse;
 
   const fetchMessages = async () => {
     try {
       var tmp = [];
-      const messagesRef = await firestore.collection("qoutes");
+      const messagesRef = await firestore.collection("qoutes").where("View", "==", false);
       const messagesDoc = await messagesRef.get();
       messagesDoc.forEach((doc) => {
         tmp.push({ id: doc.id, ...doc.data() });
       });
       setTotalMessageCount(tmp.length);
       setMessages(tmp);
+      setDisplayContent(tmp)
     } catch (error) {
       console.log("error while fetching messages", error);
     }
   };
 
-  console.log(messages);
+  const fetchCallbacks = async () => {
+    try {
+      var tmp = []
+      const callBackRef = await firestore.collection("callme").where("view", "==", false)
+      const callBackDoc = await callBackRef.get()
+      callBackDoc.forEach((doc) => {
+        tmp.push({id:doc.id, ...doc.data()})
+      })
+      setCallBackCount(tmp.length)
+      setCallbacks(tmp)
+    }
+    catch(error) {
+      console.log('Unabel to fetch callbacks!')
+    }
+  }
+
+  const displayMessages = () => {
+    setDisplayContent(messages)
+  }
+
+  const displayCallbacks = () => {
+    setDisplayContent(callBacks)
+  }
 
   return (
     <Admin title="messages" description="admin messages">
       <Fragment>
         <div className="container mt-5 ml-5">
           <div className="row">
-            <div className="col-md-6">
+            <div style={{cursor:"pointer"}} onClick={displayMessages} className="col-md-6">
               <CounterCard>
                 <Fragment>
                   <div
@@ -65,7 +92,7 @@ export default function Messages() {
                 </Fragment>
               </CounterCard>
             </div>
-            <div className="col-md-6">
+            <div style={{cursor:"pointer"}} onClick={displayCallbacks} className="col-md-6">
               <CounterCard>
                 <Fragment>
                   <div
@@ -75,17 +102,17 @@ export default function Messages() {
                       backgroundColor: "rgba(0, 52, 120, 0.2)",
                     }}
                   >
-                    <img src="/icons/mail_open.svg" alt="icon" />
+                    <img src="/icons/call-back.svg" style={{height:"40px", width:"40px"}} alt="icon" />
                   </div>
                   <div>
                     <span style={{ color: "#5A6371" }} className="fw-600">
-                      Unread Messages
+                      Call Back Requests
                     </span>
                     <div>
-                      <strong className="text-large">21 </strong>{" "}
+                      <strong className="text-large">{callBackCount} </strong>{" "}
                       <small>
                         {" "}
-                        <strong>Messages</strong>{" "}
+                        <strong>Requests</strong>{" "}
                       </small>{" "}
                     </div>
                   </div>
@@ -97,16 +124,16 @@ export default function Messages() {
                      <MessageCard title="Marshall" title2="CAR INSURANCE" description="Ineed car insurance to insure my car also i need bike insurance to insure my bike." />
                   </div> */}
             <Collapse className="mt-4 border-0" bordered={false}>
-              {messages ? (
-                messages.length > 0 ? (
-                  messages.map((message) => {
+              {displayContent ? (
+                displayContent.length > 0 ? (
+                  displayContent.map((message) => {
                     return (
                       <Panel
                         header={
                           <MessageCard
-                            title={message.Name}
+                            title={message.Name ? message.Name : message.name}
                             title2="LIFE INSURANCE"
-                            description={message.Message}
+                            description={message.Message ? message.Message : "requesting callback"}
                           />
                         }
                         key={message.id}
@@ -114,9 +141,9 @@ export default function Messages() {
                         className="border-0"
                       >
                         <div className="bg-light shadow-sm p-3">
-                          <p>{message.Message}</p>
+                          <p>{message.Message ? message.Message : message.name}</p>
                           <p>{message.Email}</p>
-                          <p className="fw-600">{message.Phone}</p>
+                          <p className="fw-600">{message.Phone ? message.Phone : message.number}</p>
                         </div>
                       </Panel>
                     );

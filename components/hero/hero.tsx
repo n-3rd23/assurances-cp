@@ -8,10 +8,6 @@ import GetQuote from "../getQuote/getQuote";
 export default function Hero({ subHead, mainHead }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -28,10 +24,10 @@ export default function Hero({ subHead, mainHead }) {
         <p className="mb-0">{subHead}</p>
         <h1 className="mb-0 fw-800 text-white">{mainHead}</h1>
         <Button
-          onClick={showModal}
+          onClick={() => setIsModalVisible(true)}
           className="mt-3 fw-700 d-flex shadow-light mx-md-0 mx-auto"
         >
-          <Quote width={16} height={16} className="shadow-sm" />
+          <Quote width={16} height={16} className="shadow-sm my-auto d-block" />
           &nbsp;
           <p className="mb-0 ms-2">GET A QUOTE</p>
         </Button>
