@@ -21,7 +21,7 @@ export default function Messages() {
   const fetchMessages = async () => {
     try {
       var tmp = [];
-      const messagesRef = await firestore.collection("qoutes");
+      const messagesRef = await firestore.collection("qoutes").where("View", "==", false);
       const messagesDoc = await messagesRef.get();
       messagesDoc.forEach((doc) => {
         tmp.push({ id: doc.id, ...doc.data() });
@@ -37,7 +37,7 @@ export default function Messages() {
   const fetchCallbacks = async () => {
     try {
       var tmp = []
-      const callBackRef = await firestore.collection("callme")
+      const callBackRef = await firestore.collection("callme").where("view", "==", false)
       const callBackDoc = await callBackRef.get()
       callBackDoc.forEach((doc) => {
         tmp.push({id:doc.id, ...doc.data()})
@@ -57,8 +57,6 @@ export default function Messages() {
   const displayCallbacks = () => {
     setDisplayContent(callBacks)
   }
-
-  console.log(messages);
 
   return (
     <Admin title="messages" description="admin messages">

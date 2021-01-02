@@ -53,6 +53,7 @@ export default function Contact() {
       .add({
         name: name,
         number: phone,
+        view: false
       })
       .then(() =>
         fetch("/api/subscribe", {
@@ -85,6 +86,7 @@ export default function Contact() {
         Email: email,
         Phone: phone,
         Message: message,
+        View: false
       })
       .then(() => {
         console.log("message uploaded");
@@ -98,7 +100,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout title="About" description="About us">
+    <Layout title="Contact" description="Contact us">
       <div className="container my-5">
         {/* banner begins */}
         <div className="row">
