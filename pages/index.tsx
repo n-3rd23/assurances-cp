@@ -3,9 +3,7 @@ import Layout from "../components/layout/layout";
 import Home_Features from "../components/home_features/home_features";
 import Insurance_Main from "../components/insurance_main/insurance_main";
 import User_Reviews from "../components/user_reviews/user_reviews";
-import { Modal } from "antd";
-import React, { useState } from "react";
-import GetQuote from "../components/getQuote";
+import { useState } from "react";
 
 export default function Home() {
   const [isModalVisible, setIsModalVisible] = useState(false);

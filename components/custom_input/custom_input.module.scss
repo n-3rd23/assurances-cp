@@ -18,3 +18,12 @@
 .danger {
   border-bottom: 2px solid red;
 }
+
+.ghost {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+
+  &::placeholder {
+    color: var(--primary-light) !important;
+  }
+}

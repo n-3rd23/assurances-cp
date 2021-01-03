@@ -61,12 +61,16 @@ export default function Header() {
             title="info@lifeassure.com"
             subtitle="Send us a message"
             className="mx-4"
+            titleAs="a"
+            titleAsProps={{ href: "mailto:thomasassurance@yahoo.com" }}
           />
           <Info
             icon={<Phone width={20} height={20} />}
-            title="+91 9872369874"
+            title="+91 9846117476"
             subtitle="Give us a call"
             className="mx-4"
+            titleAs="a"
+            titleAsProps={{ href: "tel:+919846117476" }}
           />
         </div>
       </div>
