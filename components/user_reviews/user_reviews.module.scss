@@ -10,13 +10,12 @@
 .dotStyle {
   width: 10px;
   height: 10px;
+  cursor: pointer;
   border-radius: 100px;
   background: #8d99ae;
-  transition: 200ms;
+  transition: 100ms;
   &:hover {
-    width: 10px;
-    height: 10px;
-    transition: 200ms;
+    transition: 100ms;
     background: var(--primary-main) !important;
   }
 }

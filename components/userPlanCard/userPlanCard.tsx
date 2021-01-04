@@ -3,11 +3,12 @@ import { NextRouter, useRouter } from "next/router";
 import Plus from "../../public/icons/plus.svg";
 import Arrow from "../../public/icons/arrow.svg";
 import kebabCase from "lodash/kebabCase";
+import truncate from "lodash/truncate";
 
 export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
   const router: NextRouter = useRouter();
   return (
-    <div className={`container ${styles.containerStyle} p-2`}>
+    <div className={`container ${styles.containerStyle} p-1`}>
       <div className="p-2 ">
         <Plus height={24} width={24} />
       </div>
@@ -21,7 +22,9 @@ export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
         {mainHead}
       </p>
       <p className="px-4 text-medium" style={{ color: " #8D99AE" }}>
-        {subHead2}
+        {truncate(subHead2, {
+          length: 150,
+        })}
       </p>
       <div className="d-flex w-100 justify-content-end mt-5 p-3">
         <button

@@ -1,53 +1,253 @@
-import { Fragment } from "react";
 import styles from "./footer.module.scss";
 import Facebook from "../../public/icons/facebook.svg";
 import Instagram from "../../public/icons/instagram.svg";
 import Linkedin from "../../public/icons/linkedin.svg";
 import Twitter from "../../public/icons/twitter.svg";
+import Link from "next/link";
+import { ChangeEvent, FormEvent, useState } from "react";
+import CustomInput from "../custom_input/custom_input";
+import Button from "../button/button";
+import firebase, { firestore } from "../../firebase/firebase.util";
 
 export default function Footer() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+
+  const [nameWarning, setNameWarning] = useState("");
+  const [emailWarning, setEmailWarning] = useState("");
+  const [phoneWarning, setPhoneWarning] = useState("");
+  const [messageWarning, setMessageWarning] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState({ type: "success", text: "" });
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    let flag = 0;
+    if (name == "") {
+      flag = 1;
+      setNameWarning("Name is required");
+    } else {
+      setNameWarning("");
+    }
+    if (email == "") {
+      flag = 1;
+      setEmailWarning("Email is required");
+    } else {
+      setEmailWarning("");
+    }
+    if (phone == "") {
+      flag = 1;
+      setPhoneWarning("Phone number is required");
+    } else {
+      setPhoneWarning("");
+    }
+    if (message == "") {
+      flag = 1;
+      setMessageWarning("Message is required");
+    } else {
+      setMessageWarning("");
+    }
+
+    if (flag == 1) return;
+
+    setFeedback({ type: "success", text: "" });
+    setLoading(true);
+
+    firestore
+      .collection("enquiries")
+      .add({
+        name,
+        email,
+        phone,
+        message,
+        received_on: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+        setFeedback({ type: "success", text: "We'll get back to you soon." });
+        setLoading(false);
+      })
+      .catch((err) => {
+        setFeedback({
+          type: "error",
+          text: "Something went wrong. Please try again",
+        });
+        setLoading(false);
+      });
+  }
   return (
-    <Fragment>
-      <div
-        className={`container-fluid text-center text-white p-5 mt-4 ${styles.containerStyle}`}
-      >
-        <p className="text-extraLarge fw-700 ">Assurances</p>
-        <p className={`fw-600 text-medium ${styles.subHead}`}>
-          INSURANCE COMPANY
-        </p>
-        <div className="d-flex flex-column flex-md-row justify-content-center">
-          <div className="px-3 py-2 text-middle fw-600">HOME</div>
-          <div className="px-3 py-2 text-middle fw-600">SERVICES</div>
-          <div className="px-3 py-2 text-middle fw-600">ABOUT</div>
-          <div className="px-3 py-2 text-middle fw-600">CONTACT</div>
-        </div>
-        <div className="d-flex flex-row d-flex justify-content-center bd-highlight text-white">
-          <div className="p-2 bd-highlight">
-            <a href="https://facebook.com">
-              <Facebook className="m-3" width={16} height={16} />
-            </a>
-
-            <a href="https://facebook.com">
-              <Twitter className="m-3" width={16} height={16} />
-            </a>
-
-            <a href="https://facebook.com">
-              <Linkedin className="m-3" width={16} height={16} />
-            </a>
-
-            <a href="https://facebook.com">
-              <Instagram className="m-3" width={16} height={16} />
-            </a>
+    <div
+      className={`container-fluid text-white text-md-start text-center mt-5 p-5 ${styles.footer}`}
+    >
+      <div className="row">
+        <div className="col-md-4 col-sm-12 col-12">
+          <h1 className="text-white mb-0">
+            <strong>Assurances</strong>
+          </h1>
+          <small>
+            <em>Necessities Being Secured</em>
+          </small>
+          <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight my-3">
+            <div className="p-2 bd-highlight">
+              <Facebook width={12} height={12} />
+            </div>
+            <div className="p-2 bd-highlight">
+              <Twitter width={12} height={12} />
+            </div>
+            <div className="p-2 bd-highlight">
+              <Linkedin width={12} height={12} />
+            </div>
+            <div className="p-2 bd-highlight">
+              <Instagram width={12} height={12} />
+            </div>
           </div>
         </div>
-      </div>
-      <div
-        className={`container-fluid d-flex justify-content-center align-items-center ${styles.bottomBar}`}
-      >
-        <div className="p-3 text-white text-medium">
-          2020, Assurances. All rights Reserved
+        <div className="col-md-4 col-sm-6 col-12">
+          <h6 className="py-2 text-white">
+            <strong>Pages</strong>
+          </h6>
+          <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight mb-3">
+            <div className="d-flex flex-column pe-5 bd-highlight">
+              <div className="p-1 bd-highlight">
+                <Link href="/">
+                  <a className={styles.pages}>HOME</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/insurance">
+                  <a className={styles.pages}>INSURANCE</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/services">
+                  <a className={styles.pages}>SERVICES</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/about">
+                  <a className={styles.pages}>ABOUT</a>
+                </Link>
+              </div>
+            </div>
+            <div className="d-flex flex-column bd-highlight">
+              <div className="p-1 bd-highlight">
+                <Link href="/contact">
+                  <a className={styles.pages}>CONTACT</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/insurance">
+                  <a className={styles.pages}>INSURANCE</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/services">
+                  <a className={styles.pages}>SERVICES</a>
+                </Link>
+              </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/about">
+                  <a className={styles.pages}>ABOUT</a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-4 col-sm-6 col-12">
+          <form
+            onSubmit={handleSubmit}
+            method="post"
+            className="d-flex flex-column bd-highlight p-3"
+          >
+            <div className="p-2 bd-highlight">
+              <h6 className="text-white">
+                <strong>Get in touch</strong>
+              </h6>
+            </div>
+            <div className="p-2 bd-highlight">
+              <CustomInput
+                placeholder="Your name"
+                value={name}
+                variant="ghost"
+                className="w-100 shadow-sm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setName(e.target.value)
+                }
+                warning={nameWarning}
+              />
+            </div>
+            <div className="p-2 bd-highlight">
+              <CustomInput
+                placeholder="Your email"
+                type="email"
+                value={email}
+                variant="ghost"
+                className="w-100 shadow-sm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
+                warning={emailWarning}
+              />
+            </div>
+            <div className="p-2 bd-highlight">
+              <CustomInput
+                placeholder="Your phone number"
+                value={phone}
+                variant="ghost"
+                className="w-100 shadow-sm"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPhone(e.target.value)
+                }
+                warning={phoneWarning}
+              />
+            </div>
+            <div className="p-2 bd-highlight">
+              <CustomInput
+                placeholder="Your message"
+                value={message}
+                variant="ghost"
+                className="w-100 shadow-sm"
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                  setMessage(e.target.value)
+                }
+                warning={messageWarning}
+                isTextArea
+              />
+            </div>
+            <div className="p-2 bd-highlight">
+              <small
+                className={
+                  feedback.type == "success" ? "text-success" : "text-danger"
+                }
+              >
+                {feedback.text}
+              </small>
+            </div>
+            <div className="p-2 bd-highlight">
+              <Button
+                type="submit"
+                className="shadow-sm"
+                loading={loading}
+                variant="ghost"
+              >
+                SEND MESSAGE
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
-    </Fragment>
+      <div className="row">
+        <small className={styles.copyright}>
+          © {new Date().getFullYear()}. All rights reserved.
+        </small>
+      </div>
+    </div>
   );
 }

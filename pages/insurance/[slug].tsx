@@ -5,6 +5,7 @@ import Clock from "../../public/icons/clock.svg";
 import BenefitCard from "./../../components/benefitCard/benefitCard";
 import PlanHero from "./../../components/planHero/planHero";
 import DOMPurify from "dompurify";
+import Part from "../../components/part/part";
 
 interface Props {
   plan?: any;
@@ -88,6 +89,7 @@ export default function Insurance({ plan }: Props) {
             );
           })}
         </div>
+        <Part name="KNOW MORE" />
       </Layout>
     );
   } else {

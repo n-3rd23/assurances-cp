@@ -1,5 +1,5 @@
 import styles from "./talkUsBox.module.scss";
-import { Input } from "antd";
+import { Input, message } from "antd";
 import { useState } from "react";
 import { firestore } from "../../firebase/firebase.util";
 import Phone from "../../public/icons/phone.svg";
@@ -10,7 +10,7 @@ export default function TalkUsBox() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [userMessage, setMessage] = useState("");
   const { TextArea } = Input;
   const handleChangeName = (e) => {
     setName(e.target.value);
@@ -29,7 +29,8 @@ export default function TalkUsBox() {
       Name: name,
       Phone: phone,
       Email: email,
-      Message: message,
+      Message: userMessage,
+      View: false,
     };
 
     firestore
@@ -40,7 +41,7 @@ export default function TalkUsBox() {
         setPhone("");
         setEmail("");
         setMessage("");
-        // message.success("Message has been sent");
+        message.success("Message has been sent");
       })
       .catch((error) => {
         console.error(error);
@@ -75,7 +76,7 @@ export default function TalkUsBox() {
       />
       <p className="fw-700  mt-2">Your Message</p>
       <TextArea
-        value={message}
+        value={userMessage}
         onChange={handleChangeMessage}
         className={`mb-4 p-3  ${styles.inputBoxStyle}`}
         rows={4}

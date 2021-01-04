@@ -1,10 +1,18 @@
-.containerStyle {
+.footer {
   background: var(--primary-main);
-  min-height: 280px;
 }
-.subHead {
-  margin-top: -25px;
+
+.pages {
+  font-size: 12px;
 }
-.bottomBar {
-  background: #042653;
+
+.copyright {
+  color: var(--primary-light);
+}
+
+@media only screen and (min-width: 768px) {
+  .copyright {
+    width: fit-content;
+    margin-top: -4rem;
+  }
 }
