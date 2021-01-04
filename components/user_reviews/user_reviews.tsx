@@ -65,16 +65,32 @@ export default class User_Reviews extends Component {
         </div>
         <div className="container d-flex mb-5">
           {this.state.quotes.map((item) => {
-            return (
-              <div
-                key={item.name}
-                style={{ cursor: "pointer" }}
-                className={`${styles.dotStyle} m-1`}
-                onClick={() => {
-                  this.setState({ currentReview: item });
-                }}
-              ></div>
-            );
+            if (this.state.currentReview.name == item.name) {
+              return (
+                <div
+                  key={item.name}
+                  style={{
+                    background: "var(--primary-main)",
+                    width: "11px",
+                    height: "11px",
+                  }}
+                  className={`${styles.dotStyle} m-1`}
+                  onClick={() => {
+                    this.setState({ currentReview: item });
+                  }}
+                ></div>
+              );
+            } else {
+              return (
+                <div
+                  key={item.name}
+                  className={`${styles.dotStyle} m-1`}
+                  onClick={() => {
+                    this.setState({ currentReview: item });
+                  }}
+                ></div>
+              );
+            }
           })}
         </div>
       </Fragment>
