@@ -8,7 +8,7 @@ export default function Insurance_Main() {
   const [plans, setPlan] = useState(null);
   const [selectedPlan, setSelectedPlan] = useState(null);
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`)
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans>limit=5`)
       .then((res) => res.json())
       .then((plans) => {
         setPlan(plans.plans);
