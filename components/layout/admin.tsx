@@ -5,6 +5,7 @@ import { Fragment, useContext, useEffect } from "react";
 import styles from "./admin.module.scss";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import { AuthContext } from "../../context/AuthContext";
+import Head from "next/head";
 
 interface Props {
   title?: string;
@@ -57,6 +58,9 @@ export default function Admin({ title, description, children }: Props) {
           description: description,
         }}
       />
+      <Head>
+        <script src="https://apis.google.com/js/client:platform.js"></script>
+      </Head>
       {/* sidebar begins */}
       <div className="container-fluid bg-light">
         <div className="row">
