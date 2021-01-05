@@ -49,8 +49,9 @@ export default function Header() {
             <a className={styles.title}>
               <h2 className="fw-800 mb-0">Assurances</h2>
               <small className={`d-block fw-600 ${styles.subtitle}`}>
-                INSURANCE&nbsp;
-                <span style={{ color: "var(--primary-main)" }}>COMPANY</span>
+                <em style={{ color: "var(--primary-main)" }}>
+                  Necessities Being Secured
+                </em>
               </small>
             </a>
           </Link>

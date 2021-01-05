@@ -5,6 +5,7 @@ import { Fragment, useContext, useEffect } from "react";
 import styles from "./admin.module.scss";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import { AuthContext } from "../../context/AuthContext";
+import PieChart from "../../public/icons/pie-chart.svg";
 import Head from "next/head";
 
 interface Props {
@@ -113,6 +114,21 @@ export default function Admin({ title, description, children }: Props) {
                     className={styles.nav_icon}
                     src="/icons/newspaper.svg"
                     alt="home"
+                  />
+                )}
+              </a>
+            </Link>
+            <Link href="/admin/category">
+              <a className={`py-3 w-100 text-center`}>
+                {router.pathname == "/admin/category" ? (
+                  <PieChart
+                    style={{ fill: "#fff" }}
+                    className={styles.nav_icon}
+                  />
+                ) : (
+                  <PieChart
+                    style={{ fill: "#5A6371" }}
+                    className={styles.nav_icon}
                   />
                 )}
               </a>

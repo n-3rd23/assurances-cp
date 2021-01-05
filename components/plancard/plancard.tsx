@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import styles from "./plancard.module.scss";
-import { notification, Button } from "antd"
+import { notification, Button } from "antd";
 
 interface Props {
   children?: JSX.Element;
@@ -10,6 +10,8 @@ interface Props {
   onDelClick?: (id) => void;
   onEditClick?: (id) => void;
   id?: string;
+  isEdit?: boolean;
+  isDelete?: boolean;
 }
 
 export default function PlanCard({
@@ -18,6 +20,8 @@ export default function PlanCard({
   onDelClick,
   onEditClick,
   id,
+  isEdit = true,
+  isDelete = true,
 }: Props) {
   const handleEditClick = () => {
     onEditClick(id);
@@ -28,17 +32,25 @@ export default function PlanCard({
 
     // confirem button
     const btn = (
-      <Button type="primary" danger size="small" onClick={() => onDelClick(id)}>
+      <Button
+        type="primary"
+        danger
+        size="small"
+        onClick={() => {
+          onDelClick(id);
+          notification.close(key);
+        }}
+      >
         Confirm
       </Button>
     );
 
     notification["warning"]({
       message: "Are you sure you want to delete?",
-      description:"",
+      description: "",
       btn,
       key,
-    })
+    });
   };
 
   return (
@@ -55,25 +67,26 @@ export default function PlanCard({
                   {description.substring(0, 150)}...
                 </small>
               </div>
+              <div className="col-md-3 text-center"></div>
               <div className="col-md-3 text-center">
-                <span>Clients</span>
-                <small className="text-muted d-block">12</small>
-              </div>
-              <div className="col-md-3 text-center">
-                <img
-                  style={{ width: "25px", cursor: "pointer" }}
-                  className="mx-2"
-                  src="/icons/edit.svg"
-                  alt="edit"
-                  onClick={handleEditClick}
-                />
-                <img
-                  style={{ width: "25px", cursor: "pointer" }}
-                  src="/icons/trash_red.svg"
-                  alt="delete"
-                  onClick={handleDelClick}
-                  className="mx-2"
-                />
+                {isEdit ? (
+                  <img
+                    style={{ width: "25px", cursor: "pointer" }}
+                    className="mx-2"
+                    src="/icons/edit.svg"
+                    alt="edit"
+                    onClick={handleEditClick}
+                  />
+                ) : null}
+                {isDelete ? (
+                  <img
+                    style={{ width: "25px", cursor: "pointer" }}
+                    src="/icons/trash_red.svg"
+                    alt="delete"
+                    onClick={handleDelClick}
+                    className="mx-2"
+                  />
+                ) : null}
               </div>
             </div>
           </div>

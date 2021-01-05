@@ -24,7 +24,7 @@ export default function Plans() {
   const [images, setImages] = useState(null);
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState(null);
-  const [categoryModal, setCategoryModal] = useState(false);
+  // const [categoryModal, setCategoryModal] = useState(false);
   const [newCategory, setNewCategory] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("")
   const [benefitModal, setBenefitModal] = useState(false);
@@ -54,12 +54,13 @@ export default function Plans() {
 
   const fetchCategories = async () => {
     try {
-      const categoriesRef = firestore
-        .collection("category")
-        .doc("PG3GNZvCAPhrtNmuO9oB");
-      await categoriesRef.onSnapshot((doc) => {
-        setCategories(doc.data())
-      });
+      var tmp = []
+      const categoriesRef = await firestore.collection("categories")
+      const categoryDoc = await categoriesRef.get()
+      categoryDoc.forEach((doc) => {
+        tmp.push({id:doc.id, ...doc.data()})
+      })
+      setCategories(tmp)
     } catch (error) {
       console.log("error while fetching category : ", error)
     }
@@ -216,26 +217,27 @@ export default function Plans() {
     setImages([]);
     setLoading(false);
     setModalVisibility(false);
+    setBenefitDescription("")
   }
 
-  const addNewCategory = async () => {
-    try {
-      const categoriesRef = await firestore
-        .collection("category")
-        .doc("PG3GNZvCAPhrtNmuO9oB");
-      await categoriesRef.set(
-        {
-          categories: firebase.firestore.FieldValue.arrayUnion(newCategory),
-        },
-        { merge: true }
-      );
-      setNewCategory("");
-      setCategoryModal(false);
-      fetchCategories();
-    } catch (error) {
-      console.log("error while adding category : ", error);
-    }
-  };
+  // const addNewCategory = async () => {
+  //   try {
+  //     const categoriesRef = await firestore
+  //       .collection("category")
+  //       .doc("PG3GNZvCAPhrtNmuO9oB");
+  //     await categoriesRef.set(
+  //       {
+  //         categories: firebase.firestore.FieldValue.arrayUnion(newCategory),
+  //       },
+  //       { merge: true }
+  //     );
+  //     setNewCategory("");
+  //     setCategoryModal(false);
+  //     fetchCategories();
+  //   } catch (error) {
+  //     console.log("error while adding category : ", error);
+  //   }
+  // };
 
   const addNewBenefit = () => {
     setNewBenefit([
@@ -250,7 +252,7 @@ export default function Plans() {
   const upload = async () => {
     if (images) {
       if (images.length <= 0) {
-        console.log("add images");
+        console.log("add images"); // add notifications here (if no images are uploaded)
         return;
       }
     }
@@ -463,11 +465,11 @@ export default function Plans() {
                           <Fragment>
                             <Option value="select">--select--</Option>
                             {categories
-                              ? categories.categories.length > 0
-                                ? categories.categories.map((item) => {
+                              ? categories.length > 0
+                                ? categories.map((item) => {
                                   return (
-                                    <Option key={item} value={item}>
-                                      {item}
+                                    <Option key={item.id} value={item.name}>
+                                      {item.name}
                                     </Option>
                                   );
                                 })
@@ -475,28 +477,6 @@ export default function Plans() {
                               : null}
                           </Fragment>
                         </Select>
-                        <a
-                          className="d-block mt-2 text-info"
-                          href="#"
-                          onClick={() => setCategoryModal(true)}
-                        >
-                          Add New Category
-                        </a>
-                        {/* new category modal begins */}
-                        <Modal
-                          visible={categoryModal}
-                          onCancel={() => setCategoryModal(false)}
-                          onOk={addNewCategory}
-                          okText="Add"
-                        >
-                          <Input
-                            onChange={getCategory}
-                            placeholder="New Category Name"
-                            value={newCategory}
-                            type="text"
-                          />
-                        </Modal>
-                        {/* new category modal ends */}
                       </div>
                     </div>
                     <div className="my-3 form-group">
@@ -630,7 +610,7 @@ export default function Plans() {
                           value={benefitDescription}
                           id="benefit_description"
                         /> */}
-                        <QuillText onChange={getBenefitDescription} />
+                        <QuillText value={benefitDescription} onChange={getBenefitDescription} />
                       </div>
                     </Modal>
                     {/* benefit modal ends */}
