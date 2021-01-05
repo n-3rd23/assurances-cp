@@ -10,6 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     snapshot.forEach((doc) => {
       plans.push({ id: doc.id, ...doc.data() });
     });
+
     res.status(200).json({ plans });
   } else {
     res.status(400).json("Invalid Method");
