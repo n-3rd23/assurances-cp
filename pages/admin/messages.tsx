@@ -6,10 +6,10 @@ import { Collapse } from "antd";
 import { firestore } from "../../firebase/firebase.util";
 
 export default function Messages() {
-  useEffect(() => {
-    fetchMessages();
-    fetchCallbacks();
-  }, []);
+  // useEffect(() => {
+  //   fetchMessages();
+  //   fetchCallbacks();
+  // }, []);
 
   const [messages, setMessages] = useState([]);
   const [totalMessageCount, setTotalMessageCount] = useState(0);
@@ -18,40 +18,72 @@ export default function Messages() {
   const [displayContent, setDisplayContent] = useState(null);
   const { Panel } = Collapse;
 
-  const fetchMessages = async () => {
-    try {
-      var tmp = [];
-      const messagesRef = await firestore
-        .collection("qoutes")
-        .where("View", "==", false);
-      const messagesDoc = await messagesRef.get();
-      messagesDoc.forEach((doc) => {
-        tmp.push({ id: doc.id, ...doc.data() });
-      });
-      setTotalMessageCount(tmp.length);
-      setMessages(tmp);
-      setDisplayContent(tmp);
-    } catch (error) {
-      console.log("error while fetching messages", error);
-    }
-  };
+  useEffect(() => {
+    const unsubscribeQuotes = firestore.collection("qoutes").onSnapshot(
+      function (querySnapshot) {
+        const qoutes = [];
+        querySnapshot.forEach(function (doc) {
+          qoutes.push(doc.data());
+        });
+        setMessages(qoutes);
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
 
-  const fetchCallbacks = async () => {
-    try {
-      var tmp = [];
-      const callBackRef = await firestore
-        .collection("callme")
-        .where("view", "==", false);
-      const callBackDoc = await callBackRef.get();
-      callBackDoc.forEach((doc) => {
-        tmp.push({ id: doc.id, ...doc.data() });
-      });
-      setCallBackCount(tmp.length);
-      setCallbacks(tmp);
-    } catch (error) {
-      console.log("Unabel to fetch callbacks!");
-    }
-  };
+    const unsubscribeCallbacks = firestore.collection("callme").onSnapshot(
+      function (querySnapshot) {
+        const callme = [];
+        querySnapshot.forEach(function (doc) {
+          callme.push(doc.data());
+        });
+        setCallbacks(callme);
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
+    return () => {
+      unsubscribeQuotes();
+      unsubscribeCallbacks();
+    };
+  }, []);
+
+  // const fetchMessages = async () => {
+  //   try {
+  //     var tmp = [];
+  //     const messagesRef = await firestore
+  //       .collection("qoutes")
+  //       .where("View", "==", false);
+  //     const messagesDoc = await messagesRef.get();
+  //     messagesDoc.forEach((doc) => {
+  //       tmp.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setTotalMessageCount(tmp.length);
+  //     setMessages(tmp);
+  //     setDisplayContent(tmp);
+  //   } catch (error) {
+  //     console.log("error while fetching messages", error);
+  //   }
+  // };
+
+  // const fetchCallbacks = async () => {
+  //   try {
+  //     var tmp = [];
+  //     const callBackRef = await firestore
+  //       .collection("callme")
+  //       .where("view", "==", false);
+  //     const callBackDoc = await callBackRef.get();
+  //     callBackDoc.forEach((doc) => {
+  //       tmp.push({ id: doc.id, ...doc.data() });
+  //     });
+  //     setCallBackCount(tmp.length);
+  //     setCallbacks(tmp);
+  //   } catch (error) {
+  //     console.log("Unabel to fetch callbacks!");
+  //   }
+  // };
 
   const displayMessages = () => {
     setDisplayContent(messages);
@@ -62,7 +94,7 @@ export default function Messages() {
   };
 
   return (
-    <Admin title="messages" description="admin messages">
+    <Admin title="Messages" description="admin messages">
       <Fragment>
         <div className="container mt-5 ml-5">
           <div className="row">
@@ -141,7 +173,7 @@ export default function Messages() {
             <Collapse className="mt-4 border-0" bordered={false}>
               {displayContent ? (
                 displayContent.length > 0 ? (
-                  displayContent.map((message) => {
+                  displayContent.map((message, index) => {
                     return (
                       <Panel
                         header={
@@ -155,7 +187,7 @@ export default function Messages() {
                             }
                           />
                         }
-                        key={message.id}
+                        key={index}
                         showArrow={false}
                         className="border-0"
                       >
