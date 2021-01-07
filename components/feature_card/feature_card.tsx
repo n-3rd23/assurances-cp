@@ -8,17 +8,7 @@ export default function Feature_Card({ icon, head, content }) {
     <div className={`container ${styles.containerStyle} text-center p-4`}>
       <div className="mt-4">
         <div className={`${styles.roundedStyle} mx-auto`}>
-          {icon === "Safe" ? (
-            <Safe
-              className={`p-1 m-1 ${styles.iconStyle}`}
-              width={50}
-              height={50}
-            />
-          ) : icon === "Dove" ? (
-            <Dove className="p-1 m-1" width={50} height={50} />
-          ) : (
-            <Bank className="p-1 m-1" width={50} height={50} />
-          )}
+        {icon}
         </div>
       </div>
       <div className="mt-3 text-large text-primary fw-800">{head}</div>
