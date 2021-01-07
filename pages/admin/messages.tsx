@@ -2,7 +2,7 @@ import Admin from "../../components/layout/admin";
 import { Fragment, useEffect, useState } from "react";
 import CounterCard from "../../components/counter_card/counter_card";
 import MessageCard from "../../components/message_card/message_card";
-import { Collapse, message } from "antd";
+import { Collapse } from "antd";
 import { firestore } from "../../firebase/firebase.util";
 
 export default function Messages() {
@@ -137,10 +137,6 @@ export default function Messages() {
                 </Fragment>
               </CounterCard>
             </div>
-            {/* <div className="col-md-12 mt-4">
-                     <MessageCard title="Joseph Mukery" title2="LIFE INSURANCE" description="Happy to be here...." />
-                     <MessageCard title="Marshall" title2="CAR INSURANCE" description="Ineed car insurance to insure my car also i need bike insurance to insure my bike." />
-                  </div> */}
             <Collapse className="mt-4 border-0" bordered={false}>
               {displayContent ? (
                 displayContent.length > 0 ? (
