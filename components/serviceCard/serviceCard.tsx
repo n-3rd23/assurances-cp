@@ -1,10 +1,9 @@
 import styles from "./serviceCard.module.scss";
 import DOMPurify from "dompurify";
-import Link from "next/link";
 
 export default function ServiceCard({ img, title, desc }) {
   return (
-    <a href={`/insurance?category=${title}`}>
+    <a href={`/services?category=${title}`}>
       <div
         className={`container ${styles.containerStyle}  text-center p-4`}
         style={{

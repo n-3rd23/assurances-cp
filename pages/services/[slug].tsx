@@ -1,9 +1,9 @@
 import Layout from "../../components/layout/layout";
-import DetailsCard from "./../../components/detailsCard/detailsCard";
+import DetailsCard from "../../components/detailsCard/detailsCard";
 import { useEffect, useState } from "react";
 import Clock from "../../public/icons/clock.svg";
-import BenefitCard from "./../../components/benefitCard/benefitCard";
-import PlanHero from "./../../components/planHero/planHero";
+import BenefitCard from "../../components/benefitCard/benefitCard";
+import PlanHero from "../../components/planHero/planHero";
 import DOMPurify from "dompurify";
 import Part from "../../components/part/part";
 

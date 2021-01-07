@@ -32,10 +32,10 @@ export default function UserPlanCard({ subHead1, mainHead, subHead2 }) {
           onClick={() =>
             router.push(
               {
-                pathname: "/insurance/[slug]",
+                pathname: "/services/[slug]",
                 query: { title: mainHead },
               },
-              `/insurance/${kebabCase(mainHead)}`
+              `/services/${kebabCase(mainHead)}`
             )
           }
         >
