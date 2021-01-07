@@ -2,14 +2,10 @@ import Admin from "../../components/layout/admin";
 import { Fragment, useEffect, useState } from "react";
 import CounterCard from "../../components/counter_card/counter_card";
 import MessageCard from "../../components/message_card/message_card";
-import { Collapse } from "antd";
+import { Collapse, message } from "antd";
 import { firestore } from "../../firebase/firebase.util";
 
 export default function Messages() {
-  useEffect(() => {
-    fetchMessages();
-    fetchCallbacks();
-  }, []);
 
   const [messages, setMessages] = useState([]);
   const [totalMessageCount, setTotalMessageCount] = useState(0);
@@ -18,40 +14,47 @@ export default function Messages() {
   const [displayContent, setDisplayContent] = useState(null);
   const { Panel } = Collapse;
 
-  const fetchMessages = async () => {
-    try {
-      var tmp = [];
-      const messagesRef = await firestore
-        .collection("qoutes")
-        .where("View", "==", false);
-      const messagesDoc = await messagesRef.get();
-      messagesDoc.forEach((doc) => {
-        tmp.push({ id: doc.id, ...doc.data() });
-      });
-      setTotalMessageCount(tmp.length);
-      setMessages(tmp);
-      setDisplayContent(tmp);
-    } catch (error) {
-      console.log("error while fetching messages", error);
-    }
-  };
+  useEffect(() => {
+    const unsubscribeQuotes = firestore.collection("qoutes").onSnapshot(
+      function (querySnapshot) {
+        const qoutes = [];
+        querySnapshot.forEach(function (doc) {
+          qoutes.push(doc.data());
+        });
+        setTotalMessageCount(qoutes.length)
+        setMessages(qoutes);
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
 
-  const fetchCallbacks = async () => {
-    try {
-      var tmp = [];
-      const callBackRef = await firestore
-        .collection("callme")
-        .where("view", "==", false);
-      const callBackDoc = await callBackRef.get();
-      callBackDoc.forEach((doc) => {
-        tmp.push({ id: doc.id, ...doc.data() });
-      });
-      setCallBackCount(tmp.length);
-      setCallbacks(tmp);
-    } catch (error) {
-      console.log("Unabel to fetch callbacks!");
-    }
-  };
+    const unsubscribeCallbacks = firestore.collection("callme").onSnapshot(
+      function (querySnapshot) {
+        const callme = [];
+        querySnapshot.forEach(function (doc) {
+          callme.push(doc.data());
+        });
+        setCallBackCount(callme.length)
+        setCallbacks(callme);
+      },
+      function (error) {
+        console.error(error);
+      }
+    );
+    return () => {
+      unsubscribeQuotes();
+      unsubscribeCallbacks();
+    };
+  }, []);
+
+  useEffect(() => {
+    setDisplayContent(messages)
+  },[messages])
+
+  useEffect(() => {
+    setDisplayContent(callBacks)
+  },[callBacks])
 
   const displayMessages = () => {
     setDisplayContent(messages);
@@ -62,7 +65,7 @@ export default function Messages() {
   };
 
   return (
-    <Admin title="messages" description="admin messages">
+    <Admin title="Messages" description="admin messages">
       <Fragment>
         <div className="container mt-5 ml-5">
           <div className="row">
@@ -141,7 +144,7 @@ export default function Messages() {
             <Collapse className="mt-4 border-0" bordered={false}>
               {displayContent ? (
                 displayContent.length > 0 ? (
-                  displayContent.map((message) => {
+                  displayContent.map((message, index) => {
                     return (
                       <Panel
                         header={
@@ -155,7 +158,7 @@ export default function Messages() {
                             }
                           />
                         }
-                        key={message.id}
+                        key={index}
                         showArrow={false}
                         className="border-0"
                       >
