@@ -16,6 +16,7 @@ export default function Insurance({ plan }: Props) {
   useEffect(() => {
     setCurrentPlan(plan.plan);
   }, [plan]);
+
   if (currentPlan) {
     return (
       <Layout title="Assurances" description="Best Life Insurance ever">
@@ -54,7 +55,6 @@ export default function Insurance({ plan }: Props) {
             }}
           ></div>
         </div>
-
         <div className="d-flex container mt-5 px-4 px-md-5 justify-contents-start">
           <div className="p-2">
             <Clock width={60} height={60} />
@@ -74,7 +74,6 @@ export default function Insurance({ plan }: Props) {
             })}
           </div>
         </div>
-
         <div className="container mb-5 px-4 px-md-5">
           <p className="mt-5 fw-700" style={{ color: "#5a6371" }}>
             BENEFITS

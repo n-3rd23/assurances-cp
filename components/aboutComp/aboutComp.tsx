@@ -25,21 +25,16 @@ export default function AboutComp() {
           </p>
           <div className="container">
             <p className="p-5 text-interSize">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-              accumsan non diam sit amet venenatis. Donec dictum neque vitae
-              elit porta, vitae commodo lacus condimentum. Aenean ullamcorper,
-              neque vitae blandit posuere, diam dui ullamcorper dolor, id
-              suscipit velit ex in diam. Morbi fermentum sit amet arcu sed
-              ultricies. Vestibulum commodo massa enim, eget suscipit metus
-              blandit ac. Integer quis ultricies dui. Nullam venenatis eu enim
-              eget viverra. Etiam lacus mauris, cursus ac varius et, rhoncus at
-              libero. Curabitur non ullamcorper dui. Pellentesque habitant morbi
-              tristique senectus et netus et malesuada fames ac turpis egestas.
-              Nullam vitae ipsum sit amet nulla vestibulum auctor at nec lectus.
-              Morbi iaculis mauris justo, a fermentum tortor laoreet eget.
-              Aliquam sit amet justo in ipsum efficitur tristique. Nam sed
-              libero ac nibh aliquam convallis. Nam in magna at tellus dignissim
-              convallis. Ut ornare accumsan suscipit.
+              I am working as Insurance Advisor in LIC and The New India
+              Assurance Company Ltd for the last 21 years. In LIC I am entitled
+              as Chairman's Club Member meanwhile in New India Assurance Co Ltd
+              as a CMD Club Member. I do provide support to people who are
+              interested in LIC and General Insurance in the form of helping to
+              join new policies and sharing of other valid information for their
+              insurance advantages. In order to solve the queries related to
+              Insurances, I have availed a well equipped office at Chembumukku
+              Jn, Kakkanad since 2010. I assure my best in policy service for
+              all insurance needs of customers
             </p>
           </div>
         </div>

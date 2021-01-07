@@ -43,7 +43,7 @@ export default function Services() {
     const { Panel } = Collapse;
     return (
       <Fragment>
-        <div className="container text-center p-5">
+        <div className="container text-center mb-5">
           <Bar />
           <h3 className="mb-0 text-largest fw-900 text-primary mt-3">
             SERVICES
@@ -51,7 +51,6 @@ export default function Services() {
         </div>
         <div id="primary" className="row mx-auto">
           <div className="col-md-4 col-sm-12">
-            {" "}
             <ServiceCard
               img={categories[0].images[0].link}
               title={categories[0].name}
@@ -59,7 +58,6 @@ export default function Services() {
             />
           </div>
           <div className="col-md-4 col-sm-12">
-            {" "}
             <ServiceCard
               img={categories[0].images[0].link}
               title={categories[0].name}
@@ -67,7 +65,6 @@ export default function Services() {
             />
           </div>
           <div className="col-md-4 col-sm-12">
-            {" "}
             <ServiceCard
               img={categories[0].images[0].link}
               title={categories[0].name}
@@ -88,51 +85,17 @@ export default function Services() {
                   <Fragment>
                     {" "}
                     <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
                       <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
+                        img={categories[0].images[0].link}
+                        title={categories[0].name}
+                        desc={categories[0].description}
                       />
                     </div>
                     <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
                       <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
-                      />
-                    </div>
-                    <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
-                      <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
-                      />
-                    </div>
-                    <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
-                      <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
-                      />
-                    </div>
-                    <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
-                      <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
-                      />
-                    </div>
-                    <div className="col-md-4 col-sm-12 my-2">
-                      {" "}
-                      <ServiceCard
-                        img={allCategories[0].images[0].link}
-                        title={allCategories[0].name}
-                        desc={allCategories[0].description}
+                        img={categories[0].images[0].link}
+                        title={categories[0].name}
+                        desc={categories[0].description}
                       />
                     </div>
                   </Fragment>
