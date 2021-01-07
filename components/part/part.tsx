@@ -20,7 +20,7 @@ export default function Part({ name }) {
   return (
     <Fragment>
       <div
-        className="container mx-auto text-white w-75 text-center p-2"
+        className="container mx-auto text-white w-75 text-center p-2 mt-5"
         style={{ backgroundColor: "#89d32a" }}
       >
         <a className="fw-600"> Not sure what you need? </a>

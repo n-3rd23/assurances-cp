@@ -10,11 +10,13 @@ interface CurrentReview {
 interface State {
   currentReview: CurrentReview;
   quotes: CurrentReview[];
+  count: number;
 }
 
 export default class User_Reviews extends Component {
   state: State = {
     currentReview: {},
+    count: 0,
     quotes: [
       {
         name: "Athul",
@@ -36,12 +38,19 @@ export default class User_Reviews extends Component {
 
   componentDidMount() {
     this.setState({ currentReview: this.state.quotes[0] });
+    setInterval(() => {
+      console.log();
+      this.setState({ currentReview: this.state.quotes[this.state.count] });
+      this.state.count == this.state.quotes.length - 1
+        ? this.setState({ count: 0 })
+        : this.setState({ count: this.state.count + 1 });
+    }, 2000);
   }
 
   render() {
     return (
       <Fragment>
-        <div className={`container mb-1 mt-5 p-1 ${styles.containerStyle}`}>
+        <div className={`container mt-5 p-1 ${styles.containerStyle}`}>
           <a
             className={`px-4 py-2 fw-700 text-white text-large ${styles.smallBoxStyle}`}
           >

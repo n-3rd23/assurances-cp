@@ -1,0 +1,20 @@
+.containerStyle {
+  border: 0.4px solid#dfe5ee;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 45vh;
+  transition: 300ms;
+
+  &:hover {
+    transition: 300ms !important;
+    width: 98% !important;
+    height: 98% !important;
+    .titleStyle {
+      transition: 300ms;
+      font-size: 1.25rem;
+    }
+    .subTitleStyle {
+      font-size: 0.75rem;
+    }
+  }
+}
