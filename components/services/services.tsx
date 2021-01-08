@@ -49,28 +49,18 @@ export default function Services() {
             SERVICES
           </h3>
         </div>
-        <div id="primary" className="row mx-auto">
-          <div className="col-md-4 col-sm-12">
-            <ServiceCard
-              img={categories[0].images[0].link}
-              title={categories[0].name}
-              desc={categories[0].description}
-            />
-          </div>
-          <div className="col-md-4 col-sm-12">
-            <ServiceCard
-              img={categories[0].images[0].link}
-              title={categories[0].name}
-              desc={categories[0].description}
-            />
-          </div>
-          <div className="col-md-4 col-sm-12">
-            <ServiceCard
-              img={categories[0].images[0].link}
-              title={categories[0].name}
-              desc={categories[0].description}
-            />
-          </div>
+        <div id="primary" className="row mx-auto justify-content-center">
+          {categories.map((item) => {
+            return (
+              <div className="col-md-4 col-sm-12">
+                <ServiceCard
+                  img={item.images[0].link}
+                  title={item.name}
+                  desc={item.description}
+                />
+              </div>
+            );
+          })}
         </div>
         <div className="container-fluid">
           <Collapse
@@ -80,24 +70,20 @@ export default function Services() {
             onChange={panelClick}
           >
             <Panel header={buttonText} key="1" showArrow={false}>
-              <div className="row mx-auto">
+              <div className="row mx-auto justify-content-center">
                 {allCategories ? (
                   <Fragment>
-                    {" "}
-                    <div className="col-md-4 col-sm-12 my-2">
-                      <ServiceCard
-                        img={categories[0].images[0].link}
-                        title={categories[0].name}
-                        desc={categories[0].description}
-                      />
-                    </div>
-                    <div className="col-md-4 col-sm-12 my-2">
-                      <ServiceCard
-                        img={categories[0].images[0].link}
-                        title={categories[0].name}
-                        desc={categories[0].description}
-                      />
-                    </div>
+                    {allCategories.map((item) => {
+                      return (
+                        <div className="col-md-4 col-sm-12">
+                          <ServiceCard
+                            img={item.images[0].link}
+                            title={item.name}
+                            desc={item.description}
+                          />
+                        </div>
+                      );
+                    })}
                   </Fragment>
                 ) : (
                   <div className="d-flex justify-content-center align-items-center my-5">

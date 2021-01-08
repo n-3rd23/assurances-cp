@@ -7,6 +7,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import Bar from "../components/bar/bar";
+import { useRouter } from "next/router";
 
 interface Props {
   plans?: any;
@@ -16,7 +17,18 @@ export default function Insurance({ plans }: Props) {
   const [categories, setCategories] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [dropDownText, setDropDownText] = useState(null);
+  const router = useRouter();
   useEffect(() => {
+    const { category } = router.query;
+    if (category) {
+      console.log(category);
+      fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/category?slug=${category}`)
+        .then((res) => res.json())
+        .then((category) => {
+          setSelectedCategory(category.category);
+          setDropDownText(category.category.name);
+        });
+    }
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/categories`)
       .then((res) => res.json())
       .then((categories) => {
@@ -43,7 +55,7 @@ export default function Insurance({ plans }: Props) {
         </Menu.Item>
         {categories.map((item) => {
           return (
-            <Menu.Item>
+            <Menu.Item key={item.name}>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
@@ -67,7 +79,7 @@ export default function Insurance({ plans }: Props) {
         <Layout title="Insurances" description="assurances insurance plans">
           <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
           <div className="d-flex justify-content-center">
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menu} trigger={["click"]}>
               <a
                 className="ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
@@ -107,6 +119,7 @@ export default function Insurance({ plans }: Props) {
                     >
                       {" "}
                       <UserPlanCard
+                        key={item.name}
                         subHead1="POLICY"
                         mainHead={item.planName}
                         subHead2={item.planSummary}
@@ -123,7 +136,7 @@ export default function Insurance({ plans }: Props) {
         <Layout title="Insurances" description="assurances insurance plans">
           <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
           <div className="d-flex justify-content-center mb-5">
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menu} trigger={["click"]}>
               <a
                 className="ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
