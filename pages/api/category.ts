@@ -3,11 +3,11 @@ import { firestore } from "../../firebase/firebase.util";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
-    const categoryRef = firestore.collection("category");
-    const snapshot = await categoryRef.where("slug", "==", req.query.slug).get();
+    const categoryRef = firestore.collection("categories");
+    const snapshot = await categoryRef.where("name", "==", req.query.slug).get();
     const category = [];
     if (snapshot.empty) {
-      console.log("No matching plans.");
+      console.log("No matching categories.");
       return;
     }
 

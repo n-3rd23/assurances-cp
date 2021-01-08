@@ -51,10 +51,10 @@ export default function Insurance_Main() {
               <div>
                 <Link
                   href={{
-                    pathname: "/insurance/[slug]",
+                    pathname: "/services/[slug]",
                     query: { title: selectedPlan.planName },
                   }}
-                  as={`/insurance/${kebabCase(selectedPlan.planName)}`}
+                  as={`/services/${kebabCase(selectedPlan.planName)}`}
                 >
                   <a className="btn btn btn-outline-light mt-3">LEARN MORE</a>
                 </Link>
@@ -87,7 +87,7 @@ export default function Insurance_Main() {
           </div>
         </div>
         <div className="container text-center mt-4 pb-4">
-          <Link href="/insurance">
+          <Link href="/services">
             <a className={`border-0 ${styles.buttonStyle}`}>LOAD MORE</a>
           </Link>
         </div>

@@ -34,7 +34,7 @@ export default function Header() {
           </a>
         </div>
         <div className="p-2 bd-highlight">
-          <Link href="/insurance">
+          <Link href="/services">
             <a className="text-medium text-primary">
               <small>
                 <strong>SERVICES</strong>
@@ -87,8 +87,8 @@ export default function Header() {
                 </Link>
               </div>
               <div className="col">
-                <Link href="/insurance">
-                  <a className="fw-600">INSURANCE</a>
+                <Link href="/services">
+                  <a className="fw-600">SERVICES</a>
                 </Link>
               </div>
               <div className="col">
