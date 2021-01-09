@@ -20,7 +20,7 @@ export default function Part({ name }) {
   return (
     <Fragment>
       <div
-        className="container mx-auto text-white w-75 text-center p-2 mt-5"
+        className="container mx-auto text-white w-sm-75 w-100 text-center p-2 mt-5"
         style={{ backgroundColor: "#89d32a" }}
       >
         <a className="fw-600"> Not sure what you need? </a>
@@ -30,7 +30,7 @@ export default function Part({ name }) {
         </a>
         <button
           type="button"
-          className="btn btn btn-outline-light mx-5 fw-300"
+          className="btn btn btn-outline-light mx-5 my-sm-0 my-2 fw-300"
           style={{ border: "2px solid white" }}
           onClick={() => setIsModalVisible(true)}
         >

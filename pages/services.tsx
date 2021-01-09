@@ -13,7 +13,7 @@ interface Props {
   plans?: any;
 }
 
-export default function Insurance({ plans }: Props) {
+export default function Services({ plans }: Props) {
   const [categories, setCategories] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [dropDownText, setDropDownText] = useState(null);
@@ -55,8 +55,9 @@ export default function Insurance({ plans }: Props) {
         </Menu.Item>
         {categories.map((item) => {
           return (
-            <Menu.Item key={item.name}>
+            <Menu.Item>
               <a
+                key={item.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 href=""
@@ -119,8 +120,8 @@ export default function Insurance({ plans }: Props) {
                     >
                       {" "}
                       <UserPlanCard
-                        key={item.name}
-                        subHead1="POLICY"
+                        key={item.id}
+                        subHead1={item.category}
                         mainHead={item.planName}
                         subHead2={item.planSummary}
                       />
@@ -159,7 +160,8 @@ export default function Insurance({ plans }: Props) {
                     >
                       {" "}
                       <UserPlanCard
-                        subHead1="POLICY"
+                        key={item.id}
+                        subHead1={item.category}
                         mainHead={item.planName}
                         subHead2={item.planSummary}
                       />
@@ -182,7 +184,7 @@ export default function Insurance({ plans }: Props) {
   }
 }
 
-Insurance.getInitialProps = async ({ req }) => {
+Services.getInitialProps = async ({ req }) => {
   const data = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans`);
   const plans = await data.json();
   return { plans };
