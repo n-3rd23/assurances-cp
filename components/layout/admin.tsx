@@ -7,6 +7,7 @@ import { auth, createUserProfileDocument } from "../../firebase/firebase.util";
 import { AuthContext } from "../../context/AuthContext";
 import PieChart from "../../public/icons/pie-chart.svg";
 import Head from "next/head";
+import BarChart from "../../public/icons/bar-chart.svg"
 
 interface Props {
   title?: string;
@@ -75,15 +76,6 @@ export default function Admin({ title, description, children }: Props) {
                 />
               </a>
             </Link>
-            <Link href="/admin">
-              <a className={`py-3 w-100 text-center`}>
-                <img
-                  className={styles.nav_icon}
-                  src="/icons/bar-chart.svg"
-                  alt="home"
-                />
-              </a>
-            </Link>
             <Link href="/admin/messages">
               <a className={`py-3 w-100 text-center`}>
                 {router.pathname == "/admin/messages" ? (
@@ -127,6 +119,21 @@ export default function Admin({ title, description, children }: Props) {
                   />
                 ) : (
                   <PieChart
+                    style={{ fill: "#5A6371" }}
+                    className={styles.nav_icon}
+                  />
+                )}
+              </a>
+            </Link>
+            <Link href="/admin/forms">
+              <a className={`py-3 w-100 text-center`}>
+                {router.pathname == "/admin/forms" ? (
+                  <BarChart
+                    style={{ fill: "#fff", color:"#fff" }}
+                    className={styles.nav_icon}
+                  />
+                ) : (
+                  <BarChart
                     style={{ fill: "#5A6371" }}
                     className={styles.nav_icon}
                   />
