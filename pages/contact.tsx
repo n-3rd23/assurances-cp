@@ -9,7 +9,7 @@ import CallBack from "../public/icons/call-back.svg";
 import { Input, notification } from "antd";
 import Button from "../components/button/button";
 import { useState } from "react";
-import { firestore } from "../firebase/firebase.util";
+import firebase, { firestore } from "../firebase/firebase.util";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -53,7 +53,8 @@ export default function Contact() {
       .add({
         name: name,
         number: phone,
-        view: false
+        view: false,
+        received_on: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() =>
         fetch("/api/subscribe", {
@@ -86,7 +87,8 @@ export default function Contact() {
         Email: email,
         Phone: phone,
         Message: message,
-        View: false
+        View: false,
+        received_on: firebase.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
         console.log("message uploaded");
