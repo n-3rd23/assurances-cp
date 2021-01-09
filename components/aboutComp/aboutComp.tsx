@@ -23,19 +23,25 @@ export default function AboutComp() {
             {" "}
             We are always tailored to your needs
           </p>
-          <div className="container">
-            <p className="p-5 text-interSize">
-              I am working as Insurance Advisor in LIC and The New India
-              Assurance Company Ltd for the last 21 years. In LIC I am entitled
-              as Chairman's Club Member meanwhile in New India Assurance Co Ltd
-              as a CMD Club Member. I do provide support to people who are
-              interested in LIC and General Insurance in the form of helping to
-              join new policies and sharing of other valid information for their
-              insurance advantages. In order to solve the queries related to
-              Insurances, I have availed a well equipped office at Chembumukku
-              Jn, Kakkanad since 2010. I assure my best in policy service for
-              all insurance needs of customers
-            </p>
+          <div className="container d-flex flex-sm-nowrap flex-md-nowrap flex-wrap justify-content-center">
+            <div className="p-2 text-center">
+              <img src="/images/thomas.jpg" width="200px" height="200px"></img>
+              <p className="fw-600">M L THOMAS (BABU)</p>
+            </div>
+            <div className="p-2">
+              <p className="p-sm-5 p-md-5 p-1 text-interSize">
+                I am working as Insurance Advisor in LIC and The New India
+                Assurance Company Ltd for the last 21 years. In LIC I am
+                entitled as Chairman's Club Member meanwhile in New India
+                Assurance Co Ltd as a CMD Club Member. I do provide support to
+                people who are interested in LIC and General Insurance in the
+                form of helping to join new policies and sharing of other valid
+                information for their insurance advantages. In order to solve
+                the queries related to Insurances, I have availed a well
+                equipped office at Chembumukku Jn, Kakkanad since 2010. I assure
+                my best in policy service for all insurance needs of customers
+              </p>
+            </div>
           </div>
         </div>
         <div

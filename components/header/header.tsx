@@ -59,7 +59,7 @@ export default function Header() {
         <div className="d-flex flex-column flex-md-row p-2 bd-highlight justify-content-center align-items-center smTextCenter">
           <Info
             icon={<Mail width={20} height={20} />}
-            title="info@lifeassure.com"
+            title="thomasassurance@yahoo.com"
             subtitle="Send us a message"
             className="mx-4"
             titleAs="a"
