@@ -1,7 +1,7 @@
 .containerStyle {
   transition: 300ms !important;
   background: whitesmoke;
-  min-height: 150px !important;
+  min-height: 190px !important;
   &:hover {
     transition: 300ms !important;
     background: black !important;
@@ -9,7 +9,7 @@
     cursor: pointer;
     .dataStyle {
       transition: 300ms !important;
-      display: none !important;
+      color: white;
     }
     .iconStyle {
       transition: 300ms !important;

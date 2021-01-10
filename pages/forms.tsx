@@ -30,7 +30,7 @@ export default function Forms() {
                   className={`col-sm-3 col-md-3 col-12 py-5 px-2 m-3 ${styles.containerStyle}`}
                 >
                   <div
-                    className={`data ${styles.dataStyle} text-center fw-700`}
+                    className={`data ${styles.dataStyle} text-center fw-700 p-2`}
                   >
                     {item.name}
                   </div>
