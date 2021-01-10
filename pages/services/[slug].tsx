@@ -6,6 +6,7 @@ import BenefitCard from "../../components/benefitCard/benefitCard";
 import PlanHero from "../../components/planHero/planHero";
 import DOMPurify from "dompurify";
 import Part from "../../components/part/part";
+import CallUsBack from "../../components/callUsBack/callUsBack";
 
 interface Props {
   plan?: any;
@@ -74,7 +75,7 @@ export default function Insurance({ plan }: Props) {
             })}
           </div>
         </div>
-        <div className="container mb-5 px-4 px-md-5">
+        <div className="container mb-5 px-4 px-md-5 pb-5">
           <p className="mt-5 fw-700" style={{ color: "#5a6371" }}>
             BENEFITS
           </p>
@@ -88,6 +89,7 @@ export default function Insurance({ plan }: Props) {
             );
           })}
         </div>
+        <CallUsBack />
         <Part name="KNOW MORE" />
       </Layout>
     );

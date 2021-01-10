@@ -6,105 +6,10 @@ import Facebook from "../public/icons/facebook.svg";
 import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
 import Twitter from "../public/icons/twitter.svg";
-import CallBack from "../public/icons/call-back.svg";
-import { Input, notification } from "antd";
-import Button from "../components/button/button";
-import { useState } from "react";
-import firebase, { firestore } from "../firebase/firebase.util";
 import TalkUsBox from "./../components/talkUsBox/talkUsBox";
+import CallUsBack from "../components/callUsBack/callUsBack";
 
 export default function Contact() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const handleMessageChange = (event) => {
-    setMessage(event.target.value);
-  };
-
-  const openNotificationSuccess = (type) => {
-    notification[type]({
-      message: "Success !",
-      description:
-        "Your request has been recieved we will call you as soon as possible 🙂",
-    });
-  };
-
-  const clearField = () => {
-    setName("");
-    setPhone("");
-    setEmail("");
-    setMessage("");
-  };
-
-  const uploadCallMe = () => {
-    firestore
-      .collection("callme")
-      .add({
-        name: name,
-        number: phone,
-        view: false,
-        received_on: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .then(() =>
-        fetch("/api/subscribe", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({ name: name, phone: phone }),
-        })
-          .then((res) => res.json())
-          .then((result) => console.log(result))
-          .catch((err) => {
-            console.error(err);
-          })
-      )
-      .then(() => {
-        clearField();
-        openNotificationSuccess("success");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  const uploadMessage = () => {
-    firestore
-      .collection("qoutes")
-      .add({
-        Name: name,
-        Email: email,
-        Phone: phone,
-        Message: message,
-        View: false,
-        received_on: firebase.firestore.FieldValue.serverTimestamp(),
-      })
-      .then(() => {
-        console.log("message uploaded");
-        clearField();
-        notification["success"]({
-          message: "Success !",
-          description:
-            "Thank you for your enquiry we will contact you as soon as possible 🙂",
-        });
-      })
-      .catch((err) => console.error(err));
-  };
-
   return (
     <Layout title="Contact" description="Contact us">
       <div className="container my-5">
@@ -226,44 +131,7 @@ export default function Contact() {
           </div>
         </div>
         {/* contact ends */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-          <div>
-            <CallBack className="img-fluid" />
-          </div>
-          <div className="d-flex flex-column justify-content-center w-100 h-100">
-            <div>
-              <div className="mb-2">
-                <span className="d-block text-larger fw-700">
-                  Want us to call
-                </span>
-                <span className="d-block text-larger fw-700">you back?</span>
-              </div>
-              <div>
-                <div className="form-group mb-2">
-                  <small>Your name</small>
-                  <Input
-                    className="col-md-6 d-block col-sm-12 col-xs-12"
-                    id="name"
-                    onChange={handleNameChange}
-                    value={name}
-                  />
-                </div>
-                <div className="form-group">
-                  <small>Your number</small>
-                  <Input
-                    className="d-block col-md-6 col-sm-12 col-xs-12"
-                    id="phone"
-                    onChange={handlePhoneChange}
-                    value={phone}
-                  />
-                </div>
-                <div className="mt-2 form-group">
-                  <Button onClick={uploadCallMe}>Call Me</Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <CallUsBack />
       </div>
     </Layout>
   );
