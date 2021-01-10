@@ -1,6 +1,7 @@
 import Layout from "../components/layout/layout";
 import Phone from "../public/icons/phone.svg";
-import Mail from "../public/icons/mail_closed.svg";
+import Location from "../public/icons/location_white.svg";
+import ClosedMail from "../public/icons/mail_closed_white.svg";
 import Facebook from "../public/icons/facebook.svg";
 import Instagram from "../public/icons/instagram.svg";
 import Linkedin from "../public/icons/linkedin.svg";
@@ -10,6 +11,7 @@ import { Input, notification } from "antd";
 import Button from "../components/button/button";
 import { useState } from "react";
 import firebase, { firestore } from "../firebase/firebase.util";
+import TalkUsBox from "./../components/talkUsBox/talkUsBox";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -36,9 +38,10 @@ export default function Contact() {
   const openNotificationSuccess = (type) => {
     notification[type]({
       message: "Success !",
-      description: "Your request has been recieved we will call you as soon as possible 🙂"
-    })
-  }
+      description:
+        "Your request has been recieved we will call you as soon as possible 🙂",
+    });
+  };
 
   const clearField = () => {
     setName("");
@@ -71,8 +74,8 @@ export default function Contact() {
           })
       )
       .then(() => {
-        clearField()
-        openNotificationSuccess('success')
+        clearField();
+        openNotificationSuccess("success");
       })
       .catch((err) => {
         console.error(err);
@@ -95,8 +98,9 @@ export default function Contact() {
         clearField();
         notification["success"]({
           message: "Success !",
-          description: "Thank you for your enquiry we will contact you as soon as possible 🙂"
-        })
+          description:
+            "Thank you for your enquiry we will contact you as soon as possible 🙂",
+        });
       })
       .catch((err) => console.error(err));
   };
@@ -130,7 +134,8 @@ export default function Contact() {
           <div className="container-fluid rounded-1 col-md-6 col-sm-9 col-xs-12 bg-light mb-5 p-2 position-relative">
             <div className="col-md-6 col-xs-12 col-sm-6">
               <span className="fw-900 text-largest">Contact Us</span>
-              <p className="fw-700 mt-4">Your Name</p>
+              <TalkUsBox />
+              {/* <p className="fw-700 mt-4">Your Name</p>
               <Input
                 size="large"
                 className="mb-1 p-2"
@@ -166,7 +171,7 @@ export default function Contact() {
                 className="btn btn-primary w-100 mb-4"
               >
                 SEND MESSAGE
-              </button>
+              </button> */}
             </div>
             {/* info start */}
             <div
@@ -189,21 +194,11 @@ export default function Contact() {
                   <p className="py-4 px-2">+91 9956845228 </p>
                 </div>
                 <div className="d-flex justify-content-md-start justify-content-center">
-                  <Mail
-                    className="m-4"
-                    style={{ color: "#fff" }}
-                    width={25}
-                    height={25}
-                  />
+                  <ClosedMail className="m-4" width={25} height={25} />
                   <p className="py-4 px-2">info@lifeassure.com</p>
                 </div>
                 <div className="d-flex justify-content-md-start justify-content-center">
-                  <Phone
-                    className="m-4"
-                    style={{ color: "#fff" }}
-                    width={25}
-                    height={25}
-                  />
+                  <Location className="m-4" width={25} height={25} />
                   <p className="py-4 px-2">Angamaly</p>
                 </div>
               </div>

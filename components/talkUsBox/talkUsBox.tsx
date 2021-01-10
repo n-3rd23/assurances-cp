@@ -3,7 +3,7 @@ import { Input, message } from "antd";
 import { useState } from "react";
 import { firestore } from "../../firebase/firebase.util";
 import Phone from "../../public/icons/phone.svg";
-import Mail from "../../public/icons/mail_closed.svg";
+import ClosedMail from "../../public/icons/closed_mail.svg";
 import Location from "../../public/icons/location.svg";
 
 export default function TalkUsBox() {
@@ -62,7 +62,7 @@ export default function TalkUsBox() {
       <Input
         value={phone}
         onChange={handleChangePhone}
-        prefix={<Phone width={20} height={20} />}
+        prefix={<Phone style={{ color: "#0c75ff" }} width={20} height={20} />}
         size="large"
         className={`mb-2 p-3  ${styles.inputBoxStyle}`}
       />
@@ -70,7 +70,7 @@ export default function TalkUsBox() {
       <Input
         value={email}
         onChange={handleChangeEmail}
-        prefix={<Mail width={20} height={20} />}
+        prefix={<ClosedMail width={20} height={20} />}
         size="large"
         className={`mb-2 p-3  ${styles.inputBoxStyle}`}
       />
