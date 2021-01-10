@@ -13,7 +13,7 @@ export default function Forms() {
       .then((forms) => {
         setForms(forms.forms);
       });
-  });
+  }, []);
 
   if (forms) {
     return (
