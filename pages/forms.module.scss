@@ -1,0 +1,27 @@
+.containerStyle {
+  transition: 300ms !important;
+  background: whitesmoke;
+  min-height: 150px !important;
+  &:hover {
+    transition: 300ms !important;
+    background: black !important;
+    opacity: 0.8;
+    cursor: pointer;
+    .dataStyle {
+      transition: 300ms !important;
+      display: none !important;
+    }
+    .iconStyle {
+      transition: 300ms !important;
+      display: flex !important;
+    }
+  }
+}
+.dataStyle {
+  transition: 300ms !important;
+  display: block;
+}
+.iconStyle {
+  transition: 300ms !important;
+  display: none !important;
+}

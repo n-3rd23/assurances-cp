@@ -143,8 +143,8 @@ export default function Footer() {
                 </Link>
               </div>
               <div className="p-1 bd-highlight">
-                <Link href="/insurance">
-                  <a className={styles.pages}>INSURANCE</a>
+                <Link href="/forms">
+                  <a className={styles.pages}>FORMS</a>
                 </Link>
               </div>
               <div className="p-1 bd-highlight">

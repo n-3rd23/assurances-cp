@@ -42,6 +42,15 @@ export default function Header() {
             </a>
           </Link>
         </div>
+        <div className="p-2 bd-highlight">
+          <Link href="/forms">
+            <a className="text-medium text-primary">
+              <small>
+                <strong>FORMS</strong>
+              </small>
+            </a>
+          </Link>
+        </div>
       </div>
       <div className="container d-flex flex-md-row flex-column d-flex flex-wrap justify-content-between align-items-center bd-highlight py-md-4 py-3">
         <div className="p-2 bd-highlight smTextCenter">
