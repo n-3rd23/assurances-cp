@@ -22,27 +22,30 @@ export default function Forms() {
           Forms
         </h3>
         <Bar />
-        <div className="row justify-content-center"></div>
-        {forms.map((item) => {
-          return (
-            <Link href={item.url}>
-              <div
-                className={`col-sm-12 col-md-3 col-12 py-5 px-2 m-3 ${styles.containerStyle} mx-auto`}
-              >
-                <div className={`data ${styles.dataStyle} text-center fw-700`}>
-                  {item.name}
-                </div>
+        <div className="row justify-content-center">
+          {forms.map((item) => {
+            return (
+              <Link href={item.url}>
                 <div
-                  className={`d-flex ${styles.iconStyle} justify-content-center align-items-center`}
+                  className={`col-sm-3 col-md-3 col-12 py-5 px-2 m-3 ${styles.containerStyle}`}
                 >
-                  <div className="icon">
-                    <Download width={50} height={50} />
+                  <div
+                    className={`data ${styles.dataStyle} text-center fw-700`}
+                  >
+                    {item.name}
+                  </div>
+                  <div
+                    className={`d-flex ${styles.iconStyle} justify-content-center align-items-center`}
+                  >
+                    <div className="icon">
+                      <Download width={50} height={50} />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </Layout>
     );
   } else {
