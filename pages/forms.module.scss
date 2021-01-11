@@ -1,7 +1,7 @@
 .containerStyle {
   transition: 300ms !important;
   background: whitesmoke;
-  min-height: 190px !important;
+  min-height: 320px !important;
   &:hover {
     transition: 300ms !important;
     background: black !important;
@@ -15,7 +15,19 @@
       transition: 300ms !important;
       display: flex !important;
     }
+    .pdfIcon {
+      transition: 200ms;
+      display: none !important;
+    }
+    .pdfIcon2 {
+      transition: 200ms;
+      display: block !important;
+    }
   }
+}
+.pdfIcon2 {
+  transition: 200ms;
+  display: none !important;
 }
 .dataStyle {
   transition: 300ms !important;
