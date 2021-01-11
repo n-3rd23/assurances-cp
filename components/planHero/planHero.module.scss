@@ -1,8 +1,13 @@
 .containerStyle {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 5px;
   height: 450px;
 
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+@media only screen and (min-width: 768px) {
+  .containerStyle {
+    border-radius: 0.25rem;
+  }
 }

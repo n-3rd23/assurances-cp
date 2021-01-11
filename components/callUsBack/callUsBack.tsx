@@ -61,7 +61,14 @@ export default function CallUsBack() {
   };
 
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        backgroundColor: "#f3f5f7",
+      }}
+      className="p-5"
+    >
       <div>
         <CallBack className="img-fluid" />
       </div>

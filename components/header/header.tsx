@@ -85,7 +85,7 @@ export default function Header() {
         </div>
       </div>
       <div
-        className={`container position-relative rounded bg-primary-main text-white px-4 py-3 shadow-light ${styles.navbar}`}
+        className={`container position-relative bg-primary-main text-white px-4 py-3 shadow-light ${styles.navbar}`}
       >
         <div className="row justify-content-center text-center">
           <div className="col-md-8 col-sm-11 col-12">
