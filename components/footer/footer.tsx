@@ -108,7 +108,7 @@ export default function Footer() {
             <div className="px-3">
               <a href="https://www.newindia.co.in/portal/" target="_blank">
                 <img
-                  src="/images/New_india_Assurance.png"
+                  src="/images/New_India_Assurance.png"
                   width="50px"
                   height="50px"
                   style={{ backgroundColor: "white" }}
