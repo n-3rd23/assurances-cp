@@ -61,7 +61,7 @@ export default function AboutComp() {
             <div className="p-4">
               <a href="https://www.newindia.co.in/portal/" target="_blank">
                 <img
-                  src="/images/New_india_Assurance.png"
+                  src="/images/New_India_Assurance.png"
                   width="200px"
                   height="200px"
                 ></img>
