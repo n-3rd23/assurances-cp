@@ -2,12 +2,12 @@ import styles from "./serviceCard.module.scss";
 import DOMPurify from "dompurify";
 import Link from "next/link";
 
-export default function ServiceCard({ img, title, desc }) {
+export default function ServiceCard({ img, title, desc, slug }) {
   return (
     <Link
       href={{
         pathname: "/services",
-        query: { category: title },
+        query: { category: slug },
       }}
     >
       <a>
