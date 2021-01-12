@@ -1,24 +1,24 @@
 .containerStyle {
-  border: 0.4px solid#dfe5ee;
+  // border: 0.4px solid#dfe5ee;
   box-sizing: border-box;
   width: 100%;
   min-height: 45vh;
   transition: 300ms;
-  &:hover {
-    transition: 300ms;
-    width: 98%;
-    height: 98%;
-    .roundedStyle {
-      transition: 300ms;
-      width: 72px !important;
-      height: 72px !important;
-      border: 2px solid #dfe5ee;
-    }
-    .titleStyle {
-      transition: 300ms;
-      font-size: 1.25rem;
-    }
-  }
+  // &:hover {
+  //   transition: 300ms;
+  //   width: 98%;
+  //   height: 98%;
+  //   .roundedStyle {
+  //     transition: 300ms;
+  //     width: 72px !important;
+  //     height: 72px !important;
+  //     border: 2px solid #dfe5ee;
+  //   }
+  //   .titleStyle {
+  //     transition: 300ms;
+  //     font-size: 1.25rem;
+  //   }
+  // }
 }
 
 .roundedStyle {
