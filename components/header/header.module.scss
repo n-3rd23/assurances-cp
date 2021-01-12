@@ -6,10 +6,17 @@
   width: max-content;
   line-height: 0.8;
 }
+
 .subtitle:hover {
   color: var(--primary-main) !important;
 }
 
 .navbar {
   z-index: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar {
+    border-radius: 0.25rem;
+  }
 }

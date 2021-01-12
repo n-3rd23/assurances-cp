@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { firestore, storage } from "../../firebase/firebase.util";
 import PlanCard from "../../components/plancard/plancard";
 import ImageUploader from "../../components/image_uploader/imageUploader";
+import kebabCase from 'lodash/kebabCase';
 
 export default function Category() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -100,6 +101,7 @@ export default function Category() {
                     name: categoryName,
                     description: description,
                     images: imagesTmp,
+                    slug: kebabCase(categoryName)
                   });
                   console.log("New category added !!");
                   clearFields();
