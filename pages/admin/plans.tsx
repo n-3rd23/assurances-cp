@@ -192,6 +192,7 @@ export default function Plans() {
   const selectCategory = (event) => {
     // console.log(event)
     setSelectedCategory(event)
+    console.log(event)
   }
 
   const getBenefitTitle = (event) => {
@@ -468,7 +469,7 @@ export default function Plans() {
                               ? categories.length > 0
                                 ? categories.map((item) => {
                                   return (
-                                    <Option key={item.id} value={item.name}>
+                                    <Option key={item.id} value={item.slug}>
                                       {item.name}
                                     </Option>
                                   );
