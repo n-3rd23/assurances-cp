@@ -56,10 +56,12 @@ export default function Header() {
         <div className="p-2 bd-highlight smTextCenter">
           <Link href="/">
             <a className={styles.title}>
-              <h2 className="fw-800 mb-0">Assurances</h2>
+              <h2 className="fw-800 mb-0" style={{ color: "" }}>
+                Assurances
+              </h2>
               <small className={`d-block fw-600 ${styles.subtitle}`}>
                 <em style={{ color: "var(--primary-main)" }}>
-                  Necessities Being Secured
+                  Necessities Been Secured
                 </em>
               </small>
             </a>

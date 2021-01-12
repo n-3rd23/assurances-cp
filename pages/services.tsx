@@ -20,6 +20,7 @@ export default function Services({ plans }: Props) {
   const router = useRouter();
   useEffect(() => {
     const { category } = router.query;
+    console.log(category);
     if (category) {
       console.log(category);
       fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/category?slug=${category}`)
@@ -75,7 +76,6 @@ export default function Services({ plans }: Props) {
       </Menu>
     );
     if (selectedCategory) {
-      console.log(selectedCategory.name);
       return (
         <Layout title="Insurances" description="assurances insurance plans">
           <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
@@ -111,7 +111,7 @@ export default function Services({ plans }: Props) {
             Plans In {dropDownText}
           </h3>
           <div className="row justify-content-center">
-            {plans && plans.plans
+            {plans.plans[0].category == selectedCategory.slug
               ? plans.plans.map((item: any) => {
                   return (
                     <div

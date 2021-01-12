@@ -57,6 +57,7 @@ export default function Services() {
                   img={item.images[0].link}
                   title={item.name}
                   desc={item.description}
+                  slug={item.slug}
                 />
               </div>
             );
@@ -80,6 +81,7 @@ export default function Services() {
                             img={item.images[0].link}
                             title={item.name}
                             desc={item.description}
+                            slug={item.slug}
                           />
                         </div>
                       );
