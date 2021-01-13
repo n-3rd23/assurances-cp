@@ -5,6 +5,8 @@ import { Button, Modal } from "antd";
 import AddWhite from "../../public/icons/add_white.svg";
 import { useState, useEffect } from "react";
 
+// gallery page
+
 export default function Gallery() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [images, setImages] = useState([]);
