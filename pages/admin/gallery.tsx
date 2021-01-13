@@ -5,8 +5,6 @@ import { Button, Modal } from "antd";
 import AddWhite from "../../public/icons/add_white.svg";
 import { useState, useEffect } from "react";
 
-// gallery page
-
 export default function Gallery() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [images, setImages] = useState([]);
@@ -27,7 +25,7 @@ export default function Gallery() {
     return () => {
       unsubscribeGallery();
     };
-  });
+  }, []);
 
   const clearFields = () => {
     setLoading(false);
@@ -35,7 +33,22 @@ export default function Gallery() {
   };
 
   const handleImageChange = (imgDat) => {
-    setImages[imgDat];
+    setImages(imgDat);
+  };
+
+  const deleteImage = async (event) => {
+    // console.log(event.target.id)
+    try {
+      await firestore.collection("gallery").doc(event.target.id).delete();
+      alert("Image deleted !!");
+      const galleryStorageRef = await storage.ref();
+      await galleryStorageRef
+        .child(`gallery/${event.target.dataset.imgname}`)
+        .delete();
+      console.log("image deleted from storage");
+    } catch (error) {
+      console.error("error while deleting image :", error);
+    }
   };
 
   const upload = () => {
@@ -89,6 +102,7 @@ export default function Gallery() {
           okText="Add"
           onOk={upload}
           confirmLoading={loading}
+          destroyOnClose={true}
         >
           <ImageUploader onChange={handleImageChange} />
         </Modal>
@@ -106,15 +120,19 @@ export default function Gallery() {
           {fetchedGallery
             ? fetchedGallery.length > 0
               ? fetchedGallery.map((item) => {
+                  // console.log(item.id)
                   return (
                     <div
-                      style={{ height: "250px" }}
-                      className="col-md-3 p-3 shadow-sm rounded my-3 position-relative"
-                      key={item.link}
+                      className="col-md-3 my-3 position-relative"
+                      key={item.images[0].link}
                     >
                       <span
                         style={{ right: "0", cursor: "pointer" }}
                         className="position-absolute"
+                        data-imgid={item.id}
+                        onClick={deleteImage}
+                        id={item.id}
+                        data-imgname={item.images[0].name}
                       >
                         {" "}
                         <img
@@ -122,9 +140,16 @@ export default function Gallery() {
                           src="/icons/trash_red.svg"
                           alt="delete"
                           className="mx-2"
+                          id={item.id}
+                          data-imgname={item.images[0].name}
                         />{" "}
                       </span>
-                      <img src={item.link} className="img-fluid" alt="image" />
+                      <img
+                        id={item.id}
+                        src={item.images[0].link}
+                        className="img-fluid"
+                        alt="image"
+                      />
                     </div>
                   );
                 })
