@@ -94,9 +94,37 @@ export default function Footer() {
           <small>
             <em>Necessities Being Secured</em>
           </small>
+          <p className="mt-5 text-medium">AFFILIATED TO</p>
+          <div className="d-flex flex justify-content-center justify-content-sm-start">
+            <div className="p-0">
+              <a href="https://licindia.in/" target="_blank">
+                <img
+                  src="/images/lic_logo.png"
+                  width="100px"
+                  height="50px"
+                ></img>
+              </a>
+            </div>
+            <div className="px-3">
+              <a href="https://www.newindia.co.in/portal/" target="_blank">
+                <img
+                  src="/images/New_India_Assurance.png"
+                  width="50px"
+                  height="50px"
+                  style={{ backgroundColor: "white" }}
+                ></img>
+              </a>
+            </div>
+          </div>
           <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight my-3">
             <div className="p-2 bd-highlight">
-              <Facebook width={12} height={12} />
+              <a
+                href="https://www.facebook.com/pages/category/Insurance-Agent/Assurance-102337221598665/"
+                target="_blank"
+              >
+                {" "}
+                <Facebook width={12} height={12} />
+              </a>
             </div>
             <div className="p-2 bd-highlight">
               <Twitter width={12} height={12} />
@@ -121,11 +149,6 @@ export default function Footer() {
                 </Link>
               </div>
               <div className="p-1 bd-highlight">
-                <Link href="/insurance">
-                  <a className={styles.pages}>INSURANCE</a>
-                </Link>
-              </div>
-              <div className="p-1 bd-highlight">
                 <Link href="/services">
                   <a className={styles.pages}>SERVICES</a>
                 </Link>
@@ -145,16 +168,6 @@ export default function Footer() {
               <div className="p-1 bd-highlight">
                 <Link href="/forms">
                   <a className={styles.pages}>FORMS</a>
-                </Link>
-              </div>
-              <div className="p-1 bd-highlight">
-                <Link href="/services">
-                  <a className={styles.pages}>SERVICES</a>
-                </Link>
-              </div>
-              <div className="p-1 bd-highlight">
-                <Link href="/about">
-                  <a className={styles.pages}>ABOUT</a>
                 </Link>
               </div>
             </div>

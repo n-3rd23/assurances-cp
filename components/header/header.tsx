@@ -54,18 +54,29 @@ export default function Header() {
       </div>
       <div className="container d-flex flex-md-row flex-column d-flex flex-wrap justify-content-between align-items-center bd-highlight py-md-4 py-3">
         <div className="p-2 bd-highlight smTextCenter">
-          <Link href="/">
-            <a className={styles.title}>
-              <h2 className="fw-800 mb-0" style={{ color: "" }}>
-                Assurances
-              </h2>
-              <small className={`d-block fw-600 ${styles.subtitle}`}>
-                <em style={{ color: "var(--primary-main)" }}>
-                  Necessities Been Secured
-                </em>
-              </small>
-            </a>
-          </Link>
+          <div className="d-flex">
+            <div className="p-1">
+              <img
+                src="/images/assurance_logo-no_bg_croped.png"
+                width="50px"
+                height="50px"
+              ></img>
+            </div>
+            <div className="p-1">
+              <Link href="/">
+                <a className={styles.title}>
+                  <h2 className="fw-800 mb-0" style={{ color: "" }}>
+                    Assurances
+                  </h2>
+                  <small className={`d-block fw-600 ${styles.subtitle}`}>
+                    <em style={{ color: "var(--primary-main)" }}>
+                      Necessities Been Secured
+                    </em>
+                  </small>
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
         <div className="d-flex flex-column flex-md-row p-2 bd-highlight justify-content-center align-items-center smTextCenter">
           <Info

@@ -4,6 +4,8 @@ import User_Reviews from "./../user_reviews/user_reviews";
 import TalkUsBox from "./../talkUsBox/talkUsBox";
 import AboutUsPlanCard from "./../aboutUSPlanCard/aboutUsPlanCard";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Bar from "../bar/bar";
 
 export default function AboutComp() {
   const [plans, setPlan] = useState(null);
@@ -44,6 +46,29 @@ export default function AboutComp() {
             </div>
           </div>
         </div>
+        <div className="container-fluid text-center my-5">
+          <p className="text-largest text-primary fw-800">AFFILIATED TO</p>
+          <div className="d-flex flex-wrap justify-content-center align-items-center">
+            <div className="p-4">
+              <a href="https://licindia.in/" target="_blank">
+                <img
+                  src="/images/lic_logo.png"
+                  width="300px"
+                  height="200px"
+                ></img>
+              </a>
+            </div>
+            <div className="p-4">
+              <a href="https://www.newindia.co.in/portal/" target="_blank">
+                <img
+                  src="/images/New_India_Assurance.png"
+                  width="200px"
+                  height="200px"
+                ></img>
+              </a>
+            </div>
+          </div>
+        </div>
         <div
           className="container-fluid p-5 text-center mb-4"
           style={{ backgroundColor: "#f3f5f7" }}
@@ -62,6 +87,7 @@ export default function AboutComp() {
             })}
           </div>
         </div>
+
         <User_Reviews />
         <div
           className="container-fluid p-5 text-center mt-4"

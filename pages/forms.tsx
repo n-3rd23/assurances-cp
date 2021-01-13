@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import Bar from "../components/bar/bar";
 import Download from "../public/icons/download.svg";
-import Link from "next/link";
 
 export default function Forms() {
   const [forms, setForms] = useState(null);
@@ -25,31 +24,28 @@ export default function Forms() {
         <div className="row justify-content-center mt-5">
           {forms.map((item) => {
             return (
-              <Link href={item.url}>
+              <a
+                href={item.url}
+                target="_blank"
+                className={`col-sm-3 col-md-3 col-12 py-5 px-2 m-3 ${styles.containerStyle}`}
+              >
                 <div
-                  className={`col-sm-3 col-md-3 col-12 py-5 px-2 m-3 ${styles.containerStyle}`}
+                  className={`data ${styles.dataStyle} text-center fw-700 p-2`}
                 >
-                  <div
-                    className={`data ${styles.dataStyle} text-center fw-700 p-2`}
-                  >
-                    <div className={`${styles.pdfIcon}`}>
-                      <img src="https://img.icons8.com/officel/50/000000/pdf-2.png" />
-                    </div>
-                    {/* <div className={`${styles.pdfIcon2}`}>
-                      <img src="https://img.icons8.com/metro/70/000000/pdf-2.png" />
-                    </div> */}
-                    <br />
-                    <p className="pt-2">{item.name}</p>
+                  <div className={`${styles.pdfIcon}`}>
+                    <img src="https://img.icons8.com/officel/50/000000/pdf-2.png" />
                   </div>
-                  <div
-                    className={`d-flex ${styles.iconStyle} justify-content-center align-items-center`}
-                  >
-                    <div className="icon">
-                      <Download width={50} height={50} />
-                    </div>
+                  <br />
+                  <p className="pt-2">{item.name}</p>
+                </div>
+                <div
+                  className={`d-flex ${styles.iconStyle} justify-content-center align-items-center`}
+                >
+                  <div className="icon">
+                    <Download width={50} height={50} />
                   </div>
                 </div>
-              </Link>
+              </a>
             );
           })}
         </div>

@@ -19,19 +19,19 @@ export default class User_Reviews extends Component {
     count: 0,
     quotes: [
       {
-        name: "Athul",
-        quote:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      },
-      {
         name: "Alan",
         quote:
-          "Lorem aafa afaf Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          "I know him for the last 15 years. He is known for his dedication, discipline, straight forwardness, spontaneous in cutting jokes, good dressing and of late he has become tech savvy. He helps me continuously in saving my money. His service and friendly nature made him in good books of many of my friends and relatives. He has been in training financial planning also. He is not only my friend and his entire family has become part of our family. I wish him all the best. S. Pari",
       },
       {
         name: "Marshall",
         quote:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+          " I know Mr.Thomas for a decade now and he is not just another financial advisor / consultant . When you invest your time with him, you have two benefits both lasts for life. One is money and other is his friendship. He is a great human who has a sense of responsibility for the work he does and a very dynamic person who makes our job of investment easier and quicker",
+      },
+      {
+        name: "Athul",
+        quote:
+          "He has got an excellent knowledge on various financial products and is well qualified as a financial planner. His expertize on Life insurance products is amazing. As a person, Malli has got an amazing personality and brings in great fun and humor everytime you interact with him. He brings in lot of positivity and keeps all people around him with great Joy and Cheer. I cherish all his interactions. In addition he is a great Cricket and Shuttle player and has played for various leagues.",
       },
     ],
   };

@@ -16,9 +16,9 @@ export default function Home_Features() {
         </h3>
       </div>
       <div
-        className={`d-flex justify-content-center p-5 ${styles.containerStyle}`}
+        className={`d-flex justify-content-around px-3 ${styles.containerStyle}`}
       >
-        <div className="p-3">
+        <div className="px-3">
           <Feature_Card
             icon={<Safe className={`p-1 m-1`} width={50} height={50} />}
             head="SECURE LIFE"
@@ -32,7 +32,7 @@ export default function Home_Features() {
             id iaculis felis tincidunt a"
           />
         </div>
-        <div className="p-3">
+        <div className="px-3">
           <Feature_Card
             icon={<Dove className={`p-1 m-1`} width={50} height={50} />}
             head="PEACEFUL LIFE"
@@ -46,7 +46,7 @@ export default function Home_Features() {
             id iaculis felis tincidunt a"
           />
         </div>
-        <div className="p-3">
+        <div className="px-3">
           <Feature_Card
             icon={<Bank className={`p-1 m-1`} width={50} height={50} />}
             head="FLEXIBLE COST"

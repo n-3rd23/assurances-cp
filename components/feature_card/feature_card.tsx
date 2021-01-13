@@ -11,7 +11,7 @@ export default function Feature_Card({ icon, head, content }) {
       >
         {head}
       </div>
-      <p className={`${styles.subTitleStyle} mt-3 text-small py-md-2`}>{content}</p>
+      {/* <p className={`${styles.subTitleStyle} mt-3 text-small py-md-2`}>{content}</p> */}
     </div>
   );
 }
