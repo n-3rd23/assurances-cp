@@ -3,6 +3,7 @@ import Bar from "../components/bar/bar";
 import { firestore } from "../firebase/firebase.util";
 import { useState, useEffect } from "react";
 import Layout from "../components/layout/layout";
+import Image from "next/image";
 
 export default function Gallery() {
   const [images, setImages] = useState(null);
@@ -25,16 +26,21 @@ export default function Gallery() {
           MOMENTS WE CAPTURED
         </h3>
         <Bar />
-        <div className="row justify-content-center my-5 p-2">
+
+        <div className="d-flex flex-wrap justify-content-center my-5">
           {images.map((item) => {
             return (
-              <div
-                className={`col-sm-3 col-md-3 col-12 p-2 ${styles.containerStyle}`}
-              >
-                <img
+              <div className={`p-2 ${styles.containerStyle}`}>
+                <Image
+                  src={item.images[0].link}
+                  alt="Picture of the author"
+                  width={250}
+                  height={250}
+                />
+                {/* <img
                   src={item.images[0].link}
                   className={styles.imgStyle}
-                ></img>
+                ></img> */}
               </div>
             );
           })}
