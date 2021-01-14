@@ -1,0 +1,19 @@
+.imgStyle {
+  width: 300px;
+  transition: 200ms;
+}
+
+.containerStyle {
+  &:hover {
+    .imgStyle {
+      transition: 200ms;
+      transform: scale(1.05);
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .imgStyle {
+    width: 100%;
+  }
+}

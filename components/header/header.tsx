@@ -103,24 +103,34 @@ export default function Header() {
         <div className="row justify-content-center text-center">
           <div className="col-md-8 col-sm-11 col-12">
             <div className="row">
-              <div className="col">
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
                 <Link href="/">
                   <a className="fw-600">HOME</a>
                 </Link>
               </div>
-              <div className="col">
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
                 <Link href="/services">
                   <a className="fw-600">SERVICES</a>
                 </Link>
               </div>
-              <div className="col">
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
                 <Link href="/about">
                   <a className="fw-600">ABOUT</a>
                 </Link>
               </div>
-              <div className="col">
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
                 <Link href="/contact">
                   <a className="fw-600">CONTACT</a>
+                </Link>
+              </div>
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
+                <Link href="/forms">
+                  <a className="fw-600">FORMS</a>
+                </Link>
+              </div>
+              <div className="col-sm col-md col-12 my-sm-0 my-md-0 my-1">
+                <Link href="/gallery">
+                  <a className="fw-600">GALLERY</a>
                 </Link>
               </div>
             </div>

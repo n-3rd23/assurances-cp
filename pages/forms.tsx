@@ -33,17 +33,10 @@ export default function Forms() {
                   className={`data ${styles.dataStyle} text-center fw-700 p-2`}
                 >
                   <div className={`${styles.pdfIcon}`}>
-                    <img src="https://img.icons8.com/officel/50/000000/pdf-2.png" />
+                    <img src="https://img.icons8.com/wired/64/000000/pdf.png" />
                   </div>
                   <br />
                   <p className="pt-2">{item.name}</p>
-                </div>
-                <div
-                  className={`d-flex ${styles.iconStyle} justify-content-center align-items-center`}
-                >
-                  <div className="icon">
-                    <Download width={50} height={50} />
-                  </div>
                 </div>
               </a>
             );
