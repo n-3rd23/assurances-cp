@@ -7,14 +7,13 @@
 
   &:hover {
     transition: 300ms !important;
-    width: 98% !important;
-    height: 98% !important;
+    transform: scale(1.02);
     .titleStyle {
       transition: 300ms;
-      font-size: 1.25rem;
+      font-size: 1.23rem;
     }
     .subTitleStyle {
-      font-size: 0.75rem;
+      font-size: 0.73rem;
     }
   }
 }

@@ -170,6 +170,11 @@ export default function Footer() {
                   <a className={styles.pages}>FORMS</a>
                 </Link>
               </div>
+              <div className="p-1 bd-highlight">
+                <Link href="/gallery">
+                  <a className={styles.pages}>GALLERY</a>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
