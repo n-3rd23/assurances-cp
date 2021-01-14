@@ -17,7 +17,7 @@ export default function Gallery() {
         });
         setImages(images);
       });
-  });
+  }, []);
   if (images) {
     return (
       <Layout title="Gallery" description="Best Life Insurance ever">
