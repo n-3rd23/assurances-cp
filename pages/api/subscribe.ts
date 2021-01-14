@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method == "POST") {
     // 1. Destructure the email address from the request body.
-    const { name, phone } = req.body;
+    const { name, phone, email, message} = req.body;
 
     // if (!email) {
     //   // 2. Throw an error if an email wasn't provided.
@@ -41,14 +41,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         service: "Gmail",
         port: 587,
         auth: {
-          user: "alansajidd16@gmail.com",
-          pass: process.env.GOOGLE_APP_PASSWORD,
+          user: "assurances.co.in@gmail.com",
+          pass: process.env.NEXT_PUBLIC_GOOGLE_APP_PASSWORD,
         },
       });
 
       const mailOptions = {
-        from: "alansajidd16@gmail.com",
-        to: "alansaji1996anak@gmail.com",
+        from: "assurances.co.in@gmail.com",
+        to: "thomasassurance@yahoo.com",
         subject: `New Enquiry from ${name}`,
         html: `<div style="margin-bottom: 5px; display: flex;">
       <div style="padding-right: 10px; padding-left: 10px;"><strong>Contact Info</strong></div>
@@ -56,6 +56,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       <div style="margin-bottom: 5px; display: flex;">
       <div style="padding-right: 10px; padding-left: 10px;">${name} is requesting a callback</div>
       <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Phone: ${phone}</div>
+      <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Email: ${email}</div>
+      <div style="padding-right: 10px; padding-left: 10px; margin-bottom: 15px;">Message: ${message}</div>
       </div>`,
       };
 

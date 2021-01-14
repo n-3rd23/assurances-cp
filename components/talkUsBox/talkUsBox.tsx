@@ -43,6 +43,25 @@ export default function TalkUsBox() {
         setMessage("");
         message.success("Message has been sent");
       })
+      .then(() => {
+        fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            email: email,
+            message: userMessage,
+          }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err);
+          });
+      })
       .catch((error) => {
         console.error(error);
         // message.error("Upload error. Check your internet connection!");
