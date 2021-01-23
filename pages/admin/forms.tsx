@@ -1,7 +1,7 @@
 import Admin from "../../components/layout/admin";
-import { Button, Modal, Input } from "antd";
+import { Button, Modal, Input, Select } from "antd";
 import AddWhite from "../../public/icons/add_white.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { firestore, storage } from "../../firebase/firebase.util";
 import PlanCard from "../../components/plancard/plancard";
 
@@ -11,6 +11,11 @@ export default function Forms() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [fetchedForms, setFetchedForms] = useState([]);
+  const [isCategoryModalVisible, setIsCategoryModalVisible] = useState(false);
+  const [newCategory, setNewCategory] = useState("");
+  const [fetchedCategory, setFetchedCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const { Option } = Select;
 
   useEffect(() => {
     const unSubscribeForms = firestore
@@ -22,6 +27,15 @@ export default function Forms() {
         });
         setFetchedForms(tmp);
       });
+
+      const unSubscribeCategory = firestore.collection("formCategory")
+      .onSnapshot((querySnapshot) => {
+        const tmp = [];
+        querySnapshot.forEach((doc) => {
+          tmp.push({id: doc.id, ...doc.data()})
+        })
+        setFetchedCategory(tmp);
+      })
 
       return () => {
         unSubscribeForms();
@@ -42,6 +56,15 @@ export default function Forms() {
   const getFile = (event) => {
     setFiles(event.target);
   };
+
+  const getNewCategory = (event) => {
+    setNewCategory(event.target.value);
+  }
+
+  const getSelectedCategory = (event) => {
+    setSelectedCategory(event);
+    console.log(event);
+  }
 
   const upload = () => {
     try {
@@ -91,6 +114,15 @@ export default function Forms() {
     }
   };
 
+  const uploadCategory = async () => {
+    const formsCategoryRef = await firestore.collection("formCategory");
+    await formsCategoryRef.add({
+      categoryName: newCategory
+    })
+    setIsCategoryModalVisible(false);
+    setNewCategory("");
+  }
+
   const deleteForm = async (id) => {
     await firestore.collection("forms").doc(id).delete()
     console.log("deleted")
@@ -121,6 +153,36 @@ export default function Forms() {
           <div className="form-group mt-2">
             <label htmlFor="form_name">Name</label>
             <Input value={name} onChange={getName} id="form_name" />
+          </div>
+          <div className="form-group mt-2">
+            <label htmlFor="category">Category</label>
+            <Select onChange={getSelectedCategory} className="w-100">
+              {
+                fetchedCategory
+                ?
+                  fetchedCategory.length > 0
+                  ?
+                    fetchedCategory.map(item => {
+                      return (
+                          <Option key={item.id} value={item.categoryName}>{item.categoryName}</Option>
+                      )
+                    })
+                  :null
+                :null
+              }
+            </Select>
+            <div>
+              <a style={{color:"skyblue"}} onClick={() => setIsCategoryModalVisible(true)} href="#"> ADD NEW CATEGORY </a>
+            </div>
+            <Modal
+              visible={isCategoryModalVisible}
+              onCancel={() => setIsCategoryModalVisible(false)}
+              okText="Add"
+              onOk={uploadCategory}
+            >
+              <label htmlFor="newCat"></label>
+              <Input id="newCat" onChange={getNewCategory} value={newCategory} />
+            </Modal>
           </div>
           <div className="form-group my-2">
             <input onChange={getFile} type="file" />
