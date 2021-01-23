@@ -30,17 +30,18 @@ export default function Forms() {
 
       const unSubscribeCategory = firestore.collection("formCategory")
       .onSnapshot((querySnapshot) => {
-        const tmp = [];
+        const tmp2 = [];
         querySnapshot.forEach((doc) => {
-          tmp.push({id: doc.id, ...doc.data()})
+          tmp2.push({id: doc.id, ...doc.data()})
         })
-        setFetchedCategory(tmp);
+        setFetchedCategory(tmp2);
       })
 
       return () => {
         unSubscribeForms();
+        unSubscribeCategory();
       }
-  });
+  },[]);
 
   const clearFields = () => {
     setName("");
