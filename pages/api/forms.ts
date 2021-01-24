@@ -5,7 +5,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     const { limit = 10 }: any = req.query;
     const formsRef = firestore.collection("forms");
-    const snapshot = await formsRef.limit(limit).get();
+    const snapshot = await formsRef.get();
     const forms = [];
     snapshot.forEach((doc) => {
       forms.push({ id: doc.id, ...doc.data() });
