@@ -100,6 +100,7 @@ export default function Forms() {
                   await formsRef.add({
                     name: name,
                     url: url,
+                    category: selectedCategory
                   });
                   console.log("Form added");
                   clearFields();

@@ -96,15 +96,15 @@ export default function Contact() {
                     width={25}
                     height={25}
                   />
-                  <p className="py-4 px-2">+91 9956845228 </p>
+                  <p className="py-4 px-2">+91 9846117476 </p>
                 </div>
                 <div className="d-flex justify-content-md-start justify-content-center">
                   <ClosedMail className="m-4" width={25} height={25} />
-                  <p className="py-4 px-2">info@lifeassure.com</p>
+                  <p className="py-4 px-2">thomasassurance@yahoo.com</p>
                 </div>
                 <div className="d-flex justify-content-md-start justify-content-center">
                   <Location className="m-4" width={25} height={25} />
-                  <p className="py-4 px-2">Angamaly</p>
+                  <p className="py-4 px-2">Chembumukku Jn</p>
                 </div>
               </div>
               <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight text-white mt-md-5">
