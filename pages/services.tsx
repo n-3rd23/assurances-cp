@@ -63,9 +63,8 @@ export default function Services({ plans }: Props) {
                 rel="noopener noreferrer"
                 href=""
                 onClick={(e) => {
-                  e.preventDefault(),
-                    setSelectedCategory(item),
-                    setDropDownText(item.name);
+                  e.preventDefault(), console.log(item);
+                  setSelectedCategory(item), setDropDownText(item.name);
                 }}
               >
                 {item.name}
@@ -111,24 +110,24 @@ export default function Services({ plans }: Props) {
             Plans In {dropDownText}
           </h3>
           <div className="row justify-content-center">
-            {plans.plans[0].category == selectedCategory.slug
-              ? plans.plans.map((item: any) => {
-                  return (
-                    <div
-                      key={item.id}
-                      className="col-lg-5 col-md-5 col-sm-5 col-12 p-4"
-                    >
-                      {" "}
-                      <UserPlanCard
-                        key={item.id}
-                        subHead1={item.category}
-                        mainHead={item.planName}
-                        subHead2={item.planSummary}
-                      />
-                    </div>
-                  );
-                })
-              : ""}
+            {plans.plans.map((item) => {
+              return item.category == selectedCategory.slug ? (
+                <div
+                  key={item.id}
+                  className="col-lg-5 col-md-5 col-sm-5 col-12 p-4"
+                >
+                  {" "}
+                  <UserPlanCard
+                    key={item.id}
+                    subHead1={selectedCategory.name}
+                    mainHead={item.planName}
+                    subHead2={item.planSummary}
+                  />
+                </div>
+              ) : (
+                ""
+              );
+            })}
           </div>
         </Layout>
       );
