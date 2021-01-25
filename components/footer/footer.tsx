@@ -153,8 +153,9 @@ export default function Footer() {
               <a
                 href="https://instagram.com/thomasbabulic?igshid=1u3utsgnf9c7i"
                 target="_blank"
-              />
+              >
               <Instagram width={12} height={12} />
+              </a>
             </div>
           </div>
         </div>
