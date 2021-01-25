@@ -75,6 +75,7 @@ export default function Services({ plans }: Props) {
       </Menu>
     );
     if (selectedCategory) {
+      console.log(selectedCategory)
       return (
         <Layout title="Insurances" description="assurances insurance plans">
           <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
@@ -104,6 +105,9 @@ export default function Services({ plans }: Props) {
                 __html: DOMPurify.sanitize(selectedCategory.description),
               }}
             ></a>
+              {
+               selectedCategory.slug == "vehicle-insurances" || selectedCategory.slug == "health-insurances" ? <div className="text-white"><a href="www.newindia.co.in">Click here to Go to New India Assurance</a></div> : null
+              }
           </div>
           <Bar />
           <h3 className="d-flex text-largest fw-900 text-primary mt-3 justify-content-center">
