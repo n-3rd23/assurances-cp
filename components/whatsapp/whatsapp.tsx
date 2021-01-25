@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-let WhWidgetSendButton
+// let WhWidgetSendButton
 
 export default function Whatsapp() {
   useEffect(() => {
@@ -21,7 +21,11 @@ export default function Whatsapp() {
     s.async = true;
     s.src = url + "/widget-send-button/js/init.js";
     s.onload = function () {
-      WhWidgetSendButton.init(host, proto, options);
+      try {
+        WhWidgetSendButton.init(host, proto, options);
+      } catch (err) {
+        console.error(err)
+      }
     };
     var x = document.getElementsByTagName("script")[0];
     x.parentNode.insertBefore(s, x);
