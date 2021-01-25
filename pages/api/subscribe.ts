@@ -47,7 +47,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const mailOptions = {
         from: "assurances.co.in@gmail.com",
-        to: "alansajidd16@gmail.com",
+        to: "thomasassurance@yahoo.com",
         subject: `New Enquiry from ${name}`,
         html: `<div style="margin-bottom: 5px; display: flex;">
       <div style="padding-right: 10px; padding-left: 10px;"><strong>Contact Info</strong></div>
