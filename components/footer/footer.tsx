@@ -26,33 +26,33 @@ export default function Footer() {
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    let flag = 0;
-    if (name == "") {
-      flag = 1;
-      setNameWarning("Name is required");
-    } else {
-      setNameWarning("");
-    }
-    if (email == "") {
-      flag = 1;
-      setEmailWarning("Email is required");
-    } else {
-      setEmailWarning("");
-    }
-    if (phone == "") {
-      flag = 1;
-      setPhoneWarning("Phone number is required");
-    } else {
-      setPhoneWarning("");
-    }
-    if (message == "") {
-      flag = 1;
-      setMessageWarning("Message is required");
-    } else {
-      setMessageWarning("");
-    }
+    // let flag = 0;
+    // if (name == "") {
+    //   flag = 1;
+    //   setNameWarning("Name is required");
+    // } else {
+    //   setNameWarning("");
+    // }
+    // if (email == "") {
+    //   flag = 1;
+    //   setEmailWarning("Email is required");
+    // } else {
+    //   setEmailWarning("");
+    // }
+    // if (phone == "") {
+    //   flag = 1;
+    //   setPhoneWarning("Phone number is required");
+    // } else {
+    //   setPhoneWarning("");
+    // }
+    // if (message == "") {
+    //   flag = 1;
+    //   setMessageWarning("Message is required");
+    // } else {
+    //   setMessageWarning("");
+    // }
 
-    if (flag == 1) return;
+    // if (flag == 1) return;
 
     setFeedback({ type: "success", text: "" });
     setLoading(true);
@@ -73,6 +73,23 @@ export default function Footer() {
         setMessage("");
         setFeedback({ type: "success", text: "We'll get back to you soon." });
         setLoading(false);
+        fetch(`/api/subscribe`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            email: email,
+            message: message,
+          }),
+        })
+          .then((res) => res.json())
+          .then((result) => console.log(result))
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         setFeedback({
@@ -133,6 +150,10 @@ export default function Footer() {
               <Linkedin width={12} height={12} />
             </div>
             <div className="p-2 bd-highlight">
+              <a
+                href="https://instagram.com/thomasbabulic?igshid=1u3utsgnf9c7i"
+                target="_blank"
+              />
               <Instagram width={12} height={12} />
             </div>
           </div>
