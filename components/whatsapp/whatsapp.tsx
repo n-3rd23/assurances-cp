@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+let WhWidgetSendButton
+
 export default function Whatsapp() {
   useEffect(() => {
     loadWhatsapp();
