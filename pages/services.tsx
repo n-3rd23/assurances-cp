@@ -106,7 +106,7 @@ export default function Services({ plans }: Props) {
               }}
             ></a>
               {
-               selectedCategory.slug == "vehicle-insurances" || selectedCategory.slug == "health-insurances" ? <div className="text-white"><a target="_blank" href="https://www.newindia.co.in">Click here to Go to New India Assurance</a></div> : null
+               selectedCategory.slug == "vehicle-insurances" || selectedCategory.slug == "health-insurances" || selectedCategory.slug == "other-mislanious-insurances" ? <div className="text-white"><a target="_blank" href="https://www.newindia.co.in">Click here to Go to New India Assurance</a></div> : null
               }
           </div>
           <Bar />
