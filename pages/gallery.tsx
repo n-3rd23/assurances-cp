@@ -1,4 +1,4 @@
-import styles from "./gallery.module.scss";
+import styles from "../styles/gallery.module.scss";
 import Bar from "../components/bar/bar";
 import { firestore } from "../firebase/firebase.util";
 import { useState, useEffect } from "react";

@@ -1,4 +1,4 @@
-import styles from "./services.module.scss";
+import styles from "../styles/services.module.scss";
 import Hero from "../components/hero/hero";
 import Layout from "../components/layout/layout";
 import UserPlanCard from "../components/userPlanCard/userPlanCard";
@@ -75,7 +75,7 @@ export default function Services({ plans }: Props) {
       </Menu>
     );
     if (selectedCategory) {
-      console.log(selectedCategory)
+      console.log(selectedCategory);
       return (
         <Layout title="Insurances" description="assurances insurance plans">
           <Hero subHead="FOR EVERY PURPOSE" mainHead="WE HAVE YOU COVERED" />
@@ -105,9 +105,15 @@ export default function Services({ plans }: Props) {
                 __html: DOMPurify.sanitize(selectedCategory.description),
               }}
             ></a>
-              {
-               selectedCategory.slug == "vehicle-insurances" || selectedCategory.slug == "health-insurances" || selectedCategory.slug == "other-mislanious-insurances" ? <div className="text-white"><a target="_blank" href="https://www.newindia.co.in">Click here to Go to New India Assurance</a></div> : null
-              }
+            {selectedCategory.slug == "vehicle-insurances" ||
+            selectedCategory.slug == "health-insurances" ||
+            selectedCategory.slug == "other-mislanious-insurances" ? (
+              <div className="text-white">
+                <a target="_blank" href="https://www.newindia.co.in">
+                  Click here to Go to New India Assurance
+                </a>
+              </div>
+            ) : null}
           </div>
           <Bar />
           <h3 className="d-flex text-largest fw-900 text-primary mt-3 justify-content-center">

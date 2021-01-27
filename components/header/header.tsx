@@ -17,7 +17,10 @@ export default function Header() {
         className={`d-flex flex-row d-flex justify-content-around bd-highlight px-md-5 px-4 ${styles.navMini}`}
       >
         <div className="p-2 bd-highlight flex-grow-1">
-          <a href="https://facebook.com">
+          <a
+            href="https://www.facebook.com/pages/category/Insurance-Agent/Assurance-102337221598665/"
+            target="_blank"
+          >
             <Facebook width={16} height={16} />
           </a>
           <Divider type="vertical" />
@@ -29,7 +32,10 @@ export default function Header() {
             <Linkedin width={16} height={16} />
           </a>
           <Divider type="vertical" />
-          <a href="https://facebook.com">
+          <a
+            href="https://instagram.com/thomasbabulic?igshid=1u3utsgnf9c7i"
+            target="_blank"
+          >
             <Instagram width={16} height={16} />
           </a>
         </div>
