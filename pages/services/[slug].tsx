@@ -14,13 +14,22 @@ interface Props {
 
 export default function Insurance({ plan }: Props) {
   const [currentPlan, setCurrentPlan] = useState(null);
+  const [desc, setDesc] = useState(null);
+
   useEffect(() => {
     setCurrentPlan(plan.plan);
+    const div = document.createElement("div");
+    div.innerHTML = DOMPurify.sanitize(plan.plan.planSummary);
+    setDesc(div.textContent || div.innerText);
   }, [plan]);
 
   if (currentPlan) {
     return (
-      <Layout title="Assurances" description="Best Life Insurance ever">
+      <Layout
+        title={currentPlan.planName}
+        description={desc}
+        image={currentPlan.images[0].link}
+      >
         <PlanHero
           subHead="Life is secure"
           head={currentPlan.planName}

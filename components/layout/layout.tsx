@@ -7,10 +7,11 @@ import Footer from "../footer/footer";
 interface Props {
   title?: string;
   description: string;
+  image?: string;
   children: JSX.Element | JSX.Element[];
 }
 
-export default function Admin({ title, description, children }: Props) {
+export default function Admin({ title, description, image, children }: Props) {
   const router: NextRouter = useRouter();
   const url =
     router.pathname == "/"
@@ -22,12 +23,27 @@ export default function Admin({ title, description, children }: Props) {
         title={title}
         description={description}
         canonical={url}
-        openGraph={{
-          type: "website",
-          url,
-          title: title,
-          description: description,
-        }}
+        openGraph={
+          image
+            ? {
+                type: "website",
+                url,
+                title: title,
+                description: description,
+                images: [
+                  {
+                    url: image,
+                    alt: title,
+                  },
+                ],
+              }
+            : {
+                type: "website",
+                url,
+                title: title,
+                description: description,
+              }
+        }
       />
       <Header />
       {children}

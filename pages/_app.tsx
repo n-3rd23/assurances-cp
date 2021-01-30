@@ -8,8 +8,7 @@ import SEO from "../next-seo.config";
 import "../styles/globals.scss";
 import { useRouter, NextRouter } from "next/router";
 import { AuthProvider } from "../context/AuthContext";
-import "react-quill/dist/quill.snow.css";
-import Whatsapp from "../components/whatsapp/whatsapp"
+import Whatsapp from "../components/whatsapp/whatsapp";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router: NextRouter = useRouter();
