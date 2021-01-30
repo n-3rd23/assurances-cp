@@ -24,7 +24,7 @@ export default function TalkUsBox() {
   const handleChangeMessage = (e) => {
     setMessage(e.target.value);
   };
-  const uploadDB = async () => {
+  const uploadDB = () => {
     const data = {
       Name: name,
       Phone: phone,
@@ -44,7 +44,7 @@ export default function TalkUsBox() {
         message.success("Message has been sent");
       })
       .then(() => {
-        fetch("/api/subscribe", {
+        fetch(`/api/subscribe`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

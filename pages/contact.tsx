@@ -104,7 +104,7 @@ export default function Contact() {
                 </div>
                 <div className="d-flex justify-content-md-start justify-content-center">
                   <Location className="m-4" width={25} height={25} />
-                  <p className="py-4 px-2">Chembumukku Jn</p>
+                  <p className="py-4 px-2">Chembumukku Jn, Kakkanad, Kochi</p>
                 </div>
               </div>
               <div className="d-flex flex-row justify-content-md-start justify-content-center bd-highlight text-white mt-md-5">

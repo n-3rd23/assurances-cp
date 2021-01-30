@@ -5,7 +5,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method == "POST") {
     // 1. Destructure the email address from the request body.
     const { name, phone, email, message} = req.body;
-
     // if (!email) {
     //   // 2. Throw an error if an email wasn't provided.
     //   return res.status(400).json({ error: "Email is required" });
@@ -42,7 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         port: 587,
         auth: {
           user: "assurances.co.in@gmail.com",
-          pass: process.env.NEXT_PUBLIC_GOOGLE_APP_PASSWORD,
+          pass: "thomasassurances123"
         },
       });
 

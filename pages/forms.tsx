@@ -1,4 +1,4 @@
-import styles from "./forms.module.scss";
+import styles from "../styles/forms.module.scss";
 import { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 import Bar from "../components/bar/bar";
@@ -46,7 +46,11 @@ export default function Forms() {
 
         <div className="row justify-content-center mt-5">
           <div className="d-flex justify-content-center">
-            <Select onChange={getSelectedCategory} value={selectedCategory} className="w-25">
+            <Select
+              onChange={getSelectedCategory}
+              value={selectedCategory}
+              className="w-25"
+            >
               <Option value="all">All</Option>
               {category.length > 0
                 ? category.map((item) => {
@@ -78,8 +82,7 @@ export default function Forms() {
                   </div>
                 </a>
               );
-            }
-            else if (item.category == selectedCategory) {
+            } else if (item.category == selectedCategory) {
               return (
                 <a
                   href={item.url}
