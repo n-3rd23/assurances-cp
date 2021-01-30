@@ -2,7 +2,7 @@ import styles from "./services.module.scss";
 import Hero from "../components/hero/hero";
 import Layout from "../components/layout/layout";
 import UserPlanCard from "../components/userPlanCard/userPlanCard";
-import { Menu, Dropdown } from "antd";
+import { Menu, Dropdown, DatePicker } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
@@ -14,6 +14,7 @@ interface Props {
 }
 
 export default function Services({ plans }: Props) {
+  const { RangePicker } = DatePicker;
   const [categories, setCategories] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [dropDownText, setDropDownText] = useState(null);
