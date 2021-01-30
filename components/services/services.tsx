@@ -76,7 +76,7 @@ export default function Services() {
                   <Fragment>
                     {allCategories.map((item) => {
                       return (
-                        <div className="col-md-4 col-sm-12 my-sm-0 my-md-0 my-1">
+                        <div className="col-md-4 col-sm-12 my-sm-1 my-md-1 my-1">
                           <ServiceCard
                             img={item.images[0].link}
                             title={item.name}
