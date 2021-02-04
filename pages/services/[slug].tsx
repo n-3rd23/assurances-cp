@@ -7,6 +7,7 @@ import PlanHero from "../../components/planHero/planHero";
 import DOMPurify from "dompurify";
 import Part from "../../components/part/part";
 import CallUsBack from "../../components/callUsBack/callUsBack";
+import { firestore } from "../../firebase/firebase.util";
 
 interface Props {
   plan?: any;
@@ -15,6 +16,18 @@ interface Props {
 export default function Insurance({ plan }: Props) {
   const [currentPlan, setCurrentPlan] = useState(null);
   const [desc, setDesc] = useState(null);
+
+  useEffect(() => {
+    const pageVisitRef = firestore
+      .collection("siteVisits")
+      .doc("BO1iFx1wtVincsnhZq95");
+    pageVisitRef.get().then((doc) => {
+      var a = doc.data().count + 1;
+      pageVisitRef.set({
+        count: a,
+      });
+    });
+  }, []);
 
   useEffect(() => {
     setCurrentPlan(plan.plan);
