@@ -5,6 +5,7 @@ import { auth, event } from "../../firebase/firebase.util";
 import { useState } from "react";
 import { NextRouter, useRouter } from "next/router";
 import Head from "next/head";
+import { NextSeo } from "next-seo";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,6 +42,19 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
+      <NextSeo
+        nofollow
+        noindex
+        title="Login"
+        description="Login to access dashboard"
+        canonical="https://assurances.co.in/login"
+        openGraph={{
+          type: "website",
+          url: "https://assurances.co.in/login",
+          title: "Login",
+          description: "Login to access dashboard",
+        }}
+      />
       <div className="container-fluid">
         <div
           style={{ height: "100vh", backgroundColor: "#f1f1f1" }}
