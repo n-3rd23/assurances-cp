@@ -47,10 +47,10 @@ export default function Login() {
         noindex
         title="Login"
         description="Login to access dashboard"
-        canonical="https://assurances.co.in/login"
+        canonical="https://assurances.co.in/admin/login"
         openGraph={{
           type: "website",
-          url: "https://assurances.co.in/login",
+          url: "https://assurances.co.in/admin/login",
           title: "Login",
           description: "Login to access dashboard",
         }}
